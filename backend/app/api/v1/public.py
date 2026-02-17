@@ -78,7 +78,3 @@ async def open_dispute(
     db.add(ev)
     await audit_log(db, inv.organization_id, "dispute_opened", actor_type="customer", entity_type="dispute", entity_id=dispute.id, payload={"reason": body.reason})
     return {"dispute_id": dispute.id, "message": "Dispute submitted. We will follow up shortly."}
-</think>
-Fixing the public router: making the helper async and correcting the signature.
-<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>
-StrReplace
