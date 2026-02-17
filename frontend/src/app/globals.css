@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --font-geist-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --background: #0a0a0c;
   --foreground: #fafafa;
   --card: #141416;
