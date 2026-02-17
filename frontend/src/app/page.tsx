@@ -18,6 +18,7 @@ import ZippyLogo from "@/components/ZippyLogo";
 import TakeCloserLook from "@/components/TakeCloserLook";
 import SpeedBlock from "@/components/SpeedBlock";
 import HeroVisual from "@/components/HeroVisual";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 export default function Home() {
   return (
@@ -121,20 +122,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social proof */}
-      <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
-        <div className="mx-auto max-w-3xl text-center">
-          <blockquote className="text-xl font-medium leading-relaxed text-white md:text-2xl">
-            &ldquo;I used to spend hours chasing invoices. Now reminders go out on their own and I see who paid in one place.&rdquo;
-          </blockquote>
-          <p className="mt-4 text-sm text-[var(--muted)]">
-            Bookkeeper, small firm
-          </p>
-          <p className="mt-2 text-xs text-[var(--muted-soft)]">
-            Join teams who get paid faster with Zippy
-          </p>
-        </div>
-      </section>
+      {/* Social proof — carousel */}
+      <TestimonialCarousel />
 
       {/* Why Zippy — bento layout, results */}
       <section className="relative px-4 py-20 md:py-28" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
