@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const REASONS = [
@@ -11,7 +11,7 @@ const REASONS = [
   { value: "other", label: "Other" },
 ];
 
-export default function DisputePage() {
+function DisputeContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [invoice, setInvoice] = useState<{
@@ -124,5 +124,13 @@ export default function DisputePage() {
         </button>
       </form>
     </div>
+  );
+}
+
+export default function DisputePage() {
+  return (
+    <Suspense fallback={<div className="py-12 text-center text-[var(--muted)]">Loading…</div>}>
+      <DisputeContent />
+    </Suspense>
   );
 }

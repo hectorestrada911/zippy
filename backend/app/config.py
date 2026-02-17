@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     # App
     app_name: str = "Zippy"
     debug: bool = False
-    secret_key: str = "change-me-in-production"
+    secret_key: str = ""  # Set in .env; generate with: openssl rand -hex 32
 
     # DB
     database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/collections_autopilot"

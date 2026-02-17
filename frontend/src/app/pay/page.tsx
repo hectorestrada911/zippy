@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function PayPage() {
+function PayContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [invoice, setInvoice] = useState<{
@@ -62,5 +62,13 @@ export default function PayPage() {
         </p>
       )}
     </div>
+  );
+}
+
+export default function PayPage() {
+  return (
+    <Suspense fallback={<div className="py-12 text-center text-[var(--muted)]">Loading…</div>}>
+      <PayContent />
+    </Suspense>
   );
 }
