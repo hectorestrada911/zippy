@@ -86,9 +86,9 @@ export default function Home() {
               >
                 Connect QuickBooks
               </Link>
-<Link href="#how-it-works" className="btn-secondary text-base">
-              What you get
-            </Link>
+              <Link href="#how-it-works" className="btn-secondary text-base">
+                What you get
+              </Link>
             </div>
             <p
               className="animate-fade-in mt-6 text-sm text-[var(--muted-soft)]"
@@ -117,6 +117,21 @@ export default function Home() {
           <p className="text-[var(--muted)] leading-relaxed">
             Consultants, agencies, bookkeepers, and small teams. If you’ve ever waited on a “missing PO,”
             a W-9, or a “wrong hours” email, Zippy puts everything in one dashboard so you know exactly what to do next.
+          </p>
+        </div>
+      </section>
+
+      {/* Social proof */}
+      <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
+        <div className="mx-auto max-w-3xl text-center">
+          <blockquote className="text-xl font-medium leading-relaxed text-white md:text-2xl">
+            &ldquo;I used to spend hours chasing invoices. Now reminders go out on their own and I see who paid in one place.&rdquo;
+          </blockquote>
+          <p className="mt-4 text-sm text-[var(--muted)]">
+            Bookkeeper, small firm
+          </p>
+          <p className="mt-2 text-xs text-[var(--muted-soft)]">
+            Join teams who get paid faster with Zippy
           </p>
         </div>
       </section>
@@ -317,18 +332,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ — objections + SEO */}
+      <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(20, 20, 22, 0.5)" }}>
+        <div className="mx-auto max-w-2xl">
+          <h2 className="page-title text-center">Common questions</h2>
+          <dl className="mt-10 space-y-8">
+            {[
+              {
+                q: "How does Zippy work with my books?",
+                a: "Zippy connects to QuickBooks and syncs your customers and open invoices. Reminders and pay links work from that data. No double entry.",
+              },
+              {
+                q: "Is my data secure?",
+                a: "Yes. We use industry-standard encryption and don’t store card details. You can disconnect QuickBooks anytime.",
+              },
+              {
+                q: "Can I try it before committing?",
+                a: "Yes. Sign up with email, connect QuickBooks, and run reminders. No credit card required to start.",
+              },
+              {
+                q: "What if a customer has a question about an invoice?",
+                a: "Every reminder includes a “Report an issue” link. They submit once; you see it in your Zippy dashboard and we pause reminders until you resolve it.",
+              },
+            ].map((faq) => (
+              <div key={faq.q}>
+                <dt className="text-base font-semibold text-white">{faq.q}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{faq.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="px-4 py-20 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--muted)]">
             <ZippyLogo className="text-base text-[var(--accent)]" />
-            <span>Get started in minutes</span>
+            <span>Free to start</span>
           </div>
           <h2 className="mt-8 text-3xl font-bold text-white md:text-4xl">
             Ready to get paid faster?
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            Log in with your email. We’ll send you a link. No password to remember.
+            Log in with your email. We’ll send you a link. No password, no credit card.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link href="/login" className="btn-primary text-base">
@@ -338,6 +385,9 @@ export default function Home() {
               Go to dashboard
             </Link>
           </div>
+          <p className="mt-6 text-xs text-[var(--muted-soft)]">
+            Free to start · No credit card · Cancel anytime
+          </p>
         </div>
       </section>
 
