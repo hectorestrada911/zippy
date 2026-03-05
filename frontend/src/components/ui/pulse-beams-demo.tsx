@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { PulseBeams } from "@/components/ui/pulse-beams";
 
 const beams = [
@@ -163,8 +164,8 @@ export function PulseBeamsFirstDemo() {
       gradientColors={gradientColors}
       className="bg-slate-950"
     >
-      <button
-        type="button"
+      <Link
+        href="/login"
         className="group relative z-40 inline-flex h-[120px] w-[320px] cursor-pointer items-center justify-center space-x-2 rounded-full bg-zinc-950 p-px text-center text-xs font-semibold leading-6 text-white shadow-2xl shadow-zinc-900 ring-1 ring-white/10 no-underline transition-opacity duration-500 hover:opacity-100"
       >
         <span className="absolute inset-0 overflow-hidden rounded-full">
@@ -174,9 +175,9 @@ export function PulseBeamsFirstDemo() {
           />
         </span>
         <span className="relative z-10 inline-block bg-gradient-to-r from-neutral-300 via-neutral-600 to-neutral-300 bg-clip-text text-base text-transparent md:text-4xl">
-          Connect
+          Connect QuickBooks
         </span>
-      </button>
+      </Link>
     </PulseBeams>
   );
 }

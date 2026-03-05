@@ -15,11 +15,11 @@ export function SplineSceneBasic() {
       <div className="flex h-full">
         <div className="relative z-10 flex flex-1 flex-col justify-center p-8">
           <h1 className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-            Interactive 3D
+            Your money at a glance
           </h1>
           <p className="mt-4 max-w-lg text-neutral-300">
-            Bring your UI to life with beautiful 3D scenes. Create immersive
-            experiences that capture attention and enhance your design.
+            One dashboard for who owes what, what’s overdue, and what got paid.
+            Reminders go out; you see the result without chasing.
           </p>
         </div>
 
