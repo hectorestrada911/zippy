@@ -25,7 +25,15 @@ export async function api<T>(
 
 export async function getDashboard() {
   return api<{
-    summary: { total_ar: number; overdue_ar: number; expected_7_days: number; expected_30_days: number; overdue_count: number };
+    summary: {
+      total_ar: number;
+      overdue_ar: number;
+      expected_7_days: number;
+      expected_30_days: number;
+      overdue_count: number;
+      paid_count_this_month: number;
+      paid_after_reminder_total: number;
+    };
     overdue_invoices: Array<{ invoice_id: string; invoice_number: string | null; customer_name: string; amount: number; due_date: string; next_scheduled_at: string | null; status: string }>;
     disputes_needing_action: Array<{ dispute_id: string; invoice_id: string; invoice_number: string | null; reason: string; status: string; created_at: string }>;
   }>("/api/v1/dashboard");
@@ -42,6 +50,7 @@ export async function getInvoices() {
     dispute_open: boolean;
     next_scheduled_at: string | null;
     paid_at: string | null;
+    escalated_at: string | null;
     customer_id: string;
   }>>("/api/v1/invoices");
 }
@@ -54,6 +63,7 @@ export async function getInvoice(id: string) {
     due_date: string;
     status: string;
     dispute_open: boolean;
+    escalated_at: string | null;
     messages: Array<{ id: string; channel: string; sent_at: string; status: string }>;
     disputes: Array<{ id: string; reason: string; status: string }>;
     customer_name: string | null;
@@ -103,6 +113,17 @@ export async function runSync() {
 
 export async function getCompany() {
   return api<{ name: string; logo_url: string | null; signature_text: string | null; reply_to_email: string | null }>("/api/v1/settings/company");
+}
+
+export async function getAutopilotSettings() {
+  return api<{ escalation_days: number | null }>("/api/v1/settings/autopilot");
+}
+
+export async function updateAutopilotSettings(body: { escalation_days: number | null }) {
+  return api<{ escalation_days: number | null }>("/api/v1/settings/autopilot", {
+    method: "PATCH",
+    body: JSON.stringify(body),
+  });
 }
 
 export async function getQuickBooksAuthUrl(state: string) {

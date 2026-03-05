@@ -20,6 +20,7 @@ function DisputeContent() {
     amount: number;
     due_date: string;
     has_open_dispute: boolean;
+    company_name?: string | null;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [reason, setReason] = useState("");
@@ -89,7 +90,9 @@ function DisputeContent() {
 
   return (
     <div className="card mx-auto mt-12 max-w-md">
-      <h1 className="page-title text-2xl">Report a payment blocker</h1>
+      <h1 className="page-title text-2xl">
+        {invoice.company_name ? `Report a payment blocker to ${invoice.company_name}` : "Report a payment blocker"}
+      </h1>
       <p className="page-subtitle mt-0">
         Invoice {invoice.number} · ${invoice.amount.toLocaleString()} (due {invoice.due_date})
       </p>

@@ -17,10 +17,12 @@ from app.models import (
     User,
     Customer,
     Invoice,
+    Message,
     DunningRule,
     IntegrationCredential,
 )
 from app.models.dunning import DEFAULT_OFFSET_DAYS
+from app.core.security import generate_link_token_legacy
 
 
 async def seed():
@@ -60,6 +62,10 @@ async def seed():
         await session.flush()
 
         today = date.today()
+        token1 = generate_link_token_legacy()
+        token2 = generate_link_token_legacy()
+        token3 = generate_link_token_legacy()
+        exp = datetime.now(timezone.utc) + timedelta(days=30)
         inv1 = Invoice(
             organization_id=org.id,
             customer_id=cust1.id,
@@ -69,6 +75,8 @@ async def seed():
             due_date=today - timedelta(days=5),
             status="overdue",
             next_scheduled_at=datetime(today.year, today.month, today.day, tzinfo=timezone.utc),
+            link_token=token1,
+            link_token_expires_at=exp,
         )
         inv2 = Invoice(
             organization_id=org.id,
@@ -79,9 +87,32 @@ async def seed():
             due_date=today + timedelta(days=7),
             status="open",
             next_scheduled_at=datetime((today + timedelta(days=7)).year, (today + timedelta(days=7)).month, (today + timedelta(days=7)).day, tzinfo=timezone.utc),
+            link_token=token2,
+            link_token_expires_at=exp,
         )
-        session.add_all([inv1, inv2])
+        inv3 = Invoice(
+            organization_id=org.id,
+            customer_id=cust2.id,
+            external_id="inv-mock-3",
+            number="INV-003",
+            amount=Decimal("800.00"),
+            due_date=today - timedelta(days=10),
+            status="paid",
+            paid_at=datetime.now(timezone.utc),
+            link_token=token3,
+            link_token_expires_at=exp,
+        )
+        session.add_all([inv1, inv2, inv3])
         await session.flush()
+        session.add(
+            Message(
+                invoice_id=inv3.id,
+                channel="email",
+                template_used="reminder",
+                status="sent",
+                idempotency_key=f"{inv3.id}:0:email",
+            )
+        )
 
         for i, offset in enumerate(DEFAULT_OFFSET_DAYS):
             session.add(
@@ -95,7 +126,7 @@ async def seed():
             )
 
         await session.commit()
-        print("Seeded: org, user demo@example.com, 2 customers, 2 invoices, dunning rules.")
+        print("Seeded: org, user demo@example.com, 2 customers, 3 invoices (1 paid w/ reminder), dunning rules.")
 
 
 if __name__ == "__main__":

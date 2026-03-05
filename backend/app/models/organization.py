@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Optional
 import uuid
-from sqlalchemy import Boolean, ForeignKey, String, Text
+from sqlalchemy import Boolean, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -22,6 +22,8 @@ class Organization(Base, TimestampMixin):
     logo_url: Mapped[Optional[str]] = mapped_column(String(512), nullable=True)
     signature_text: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     reply_to_email: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    # Escalation: when invoice is this many days past due, mark escalated (e.g. 30)
+    escalation_days: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
 
     users: Mapped[list["User"]] = relationship("User", back_populates="organization")
     customers: Mapped[list["Customer"]] = relationship("Customer", back_populates="organization")

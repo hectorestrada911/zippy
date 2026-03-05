@@ -1,4 +1,4 @@
-"""Dashboard: AR summary, overdue list, disputes needing action."""
+"""Dashboard: AR summary, overdue list, disputes needing action, ROI."""
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
 from fastapi import APIRouter, Depends
@@ -8,7 +8,7 @@ from sqlalchemy.orm import selectinload
 
 from app.api.deps import get_current_user
 from app.database import get_db
-from app.models import Invoice, Dispute, User
+from app.models import Invoice, Dispute, User, Message
 from app.schemas.dashboard import (
     DashboardResponse,
     DashboardSummary,
@@ -78,6 +78,33 @@ async def get_dashboard(
     expected_7_days = exp7.scalar_one() or Decimal(0)
     expected_30_days = exp30.scalar_one() or Decimal(0)
 
+    # Paid this month (invoices with paid_at in current month)
+    start_of_month = datetime(today.year, today.month, 1, tzinfo=timezone.utc)
+    if today.month == 12:
+        start_next_month = datetime(today.year + 1, 1, 1, tzinfo=timezone.utc)
+    else:
+        start_next_month = datetime(today.year, today.month + 1, 1, tzinfo=timezone.utc)
+    paid_month_r = await db.execute(
+        select(func.count(Invoice.id)).where(
+            Invoice.organization_id == org_id,
+            Invoice.paid_at.is_not(None),
+            Invoice.paid_at >= start_of_month,
+            Invoice.paid_at < start_next_month,
+        )
+    )
+    paid_count_this_month = paid_month_r.scalar_one() or 0
+
+    # Total $ paid after at least one reminder (invoices with paid_at and at least one message)
+    subq = select(Message.invoice_id).distinct()
+    paid_after_r = await db.execute(
+        select(func.coalesce(func.sum(Invoice.amount), 0)).where(
+            Invoice.organization_id == org_id,
+            Invoice.paid_at.is_not(None),
+            Invoice.id.in_(subq),
+        )
+    )
+    paid_after_reminder_total = paid_after_r.scalar_one() or Decimal(0)
+
     # Overdue invoices with next reminder
     inv_list = await db.execute(
         select(Invoice)
@@ -133,6 +160,8 @@ async def get_dashboard(
             expected_7_days=expected_7_days,
             expected_30_days=expected_30_days,
             overdue_count=overdue_count,
+            paid_count_this_month=paid_count_this_month,
+            paid_after_reminder_total=paid_after_reminder_total,
         ),
         overdue_invoices=overdue_items,
         disputes_needing_action=dispute_items,

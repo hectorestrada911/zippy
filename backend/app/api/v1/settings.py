@@ -20,6 +20,14 @@ class CompanyProfile(BaseModel):
     reply_to_email: str | None
 
 
+class AutopilotSettings(BaseModel):
+    escalation_days: int | None
+
+
+class AutopilotSettingsUpdate(BaseModel):
+    escalation_days: int | None
+
+
 @router.get("/company", response_model=CompanyProfile)
 async def get_company(
   db: AsyncSession = Depends(get_db),
@@ -35,6 +43,36 @@ async def get_company(
         signature_text=org.signature_text,
         reply_to_email=org.reply_to_email,
     )
+
+
+@router.get("/autopilot", response_model=AutopilotSettings)
+async def get_autopilot(
+  db: AsyncSession = Depends(get_db),
+  user: User = Depends(get_current_user),
+):
+    r = await db.execute(select(Organization).where(Organization.id == user.organization_id))
+    org = r.scalar_one_or_none()
+    if not org:
+        raise HTTPException(status_code=404, detail="Organization not found")
+    return AutopilotSettings(escalation_days=org.escalation_days)
+
+
+@router.patch("/autopilot", response_model=AutopilotSettings)
+async def update_autopilot(
+  body: AutopilotSettingsUpdate,
+  db: AsyncSession = Depends(get_db),
+  user: User = Depends(get_current_user),
+):
+    r = await db.execute(select(Organization).where(Organization.id == user.organization_id))
+    org = r.scalar_one_or_none()
+    if not org:
+        raise HTTPException(status_code=404, detail="Organization not found")
+    if body.escalation_days is not None:
+        if body.escalation_days < 1 or body.escalation_days > 365:
+            raise HTTPException(status_code=400, detail="escalation_days must be between 1 and 365")
+        org.escalation_days = body.escalation_days
+    await db.commit()
+    return AutopilotSettings(escalation_days=org.escalation_days)
 
 
 @router.get("/integrations/quickbooks/authorize-url")

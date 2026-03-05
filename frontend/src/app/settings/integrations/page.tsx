@@ -104,6 +104,18 @@ export default function SettingsIntegrationsPage() {
           Stripe: {status.stripe_connected ? "Connected" : "Not connected"}
         </p>
       </div>
+
+      <div className="card max-w-2xl">
+        <h2 className="section-title">Autopilot</h2>
+        <p className="text-sm text-[var(--muted)]">
+          Set when overdue invoices are marked as escalated (e.g. 30 days past due) so you can prioritize.
+        </p>
+        <p className="mt-3">
+          <Link href="/settings/autopilot" className="text-sm font-medium text-[var(--accent)] underline underline-offset-2 hover:no-underline">
+            Configure escalation →
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

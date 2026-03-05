@@ -57,6 +57,9 @@ export default function InvoicesList() {
                     <span className={inv.status === "overdue" ? "text-[var(--warning)]" : ""}>
                       {inv.status}
                     </span>
+                    {inv.escalated_at && (
+                      <span className="ml-2 rounded bg-amber-500/20 px-1.5 py-0.5 text-xs text-amber-400">Escalated</span>
+                    )}
                   </td>
                   <td>{inv.dispute_open ? "Yes" : "—"}</td>
                   <td className="text-[var(--muted)]">

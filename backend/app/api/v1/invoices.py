@@ -33,6 +33,7 @@ async def list_invoices(
         dispute_open=inv.dispute_open,
         next_scheduled_at=inv.next_scheduled_at,
         paid_at=inv.paid_at,
+        escalated_at=inv.escalated_at,
         customer_id=inv.customer_id,
     ) for inv in invoices]
 
@@ -68,6 +69,7 @@ async def get_invoice(
         dispute_open=inv.dispute_open,
         next_scheduled_at=inv.next_scheduled_at,
         paid_at=inv.paid_at,
+        escalated_at=inv.escalated_at,
         customer_id=inv.customer_id,
         pay_url=inv.pay_url,
         link_token=None,  # Don't expose token in API

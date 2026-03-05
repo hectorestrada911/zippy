@@ -84,6 +84,21 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
+        <div className="stat-card stat-card-glass">
+          <span className="stat-label">Paid this month</span>
+          <span className="stat-value text-[var(--success)]">
+            <CountUp value={summary.paid_count_this_month} />
+          </span>
+        </div>
+        <div className="stat-card stat-card-glass">
+          <span className="stat-label">Paid after reminder</span>
+          <span className="stat-value text-[var(--success)]">
+            <CountUp value={Number(summary.paid_after_reminder_total)} prefix="$" />
+          </span>
+        </div>
+      </div>
+
       <div className="grid gap-6 md:grid-cols-2">
         <div className="card">
           <h2 className="section-title">Overdue (needs a nudge)</h2>

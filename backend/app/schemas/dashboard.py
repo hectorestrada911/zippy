@@ -9,6 +9,8 @@ class DashboardSummary(BaseModel):
     expected_7_days: Decimal
     expected_30_days: Decimal
     overdue_count: int
+    paid_count_this_month: int
+    paid_after_reminder_total: Decimal
 
 
 class OverdueItem(BaseModel):

@@ -14,6 +14,7 @@ class InvoiceList(BaseModel):
     dispute_open: bool
     next_scheduled_at: datetime | None
     paid_at: datetime | None
+    escalated_at: datetime | None = None
     customer_id: str
 
 

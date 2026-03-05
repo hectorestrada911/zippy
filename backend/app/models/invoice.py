@@ -45,6 +45,8 @@ class Invoice(Base, TimestampMixin):
     link_token_expires_at: Mapped[Optional[datetime]] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
+    # Set when invoice is past org’s escalation_days (e.g. 30 days overdue)
+    escalated_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
 
     organization: Mapped["Organization"] = relationship("Organization", back_populates="invoices")
     customer: Mapped["Customer"] = relationship("Customer", back_populates="invoices")

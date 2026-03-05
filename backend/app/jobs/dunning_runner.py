@@ -35,7 +35,7 @@ async def run_dunning_job() -> None:
         # Invoices with next_scheduled_at in the past, not paid, not in dispute
         r = await session.execute(
             select(Invoice)
-            .options(selectinload(Invoice.customer))
+            .options(selectinload(Invoice.customer), selectinload(Invoice.organization))
             .where(Invoice.next_scheduled_at <= now)
             .where(Invoice.paid_at.is_(None))
             .where(Invoice.dispute_open == False)  # noqa: E712
@@ -48,6 +48,22 @@ async def run_dunning_job() -> None:
 
 async def _process_invoice_reminder(session: AsyncSession, invoice: Invoice) -> None:
     """Send reminder(s) for one invoice and set next_scheduled_at."""
+    # Escalation: if org has escalation_days and invoice is that many days overdue, mark escalated
+    if invoice.organization and invoice.organization.escalation_days is not None and invoice.escalated_at is None:
+        from datetime import date
+        today = date.today()
+        days_overdue = (today - invoice.due_date).days
+        if days_overdue >= invoice.organization.escalation_days:
+            invoice.escalated_at = datetime.now(timezone.utc)
+            await audit_log(
+                session,
+                invoice.organization_id,
+                "invoice_escalated",
+                entity_type="invoice",
+                entity_id=invoice.id,
+                payload={"days_overdue": days_overdue, "escalation_days": invoice.organization.escalation_days},
+            )
+
     offsets = await get_organization_dunning_offsets(session, invoice.organization_id)
     due_date = invoice.due_date
     # Which offset are we at? next_scheduled_at is start of a day; find matching offset

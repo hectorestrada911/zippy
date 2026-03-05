@@ -18,7 +18,7 @@ async def _get_invoice_by_token(db: AsyncSession, token: str):
     """Validate token and return invoice or None. Token is stored link_token on invoice."""
     r = await db.execute(
         select(Invoice)
-        .options(selectinload(Invoice.customer))
+        .options(selectinload(Invoice.customer), selectinload(Invoice.organization))
         .where(Invoice.link_token == token)
         .where(Invoice.paid_at.is_(None))
     )
@@ -49,6 +49,7 @@ async def get_invoice_by_token(
         "customer_name": inv.customer.name if inv.customer else None,
         "pay_url": inv.pay_url,
         "has_open_dispute": inv.dispute_open,
+        "company_name": inv.organization.name if inv.organization else None,
     }
 
 

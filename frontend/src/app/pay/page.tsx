@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 function PayContent() {
@@ -14,6 +15,7 @@ function PayContent() {
     currency: string;
     customer_name: string | null;
     pay_url: string | null;
+    company_name: string | null;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -41,9 +43,13 @@ function PayContent() {
     );
   }
 
+  const token = searchParams.get("token");
+  const disputeUrl = token ? `/dispute?token=${encodeURIComponent(token)}` : "/dispute";
   return (
     <div className="card mx-auto mt-12 max-w-md">
-      <h1 className="page-title text-2xl">Pay this invoice</h1>
+      <h1 className="page-title text-2xl">
+        {invoice.company_name ? `Pay ${invoice.company_name}` : "Pay this invoice"}
+      </h1>
       <p className="page-subtitle mt-0">Invoice {invoice.number}</p>
       <p className="stat-value mt-4">{invoice.currency} ${invoice.amount.toLocaleString()}</p>
       <p className="stat-label mt-1">Due {invoice.due_date}</p>
@@ -61,6 +67,11 @@ function PayContent() {
           There’s no pay link set up for this invoice. Reach out to the sender for how to pay.
         </p>
       )}
+      <p className="mt-6 text-center">
+        <Link href={disputeUrl} className="text-sm text-[var(--muted)] underline underline-offset-2 hover:text-white">
+          Report a payment blocker
+        </Link>
+      </p>
     </div>
   );
 }
