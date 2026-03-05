@@ -43,7 +43,6 @@ function PayContent() {
     );
   }
 
-  const token = searchParams.get("token");
   const disputeUrl = token ? `/dispute?token=${encodeURIComponent(token)}` : "/dispute";
   return (
     <div className="card mx-auto mt-12 max-w-md">
