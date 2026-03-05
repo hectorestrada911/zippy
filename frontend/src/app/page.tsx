@@ -19,6 +19,8 @@ import { SplineSceneBasic } from "@/components/ui/spline-scene-demo";
 import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
 import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
+import { AnimatedTextCycleDemo } from "@/components/ui/animated-text-cycle-demo";
+import { DemoBackgroundPaths } from "@/components/ui/background-paths-demo";
 
 export default function Home() {
   return (
@@ -126,6 +128,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Animated text cycle — supporting headline */}
+      <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
+        <div className="mx-auto max-w-6xl flex justify-center">
+          <AnimatedTextCycleDemo />
+        </div>
+      </section>
+
       {/* Social proof — carousel */}
       <TestimonialCarousel />
 
@@ -147,6 +156,11 @@ export default function Home() {
       {/* Pulse beams — animated gradient beams + Connect CTA */}
       <section className="min-h-screen">
         <PulseBeamsFirstDemo />
+      </section>
+
+      {/* Background paths — full-screen animated paths + Get paid faster CTA */}
+      <section className="min-h-screen">
+        <DemoBackgroundPaths />
       </section>
 
       {/* Why Zippy vs QuickBooks / generic AR */}
