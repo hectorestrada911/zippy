@@ -21,8 +21,7 @@ import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
 import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { AnimatedTextCycleDemo } from "@/components/ui/animated-text-cycle-demo";
-import { DemoBackgroundPaths } from "@/components/ui/background-paths-demo";
-import { ParticleTextEffectDemo } from "@/components/ui/particle-text-effect-demo";
+import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 
 export default function Home() {
   return (
@@ -54,6 +53,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 -z-10">
           <HeroPathLines />
         </div>
+        <ParticleTextEffect embedInHero words={["ZIPPY", "GET PAID", "AUTOPILOT", "BLOCKERS", "RESOLVE"]} />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <div className="text-center lg:text-left">
             <p
@@ -140,11 +140,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Particle text — full-screen canvas with Zippy words */}
-      <section className="min-h-screen">
-        <ParticleTextEffectDemo />
-      </section>
-
       {/* Social proof — carousel */}
       <TestimonialCarousel />
 
@@ -166,11 +161,6 @@ export default function Home() {
       {/* Pulse beams — animated gradient beams + Connect CTA */}
       <section className="min-h-screen">
         <PulseBeamsFirstDemo />
-      </section>
-
-      {/* Background paths — full-screen animated paths + Get paid faster CTA */}
-      <section className="min-h-screen">
-        <DemoBackgroundPaths />
       </section>
 
       {/* Why Zippy vs QuickBooks / generic AR */}

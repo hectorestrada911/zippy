@@ -134,6 +134,8 @@ interface ParticleTextEffectProps {
   className?: string;
   caption?: string;
   subcaption?: string;
+  /** When true, renders as a hero background layer (no caption, absolute fill, -z-10). */
+  embedInHero?: boolean;
 }
 
 const DEFAULT_WORDS = ["ZIPPY", "GET PAID", "AUTOPILOT", "BLOCKERS", "RESOLVE"];
@@ -143,6 +145,7 @@ export function ParticleTextEffect({
   className = "",
   caption = "Invoice resolution on autopilot",
   subcaption = "Reminders run. Blockers land in one inbox. We pause until you resolve.",
+  embedInHero = false,
 }: ParticleTextEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
@@ -152,6 +155,8 @@ export function ParticleTextEffect({
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false });
   const wordsRef = useRef(words);
   wordsRef.current = words;
+  const embedInHeroRef = useRef(embedInHero);
+  embedInHeroRef.current = embedInHero; // keep in sync for animate loop
 
   const pixelSteps = 6;
   const drawAsPoints = true;
@@ -266,8 +271,12 @@ export function ParticleTextEffect({
     const particles = particlesRef.current;
     const currentWords = wordsRef.current;
 
-    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (embedInHeroRef.current) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const particle = particles[i];
@@ -354,6 +363,18 @@ export function ParticleTextEffect({
       canvas.removeEventListener("contextmenu", handleContextMenu);
     };
   }, [words[0]]);
+
+  if (embedInHero) {
+    return (
+      <div className={`absolute inset-0 -z-10 min-h-0 flex items-center justify-center overflow-hidden bg-transparent pointer-events-none ${className}`}>
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full object-contain opacity-80"
+          style={{ maxHeight: "100%" }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={`flex flex-col items-center justify-center min-h-screen bg-black p-4 ${className}`}>
