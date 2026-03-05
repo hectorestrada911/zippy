@@ -110,11 +110,11 @@ export default function DashboardPage() {
         </div>
 
         <div className="card">
-          <h2 className="section-title">Customer questions (your reply needed)</h2>
+          <h2 className="section-title">Blockers (your reply needed)</h2>
           {disputes_needing_action.length === 0 ? (
             <div className="empty-state">
               <p className="empty-state-title">Nothing waiting</p>
-              <p className="empty-state-desc">When a customer reports an issue from their invoice link, it’ll show here so you can fix it fast.</p>
+              <p className="empty-state-desc">When someone reports a payment blocker from their invoice link, it’ll show here. Resolve it and we’ll resume reminders when you’re ready.</p>
             </div>
           ) : (
             <ul className="divide-y divide-[var(--border-subtle)]">

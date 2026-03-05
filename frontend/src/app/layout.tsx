@@ -4,8 +4,8 @@ import Nav from "@/components/Nav";
 import { TwentyFirstToolbarWrapper } from "@/components/TwentyFirstToolbarWrapper";
 
 export const metadata: Metadata = {
-  title: "Zippy. Get paid faster, without the chase.",
-  description: "Friendly reminders and one place for customer questions. So you get your money faster and spend less time following up.",
+  title: "Zippy. Invoice resolution on autopilot.",
+  description: "Reminders run on your schedule. When a customer reports what’s blocking payment, we pause until you fix it. Blockers inbox, safe autopilot, get paid faster.",
 };
 
 export default function RootLayout({

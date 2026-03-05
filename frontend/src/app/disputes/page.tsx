@@ -26,8 +26,8 @@ export default function DisputesPage() {
   return (
     <div className="space-y-6">
       <header className="page-header">
-        <h1 className="page-title">Customer questions & issues</h1>
-        <p className="page-subtitle">When someone reports a problem from their invoice link, it shows here. Fix it and we’ll resume reminders.</p>
+        <h1 className="page-title">Blockers</h1>
+        <p className="page-subtitle">Payment blockers from your invoice links show here. Resolve them and we’ll resume reminders when you’re ready.</p>
       </header>
 
       {list.length > 0 ? (

@@ -36,7 +36,7 @@ export default function DisputeDetailPage() {
     return (
       <div className="card max-w-md">
         <p className="text-[var(--error)]">{error}</p>
-        <Link href="/disputes" className="mt-4 inline-block link">← Back to disputes</Link>
+        <Link href="/disputes" className="mt-4 inline-block link">← Back to Blockers</Link>
       </div>
     );
   }
@@ -52,7 +52,7 @@ export default function DisputeDetailPage() {
   return (
     <div className="space-y-8">
       <Link href="/disputes" className="inline-block text-sm text-[var(--muted)] transition-colors hover:text-white">
-        ← Disputes
+        ← Blockers
       </Link>
 
       <div className="card">

@@ -26,8 +26,8 @@ const defaultCards = [
   },
   {
     icon: <MessageCircle className="size-4 text-cyan-300" />,
-    title: "Customer questions",
-    description: "Disputes or issues to resolve",
+    title: "Payment blockers",
+    description: "Issues to resolve — reminders paused",
     date: "One place",
     iconClassName: "text-cyan-500",
     titleClassName: "text-cyan-500",

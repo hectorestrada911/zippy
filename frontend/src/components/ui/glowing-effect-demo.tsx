@@ -23,8 +23,8 @@ export function GlowingEffectDemo() {
       <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-[var(--accent)]" />}
-        title="Questions in one place"
-        description="Wrong amount, need a W-9? They report it with one link. You fix it; we pause reminders until you're done."
+        title="Blockers in one place"
+        description="Wrong amount, missing PO, W-9? They report it with one link. You fix it; we auto-pause reminders until you're done."
       />
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"

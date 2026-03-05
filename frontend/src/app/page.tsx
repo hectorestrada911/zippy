@@ -18,6 +18,7 @@ import { GlowingEffectDemo } from "@/components/ui/glowing-effect-demo";
 import { SplineSceneBasic } from "@/components/ui/spline-scene-demo";
 import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
 import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
+import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 
 export default function Home() {
   return (
@@ -52,7 +53,7 @@ export default function Home() {
               className="animate-fade-in text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
               style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
-              Invoices that get paid
+              Invoice resolution on autopilot
             </p>
             <h1
               className="animate-fade-in-up mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl xl:leading-[1.05]"
@@ -67,14 +68,14 @@ export default function Home() {
                   animation: "gradient-shift 3.5s ease-in-out infinite",
                 }}
               >
-                Start getting paid.
+                Start resolving.
               </span>
             </h1>
             <p
               className="animate-fade-in-up mx-auto mt-6 max-w-md text-base text-[var(--muted)] md:text-lg lg:mx-0"
               style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
             >
-              Friendly reminders with a one-click pay link. Questions land in one place. You get paid faster.
+              Reminders run on your schedule. When a customer reports what’s blocking payment, we pause until you fix it. Get paid faster without awkward follow-up.
             </p>
             <div
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
@@ -119,14 +120,17 @@ export default function Home() {
             Built for people who send invoices and hate the chase
           </p>
           <p className="text-[var(--muted)] leading-relaxed">
-            Consultants, agencies, bookkeepers, and small teams. If you’ve ever waited on a “missing PO,”
-            a W-9, or a “wrong hours” email, Zippy puts everything in one dashboard so you know exactly what to do next.
+            Consultants, agencies, bookkeepers, and small teams. Missing PO, W-9, or approval questions?
+            Zippy’s Blockers Inbox collects them in one place and auto-pauses reminders until you resolve them.
           </p>
         </div>
       </section>
 
       {/* Social proof — carousel */}
       <TestimonialCarousel />
+
+      {/* Social proof — marquee testimonials */}
+      <TestimonialsSectionDemo />
 
       {/* Interactive 3D — Spline scene */}
       <section className="px-4 py-12 md:py-16">
@@ -145,13 +149,13 @@ export default function Home() {
         <PulseBeamsFirstDemo />
       </section>
 
-      {/* Why Zippy — bento layout, results */}
+      {/* Why Zippy vs QuickBooks / generic AR */}
       <section className="relative px-4 py-20 md:py-28" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(34,211,238,0.04),transparent)]" />
         <div className="relative mx-auto max-w-5xl">
-          <h2 className="page-title text-center">Why Zippy</h2>
+          <h2 className="page-title text-center">Why Zippy vs QuickBooks reminders</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-            Less admin, more clarity. You focus on work; Zippy handles the follow-up.
+            QuickBooks can send reminders—but they don’t stop when there’s a problem. Zippy pauses automatically when a customer reports an issue (wrong amount, missing PO, W-9). You resolve it in one inbox; we resume when you’re ready. Tokenized pay and report-issue links: no customer login.
           </p>
           <div className="mt-14">
             <GlowingEffectDemo />
@@ -171,36 +175,59 @@ export default function Home() {
         <div className="relative mx-auto max-w-5xl">
           <h2 className="page-title text-center">What you get</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-lg text-center">
-            Your books connected. Reminders that send. Payments and questions in one place.
+            Always-current AR. Safe autopilot. One place for payment blockers.
           </p>
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
                 <LinkIcon className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold text-white">Books in sync</h3>
+              <h3 className="mt-6 text-xl font-semibold text-white">Always current, no spreadsheet AR</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Customers and open invoices, no re-typing. Connect once and everything stays current.
+                Customers and open invoices sync from QuickBooks. Connect once; everything stays current.
               </p>
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
                 <CalendarDaysIcon className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold text-white">Reminders on autopilot</h3>
+              <h3 className="mt-6 text-xl font-semibold text-white">Safe Autopilot (with stop rules)</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Right time, right message. Before due, on due, after. Your logo, your words.
+                Reminders send at the right time. When someone reports an issue, we auto-pause that invoice until you resolve it.
               </p>
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
                 <ChatBubbleBottomCenterTextIcon className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold text-white">Paid and answered</h3>
+              <h3 className="mt-6 text-xl font-semibold text-white">Blockers Inbox (auto-pause on issues)</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Pay now and Report an issue in every email. You see who paid and who needs help, in one place.
+                Pay and Report issue in every email. You see what’s blocking payment in one place; reminders stay paused until you’re done.
               </p>
             </div>
+          </div>
+
+          {/* Stop chasing. Start resolving. — differentiator bullets */}
+          <div className="mt-20 rounded-2xl border border-[var(--border)] bg-[var(--card)]/50 px-6 py-8 sm:px-10 sm:py-10">
+            <h3 className="text-center text-xl font-semibold text-white sm:text-2xl">Stop chasing. Start resolving.</h3>
+            <ul className="mx-auto mt-6 grid max-w-2xl gap-3 text-sm text-[var(--muted)] sm:grid-cols-2 sm:gap-4">
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
+                Auto-remind based on due dates and your rules
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
+                Customers can pay or report what’s blocking payment
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
+                Issues auto-pause reminders until resolved
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
+                Escalation when an invoice goes past a threshold
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -265,7 +292,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ — objections + SEO */}
+      {/* FAQ — trust + blocker resolution + safe autopilot */}
       <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(20, 20, 22, 0.5)" }}>
         <div className="mx-auto max-w-2xl">
           <h2 className="page-title text-center">Common questions</h2>
@@ -276,16 +303,20 @@ export default function Home() {
                 a: "Zippy connects to QuickBooks and syncs your customers and open invoices. Reminders and pay links work from that data. No double entry.",
               },
               {
+                q: "Does Zippy stop reminding when there’s an issue?",
+                a: "Yes. When a customer reports an issue from the link in the email, we pause reminders for that invoice until you mark it resolved. No more reminders while you’re fixing the problem.",
+              },
+              {
+                q: "What if a customer has a question about an invoice?",
+                a: "Every reminder includes a “Report an issue” link. They describe what’s blocking payment (e.g. missing PO, wrong amount); it lands in your Blockers inbox. We auto-pause reminders on that invoice until you resolve it, then you choose when to resume.",
+              },
+              {
                 q: "Is my data secure?",
                 a: "Yes. We use industry-standard encryption and don’t store card details. You can disconnect QuickBooks anytime.",
               },
               {
                 q: "Can I try it before committing?",
                 a: "Yes. Sign up with email, connect QuickBooks, and run reminders. No credit card required to start.",
-              },
-              {
-                q: "What if a customer has a question about an invoice?",
-                a: "Every reminder includes a “Report an issue” link. They submit once; you see it in your Zippy dashboard and we pause reminders until you resolve it.",
               },
             ].map((faq) => (
               <div key={faq.q}>
@@ -297,6 +328,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Service-tier blurb — Concierge / Managed Autopilot */}
+      <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-medium uppercase tracking-wider text-[var(--accent)]">Optional</p>
+          <h2 className="mt-2 text-2xl font-semibold text-white md:text-3xl">Concierge AR Sprint</h2>
+          <p className="mt-4 text-[var(--muted)]">
+            Want someone to set up your first dunning rules and blocker workflow? We offer done-with-you onboarding so you see results in the first 14 days. Contact for pricing.
+          </p>
+          <p className="mt-4">
+            <Link href="/ar-sprint" className="text-sm font-medium text-[var(--accent)] underline underline-offset-2 hover:no-underline">
+              See the 14-day AR Sprint checklist →
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="px-4 py-20 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
@@ -305,7 +352,7 @@ export default function Home() {
             <span>Free to start</span>
           </div>
           <h2 className="mt-8 text-3xl font-bold text-white md:text-4xl">
-            Ready to get paid faster?
+            Ready for invoice resolution on autopilot?
           </h2>
           <p className="mt-4 text-[var(--muted)]">
             Log in with your email. We’ll send you a link. No password, no credit card.
@@ -331,7 +378,7 @@ export default function Home() {
             <ZippyLogo />
           </Link>
           <span className="text-sm text-[var(--muted-soft)]">
-            © {new Date().getFullYear()} Zippy. Get paid faster.
+            © {new Date().getFullYear()} Zippy. Invoice resolution on autopilot.
           </span>
           <div className="flex gap-8 text-sm">
             <Link href="/login" className="text-[var(--muted)] transition-colors hover:text-white">

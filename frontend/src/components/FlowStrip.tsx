@@ -1,8 +1,8 @@
 "use client";
 
-import { DocumentTextIcon, BellAlertIcon, BanknotesIcon } from "@heroicons/react/24/outline";
+import { LinkIcon, BellAlertIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 
-/** Animated strip: Send → Remind → Get paid — gradient border + pop-in. */
+/** Animated strip: Sync → Autopilot → Resolve blockers — differentiator flow. */
 export default function FlowStrip() {
   return (
     <div
@@ -14,9 +14,9 @@ export default function FlowStrip() {
     >
       <div className="relative z-10 flex flex-col items-center gap-2" style={{ animation: "flow-pop 0.5s ease-out 0.1s both" }}>
         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--background)]/80">
-          <DocumentTextIcon className="h-6 w-6 text-[var(--muted)]" />
+          <LinkIcon className="h-6 w-6 text-[var(--muted)]" />
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Send</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Sync</span>
       </div>
 
       <div className="relative flex-1 px-1" aria-hidden>
@@ -29,7 +29,7 @@ export default function FlowStrip() {
         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--accent)]/50 bg-[var(--accent)]/15 shadow-[0_0_20px_-4px_rgba(34,211,238,0.25)]">
           <BellAlertIcon className="h-6 w-6 text-[var(--accent)]" />
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Remind</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Autopilot</span>
       </div>
 
       <div className="relative flex-1 px-1" aria-hidden>
@@ -40,9 +40,9 @@ export default function FlowStrip() {
 
       <div className="relative z-10 flex flex-col items-center gap-2" style={{ animation: "flow-pop 0.5s ease-out 0.4s both" }}>
         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--success)]/50 bg-[var(--success)]/15 shadow-[0_0_16px_-4px_rgba(52,211,153,0.2)]">
-          <BanknotesIcon className="h-6 w-6 text-[var(--success)]" />
+          <ChatBubbleBottomCenterTextIcon className="h-6 w-6 text-[var(--success)]" />
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Get paid</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Resolve blockers</span>
       </div>
     </div>
   );

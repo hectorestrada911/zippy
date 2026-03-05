@@ -14,7 +14,7 @@ import ZippyLogo from "./ZippyLogo";
 const links = [
   { href: "/dashboard", label: "Dashboard", icon: ChartBarSquareIcon },
   { href: "/invoices", label: "Invoices", icon: DocumentTextIcon },
-  { href: "/disputes", label: "Disputes", icon: ChatBubbleLeftRightIcon },
+  { href: "/disputes", label: "Blockers", icon: ChatBubbleLeftRightIcon },
   { href: "/settings/integrations", label: "Settings", icon: Cog6ToothIcon },
 ];
 

@@ -54,7 +54,7 @@ function DisputeContent() {
       if (!res.ok) throw new Error("Failed to submit");
       setDone(true);
     } catch {
-      setError("Failed to submit dispute. Please try again.");
+      setError("Failed to submit. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -75,27 +75,30 @@ function DisputeContent() {
   if (invoice.has_open_dispute) {
     return (
       <div className="card mx-auto mt-12 max-w-md">
-        <p className="text-[var(--accent)]">You’ve already reported an issue for this invoice. The sender will get back to you soon.</p>
+        <p className="text-[var(--accent)]">You’ve already reported a payment blocker for this invoice. The sender will get back to you soon.</p>
       </div>
     );
   }
   if (done) {
     return (
       <div className="card mx-auto mt-12 max-w-md">
-        <p className="text-[var(--success)]">Thanks, we’ve passed this along. The sender will follow up with you shortly.</p>
+        <p className="text-[var(--success)]">Thanks. We’ve passed this along to the sender. They’ll follow up with you shortly.</p>
       </div>
     );
   }
 
   return (
     <div className="card mx-auto mt-12 max-w-md">
-      <h1 className="page-title text-2xl">Something wrong with this invoice?</h1>
+      <h1 className="page-title text-2xl">Report a payment blocker</h1>
       <p className="page-subtitle mt-0">
         Invoice {invoice.number} · ${invoice.amount.toLocaleString()} (due {invoice.due_date})
       </p>
+      <p className="mt-2 text-sm text-[var(--muted)]">
+        Tell us what’s blocking payment. The sender will see this and can fix it before the next reminder.
+      </p>
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
         <div>
-          <label htmlFor="reason" className="stat-label mb-2 block">Reason</label>
+          <label htmlFor="reason" className="stat-label mb-2 block">What’s blocking payment?</label>
           <select
             id="reason"
             value={reason}
@@ -116,11 +119,11 @@ function DisputeContent() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="input min-h-[100px] resize-y"
-            placeholder="Describe the issue…"
+            placeholder="Add any details that would help…"
           />
         </div>
         <button type="submit" disabled={submitting} className="btn-primary w-full">
-          {submitting ? "Submitting…" : "Submit"}
+          {submitting ? "Submitting…" : "Report issue"}
         </button>
       </form>
     </div>
