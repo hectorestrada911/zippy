@@ -12,6 +12,7 @@ import ZippyLogo from "@/components/ZippyLogo";
 import TakeCloserLook from "@/components/TakeCloserLook";
 import SpeedBlock from "@/components/SpeedBlock";
 import HeroVisual from "@/components/HeroVisual";
+import { HeroPathLines } from "@/components/HeroPathLines";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import FlowStrip from "@/components/FlowStrip";
 import { GlowingEffectDemo } from "@/components/ui/glowing-effect-demo";
@@ -50,6 +51,9 @@ export default function Home() {
             backgroundSize: "32px 32px",
           }}
         />
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <HeroPathLines />
+        </div>
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <div className="text-center lg:text-left">
             <p
