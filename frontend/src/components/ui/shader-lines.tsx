@@ -11,10 +11,10 @@ declare global {
 export function ShaderAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
-    camera: unknown;
-    scene: unknown;
-    renderer: { dispose: () => void; domElement: HTMLCanvasElement; setSize: (w: number, h: number) => void; render: (s: unknown, c: unknown) => void };
-    uniforms: { time: { value: number }; resolution: { value: { x: number; y: number } } };
+    camera: unknown | null;
+    scene: unknown | null;
+    renderer: { dispose: () => void; domElement: HTMLCanvasElement; setSize: (w: number, h: number) => void; render: (s: unknown, c: unknown) => void } | null;
+    uniforms: { time: { value: number }; resolution: { value: { x: number; y: number } } } | null;
     animationId: number | null;
     resizeHandler?: () => void;
   }>({
