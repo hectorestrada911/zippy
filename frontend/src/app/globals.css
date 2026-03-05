@@ -56,6 +56,68 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
 }
+
+/* Animated gradient text — visible shift for hero */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* CTA button: breathing glow */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 20px -2px rgba(34, 211, 238, 0.35), 0 0 40px -8px rgba(34, 211, 238, 0.2); }
+  50% { box-shadow: 0 0 28px -2px rgba(34, 211, 238, 0.5), 0 0 56px -8px rgba(34, 211, 238, 0.3); }
+}
+
+/* Flow strip: icon pop-in */
+@keyframes flow-pop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Subtle card border glow */
+@keyframes border-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Spotlight (aceternity) */
+@keyframes spotlight {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.animate-spotlight {
+  animation: spotlight 2s ease-out 0.75s forwards;
+}
+
+/* Loader spinner for Spline fallback */
+.loader {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: loader-spin 0.8s linear infinite;
+}
+@keyframes loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Flow strip: marching dashes */
+@keyframes flow-dash {
+  to { stroke-dashoffset: -24; }
+}
+.flow-line {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  stroke-dashoffset: 0;
+  animation: flow-dash 1.2s linear infinite;
+}
+.flow-line-delay {
+  animation-delay: 0.4s;
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out forwards;
 }
@@ -87,7 +149,7 @@ body {
 
 @layer components {
   .card {
-    @apply rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] p-6 transition-[border-color,background-color] duration-[var(--transition)];
+    @apply rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] p-6 transition-[border-color,background-color] duration-150;
     box-shadow: var(--shadow);
   }
   .card-hover:hover {
@@ -95,29 +157,32 @@ body {
     border-color: var(--border-subtle);
   }
   .btn-primary {
-    @apply rounded-[var(--radius-sm)] bg-[var(--accent)] px-5 py-2.5 font-semibold text-zinc-900 transition-all duration-[var(--transition)];
+    @apply rounded-[var(--radius-sm)] bg-[var(--accent)] px-5 py-2.5 font-semibold text-zinc-900 transition-all duration-150;
   }
   .btn-primary:hover:not(:disabled) {
     @apply brightness-110;
     box-shadow: 0 0 20px var(--accent-glow);
   }
+  .btn-hero-cta {
+    animation: cta-glow 2.5s ease-in-out infinite;
+  }
   .btn-primary:disabled {
     @apply cursor-not-allowed opacity-60;
   }
   .btn-secondary {
-    @apply rounded-[var(--radius-sm)] border border-[var(--border)] bg-transparent px-5 py-2.5 font-medium text-zinc-300 transition-all duration-[var(--transition)];
+    @apply rounded-[var(--radius-sm)] border border-[var(--border)] bg-transparent px-5 py-2.5 font-medium text-zinc-300 transition-all duration-150;
   }
   .btn-secondary:hover:not(:disabled) {
     @apply border-zinc-500 bg-white/5 text-white;
   }
   .btn-ghost {
-    @apply rounded-[var(--radius-sm)] px-4 py-2 font-medium text-zinc-400 transition-colors duration-[var(--transition)];
+    @apply rounded-[var(--radius-sm)] px-4 py-2 font-medium text-zinc-400 transition-colors duration-150;
   }
   .btn-ghost:hover {
     @apply bg-white/5 text-white;
   }
   .input {
-    @apply w-full rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--card)] px-4 py-3 text-[var(--foreground)] placeholder-[var(--muted-soft)] transition-[border-color,box-shadow] duration-[var(--transition)];
+    @apply w-full rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--card)] px-4 py-3 text-[var(--foreground)] placeholder-[var(--muted-soft)] transition-[border-color,box-shadow] duration-150;
   }
   .input:focus {
     @apply outline-none;
@@ -135,6 +200,20 @@ body {
   }
   .stat-card {
     @apply card flex flex-col gap-1;
+  }
+  .stat-card-glass {
+    background: linear-gradient(135deg, rgba(20, 20, 22, 0.9) 0%, rgba(26, 26, 30, 0.85) 100%);
+    backdrop-filter: blur(12px);
+    border-color: rgba(39, 39, 42, 0.8);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), var(--shadow);
+  }
+  .stat-card-glass:hover {
+    border-color: rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08), 0 0 24px -4px rgba(34, 211, 238, 0.08);
+  }
+  .stat-card-warning:hover {
+    border-color: rgba(251, 191, 36, 0.25);
+    box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.06), 0 0 20px -4px rgba(251, 191, 36, 0.06);
   }
   .stat-label {
     @apply text-sm font-medium text-[var(--muted)];
@@ -155,7 +234,7 @@ body {
     @apply border-b border-[var(--border-subtle)] px-4 py-3.5 text-sm text-zinc-300;
   }
   .table-wrap tbody tr {
-    @apply transition-colors duration-[var(--transition)];
+    @apply transition-colors duration-150;
   }
   .table-wrap tbody tr:hover {
     @apply bg-white/[0.02];
@@ -164,7 +243,7 @@ body {
     @apply border-b-0;
   }
   .link {
-    @apply font-medium text-[var(--accent)] transition-colors duration-[var(--transition)];
+    @apply font-medium text-[var(--accent)] transition-colors duration-150;
   }
   .link:hover {
     @apply text-cyan-300 underline;
@@ -196,4 +275,28 @@ body {
 *:focus-visible {
   @apply outline-none;
   box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--accent);
+}
+
+/* shadcn/21st theme — extra vars for components that use hsl(var(...)) */
+@layer base {
+  :root {
+    --card-foreground: 0 0% 98%;
+    --popover: 240 5% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 187 92% 56%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted-foreground: 240 4% 36%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --input: 240 4% 16%;
+    --ring: 187 92% 56%;
+    --chart-1: 187 92% 56%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 45 93% 47%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 280 65% 60%;
+  }
 }

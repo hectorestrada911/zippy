@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getDashboard } from "@/lib/api";
+import CountUp from "@/components/CountUp";
 
 export default function DashboardPage() {
   const [data, setData] = useState<Awaited<ReturnType<typeof getDashboard>> | null>(null);
@@ -51,25 +52,35 @@ export default function DashboardPage() {
       </header>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-        <div className="stat-card">
+        <div className="stat-card stat-card-glass">
           <span className="stat-label">Total outstanding</span>
-          <span className="stat-value">${Number(summary.total_ar).toLocaleString()}</span>
+          <span className="stat-value">
+            <CountUp value={Number(summary.total_ar)} prefix="$" />
+          </span>
         </div>
-        <div className="stat-card">
+        <div className="stat-card stat-card-glass stat-card-warning">
           <span className="stat-label">Overdue</span>
-          <span className="stat-value text-[var(--warning)]">${Number(summary.overdue_ar).toLocaleString()}</span>
+          <span className="stat-value text-[var(--warning)]">
+            <CountUp value={Number(summary.overdue_ar)} prefix="$" />
+          </span>
         </div>
-        <div className="stat-card">
+        <div className="stat-card stat-card-glass">
           <span className="stat-label">Expected in 7 days</span>
-          <span className="stat-value">${Number(summary.expected_7_days).toLocaleString()}</span>
+          <span className="stat-value">
+            <CountUp value={Number(summary.expected_7_days)} prefix="$" />
+          </span>
         </div>
-        <div className="stat-card">
+        <div className="stat-card stat-card-glass">
           <span className="stat-label">Expected in 30 days</span>
-          <span className="stat-value">${Number(summary.expected_30_days).toLocaleString()}</span>
+          <span className="stat-value">
+            <CountUp value={Number(summary.expected_30_days)} prefix="$" />
+          </span>
         </div>
-        <div className="stat-card">
+        <div className="stat-card stat-card-glass">
           <span className="stat-label">Invoices past due</span>
-          <span className="stat-value">{summary.overdue_count}</span>
+          <span className="stat-value">
+            <CountUp value={summary.overdue_count} />
+          </span>
         </div>
       </div>
 
