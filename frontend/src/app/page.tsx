@@ -21,6 +21,7 @@ import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { AnimatedTextCycleDemo } from "@/components/ui/animated-text-cycle-demo";
 import { DemoBackgroundPaths } from "@/components/ui/background-paths-demo";
+import { ParticleTextEffectDemo } from "@/components/ui/particle-text-effect-demo";
 
 export default function Home() {
   return (
@@ -133,6 +134,11 @@ export default function Home() {
         <div className="mx-auto max-w-6xl flex justify-center">
           <AnimatedTextCycleDemo />
         </div>
+      </section>
+
+      {/* Particle text — full-screen canvas with Zippy words */}
+      <section className="min-h-screen">
+        <ParticleTextEffectDemo />
       </section>
 
       {/* Social proof — carousel */}
