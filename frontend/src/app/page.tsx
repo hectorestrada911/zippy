@@ -11,7 +11,7 @@ import {
 import ZippyLogo from "@/components/ZippyLogo";
 import TakeCloserLook from "@/components/TakeCloserLook";
 import SpeedBlock from "@/components/SpeedBlock";
-import { HeroWithShader } from "@/components/HeroWithShader";
+import HeroVisual from "@/components/HeroVisual";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import FlowStrip from "@/components/FlowStrip";
 import { GlowingEffectDemo } from "@/components/ui/glowing-effect-demo";
@@ -22,8 +22,95 @@ import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 export default function Home() {
   return (
     <>
-      {/* Hero: shader lines background + headline & CTA */}
-      <HeroWithShader />
+      {/* Hero: split layout, product-led visual */}
+      <section className="relative min-h-[90vh] overflow-hidden px-4 pb-20 pt-16 md:min-h-[88vh] md:pb-28 md:pt-24">
+        <div className="pointer-events-none absolute inset-0 -z-20 bg-[var(--background)]" />
+        <div
+          className="pointer-events-none absolute -left-1/2 top-0 h-[80vh] w-full -z-10 opacity-40"
+          style={{
+            background: "radial-gradient(ellipse 70% 60% at 30% 20%, rgba(34, 211, 238, 0.25), transparent 50%)",
+            filter: "blur(60px)",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute -right-1/3 top-1/3 h-[50vh] w-full -z-10 opacity-30"
+          style={{
+            background: "radial-gradient(ellipse 50% 50% at 70% 40%, rgba(34, 211, 238, 0.15), transparent 60%)",
+            filter: "blur(80px)",
+          }}
+        />
+        <div
+          className="absolute inset-0 -z-10 opacity-[0.025]"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+          <div className="text-center lg:text-left">
+            <p
+              className="animate-fade-in text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
+              style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
+            >
+              Invoices that get paid
+            </p>
+            <h1
+              className="animate-fade-in-up mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl xl:leading-[1.05]"
+              style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
+            >
+              Stop chasing.
+              <br />
+              <span
+                className="inline-block bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(34,211,238,0.35)]"
+                style={{
+                  backgroundImage: "linear-gradient(90deg, #22d3ee, #a5f3fc, #67e8f9, #22d3ee, #06b6d4)",
+                  animation: "gradient-shift 3.5s ease-in-out infinite",
+                }}
+              >
+                Start getting paid.
+              </span>
+            </h1>
+            <p
+              className="animate-fade-in-up mx-auto mt-6 max-w-md text-base text-[var(--muted)] md:text-lg lg:mx-0"
+              style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
+            >
+              Friendly reminders with a one-click pay link. Questions land in one place. You get paid faster.
+            </p>
+            <div
+              className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+              style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
+            >
+              <Link
+                href="/login"
+                className="btn-primary btn-hero-cta inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
+              >
+                Connect QuickBooks
+              </Link>
+              <Link href="#how-it-works" className="btn-secondary text-base">
+                What you get
+              </Link>
+            </div>
+            <p
+              className="animate-fade-in mt-6 text-sm text-[var(--muted-soft)]"
+              style={{ animationDelay: "0.6s", animationFillMode: "forwards" }}
+            >
+              No credit card · 2 minutes to first sync
+            </p>
+            <div
+              className="animate-fade-in-up mt-12 opacity-0 lg:mt-14"
+              style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}
+            >
+              <FlowStrip />
+            </div>
+          </div>
+          <div
+            className="animate-fade-in-up relative flex justify-center opacity-0 lg:justify-end"
+            style={{ animation: "fade-in-up 0.8s ease-out 0.4s forwards" }}
+          >
+            <HeroVisual />
+          </div>
+        </div>
+      </section>
 
       {/* Who it's for */}
       <section className="border-y border-[var(--border)] px-4 py-14 md:py-20" style={{ backgroundColor: "rgba(20, 20, 22, 0.5)" }}>
