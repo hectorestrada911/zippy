@@ -21,6 +21,7 @@ import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
+import { FlowFieldBackgroundDemo } from "@/components/ui/flow-field-background-demo";
 
 export default function Home() {
   return (
@@ -181,6 +182,11 @@ export default function Home() {
       {/* Pulse beams — animated gradient beams + Connect CTA */}
       <section className="min-h-screen">
         <PulseBeamsFirstDemo />
+      </section>
+
+      {/* Flow field background — particle canvas + CTA */}
+      <section className="relative overflow-hidden">
+        <FlowFieldBackgroundDemo />
       </section>
 
       {/* Why Zippy vs QuickBooks / generic AR */}
