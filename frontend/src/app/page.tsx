@@ -19,7 +19,6 @@ import { SplineSceneBasic } from "@/components/ui/spline-scene-demo";
 import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
 import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
-import { AnimatedTextCycleDemo } from "@/components/ui/animated-text-cycle-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 
 export default function Home() {
@@ -140,10 +139,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Animated text cycle — supporting headline */}
+      {/* Supporting headline — static (no cycle animation for Safari) */}
       <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
-        <div className="mx-auto max-w-6xl flex justify-center">
-          <AnimatedTextCycleDemo />
+        <div className="mx-auto flex max-w-6xl justify-center">
+          <div className="max-w-[500px] p-4">
+            <h2 className="text-left text-4xl font-light text-[var(--muted)]">
+              Your <span className="font-semibold text-[var(--foreground)]">invoices</span> deserve better tools
+            </h2>
+          </div>
         </div>
       </section>
 
