@@ -20,6 +20,7 @@ import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
 import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
+import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
 
 export default function Home() {
   return (
@@ -323,6 +324,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* How to get started — step-by-step with images */}
+      <section className="border-t border-[var(--border)]" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
+        <FeatureStepsDemo />
       </section>
 
       {/* FAQ — trust + blocker resolution + safe autopilot */}
