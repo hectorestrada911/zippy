@@ -20,7 +20,6 @@ import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
 import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { AnimatedTextCycleDemo } from "@/components/ui/animated-text-cycle-demo";
-import { TextDisperseDemo } from "@/components/ui/text-disperse-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 
 export default function Home() {
@@ -129,9 +128,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Text disperse — hover to scatter headline */}
-      <section className="border-t border-[var(--border)]" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
-        <TextDisperseDemo />
+      {/* Supporting headline — static to avoid Safari lag from hover-disperse */}
+      <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-2xl font-light text-[var(--muted)] md:text-3xl">
+            Get paid fast
+          </p>
+          <p className="mt-2 text-sm text-[var(--muted-soft)]">
+            Invoice resolution on autopilot
+          </p>
+        </div>
       </section>
 
       {/* Animated text cycle — supporting headline */}
