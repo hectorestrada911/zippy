@@ -15,11 +15,21 @@ const config: Config = {
   		},
   		animation: {
   			marquee: "marquee var(--duration) linear infinite",
+  			"shimmer-slide": "shimmer-slide var(--speed, 3s) ease-in-out infinite",
+  			"spin-around": "spin-around var(--speed, 3s) linear infinite",
   		},
   		keyframes: {
   			marquee: {
   				from: { transform: "translateX(0)" },
   				to: { transform: "translateX(calc(-100% - var(--gap)))" },
+  			},
+  			"shimmer-slide": {
+  				"0%": { transform: "translateX(-100%) translateY(-100%)" },
+  				"100%": { transform: "translateX(100%) translateY(100%)" },
+  			},
+  			"spin-around": {
+  				"0%": { transform: "rotate(0deg)" },
+  				"100%": { transform: "rotate(360deg)" },
   			},
   		},
   		fontFamily: {

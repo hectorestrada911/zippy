@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { PulseBeams } from "@/components/ui/pulse-beams";
+import { ShimmerLink } from "@/components/ShimmerLink";
 
 const beams = [
   {
@@ -164,20 +164,14 @@ export function PulseBeamsFirstDemo() {
       gradientColors={gradientColors}
       className="bg-slate-950"
     >
-      <Link
+      <ShimmerLink
         href="/login"
-        className="group relative z-40 inline-flex h-[120px] w-[320px] cursor-pointer items-center justify-center space-x-2 rounded-full bg-zinc-950 p-px text-center text-xs font-semibold leading-6 text-white shadow-2xl shadow-zinc-900 ring-1 ring-white/10 no-underline transition-opacity duration-500 hover:opacity-100"
+        className="relative z-40 inline-flex h-[120px] w-[320px] items-center justify-center text-base font-semibold text-white shadow-2xl shadow-zinc-900 md:text-4xl"
+        shimmerColor="rgba(56, 189, 248, 0.9)"
+        background="rgb(9 9 11)"
       >
-        <span className="absolute inset-0 overflow-hidden rounded-full">
-          <span
-            className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            aria-hidden
-          />
-        </span>
-        <span className="relative z-10 inline-block bg-gradient-to-r from-neutral-300 via-neutral-600 to-neutral-300 bg-clip-text text-base text-transparent md:text-4xl">
-          Connect QuickBooks
-        </span>
-      </Link>
+        Connect QuickBooks
+      </ShimmerLink>
     </PulseBeams>
   );
 }

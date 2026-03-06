@@ -22,6 +22,8 @@ import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { AnimatedTextCycleDemo } from "@/components/ui/animated-text-cycle-demo";
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
+import { TextDisperseDemo } from "@/components/ui/text-disperse-demo";
+import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 
 export default function Home() {
   return (
@@ -133,6 +135,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Text disperse — hover to scatter headline */}
+      <section className="border-t border-[var(--border)]" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
+        <TextDisperseDemo />
+      </section>
+
       {/* Animated text cycle — supporting headline */}
       <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
         <div className="mx-auto max-w-6xl flex justify-center">
@@ -156,6 +163,17 @@ export default function Home() {
       {/* Display cards — stacked cards */}
       <section className="px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <DisplayCardsDemo />
+      </section>
+
+      {/* Spotlight cards — cursor-following glow cards */}
+      <section className="px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
+        <div className="mx-auto max-w-5xl">
+          <h2 className="page-title text-center">See the difference</h2>
+          <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
+            Move your cursor over the cards — reminders that follow you.
+          </p>
+          <SpotlightCardDemo />
+        </div>
       </section>
 
       {/* Pulse beams — animated gradient beams + Connect CTA */}
