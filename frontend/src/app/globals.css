@@ -103,19 +103,12 @@
   to { transform: rotate(360deg); }
 }
 
-/* Flow strip: marching dashes */
-@keyframes flow-dash {
-  to { stroke-dashoffset: -24; }
-}
+/* Flow strip: static dashed lines (no animation for Safari) */
 .flow-line {
   stroke: var(--accent);
   stroke-width: 2;
   stroke-dasharray: 6 6;
   stroke-dashoffset: 0;
-  animation: flow-dash 1.2s linear infinite;
-}
-.flow-line-delay {
-  animation-delay: 0.4s;
 }
 
 .animate-fade-in-up {

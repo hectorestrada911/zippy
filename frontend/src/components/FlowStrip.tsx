@@ -6,7 +6,7 @@ import { LinkIcon, BellAlertIcon, ChatBubbleBottomCenterTextIcon } from "@heroic
 export default function FlowStrip() {
   return (
     <div
-      className="flow-strip relative mx-auto flex max-w-md items-center justify-between gap-2 rounded-2xl px-6 py-5 backdrop-blur-sm"
+      className="flow-strip relative mx-auto flex max-w-md items-center justify-between gap-2 rounded-2xl px-6 py-5"
       style={{
         background: "linear-gradient(135deg, rgba(20, 20, 22, 0.95) 0%, rgba(26, 26, 32, 0.9) 100%)",
         boxShadow: "inset 0 0 0 1px rgba(34, 211, 238, 0.15), 0 0 32px -8px rgba(34, 211, 238, 0.12)",

@@ -27,18 +27,17 @@ export default function Home() {
       {/* Hero: split layout, product-led visual */}
       <section className="relative min-h-[90vh] overflow-hidden px-4 pb-20 pt-16 md:min-h-[88vh] md:pb-28 md:pt-24">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[var(--background)]" />
+        {/* Gradient orbs — no blur for Safari performance */}
         <div
-          className="pointer-events-none absolute -left-1/2 top-0 h-[80vh] w-full -z-10 opacity-40"
+          className="pointer-events-none absolute -left-1/2 top-0 h-[80vh] w-full -z-10 opacity-30"
           style={{
-            background: "radial-gradient(ellipse 70% 60% at 30% 20%, rgba(34, 211, 238, 0.25), transparent 50%)",
-            filter: "blur(60px)",
+            background: "radial-gradient(ellipse 70% 60% at 30% 20%, rgba(34, 211, 238, 0.2), transparent 55%)",
           }}
         />
         <div
-          className="pointer-events-none absolute -right-1/3 top-1/3 h-[50vh] w-full -z-10 opacity-30"
+          className="pointer-events-none absolute -right-1/3 top-1/3 h-[50vh] w-full -z-10 opacity-20"
           style={{
-            background: "radial-gradient(ellipse 50% 50% at 70% 40%, rgba(34, 211, 238, 0.15), transparent 60%)",
-            filter: "blur(80px)",
+            background: "radial-gradient(ellipse 50% 50% at 70% 40%, rgba(34, 211, 238, 0.12), transparent 55%)",
           }}
         />
         <div
@@ -63,10 +62,9 @@ export default function Home() {
               Stop chasing.
               <br />
               <span
-                className="inline-block bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(34,211,238,0.35)]"
+                className="inline-block bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(34,211,238,0.35)]"
                 style={{
-                  backgroundImage: "linear-gradient(90deg, #22d3ee, #a5f3fc, #67e8f9, #22d3ee, #06b6d4)",
-                  animation: "gradient-shift 3.5s ease-in-out infinite",
+                  backgroundImage: "linear-gradient(90deg, #22d3ee, #a5f3fc, #67e8f9, #22d3ee)",
                 }}
               >
                 Start resolving.
@@ -84,7 +82,7 @@ export default function Home() {
             >
               <Link
                 href="/login"
-                className="btn-primary btn-hero-cta inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
+                className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
               >
                 Connect QuickBooks
               </Link>

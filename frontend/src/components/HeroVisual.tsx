@@ -6,12 +6,11 @@ import { CheckCircleIcon, BoltIcon } from "@heroicons/react/24/solid";
 export default function HeroVisual() {
   return (
     <div className="relative flex items-center justify-center">
-      {/* Glow behind the composition */}
+      {/* Glow behind the composition — no blur for Safari */}
       <div
-        className="absolute inset-0 rounded-3xl opacity-60"
+        className="absolute inset-0 rounded-3xl opacity-50"
         style={{
-          background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(34, 211, 238, 0.2), transparent 70%)",
-          filter: "blur(40px)",
+          background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(34, 211, 238, 0.15), transparent 65%)",
         }}
       />
       {/* Main "window" frame */}
