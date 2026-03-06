@@ -166,7 +166,7 @@ export function PulseBeamsFirstDemo() {
     >
       <ShimmerLink
         href="/login"
-        className="relative z-40 inline-flex h-[120px] w-[320px] items-center justify-center text-2xl font-semibold text-white shadow-2xl shadow-zinc-900 md:text-5xl"
+        className="relative z-40 inline-flex h-[120px] w-[320px] items-center justify-center text-xl font-semibold text-white shadow-2xl shadow-zinc-900 md:text-3xl"
         shimmerColor="rgba(56, 189, 248, 0.9)"
         background="rgb(9 9 11)"
       >
