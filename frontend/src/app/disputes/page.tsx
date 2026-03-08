@@ -4,6 +4,21 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getDisputes } from "@/lib/api";
 
+const BLOCKER_LABELS: Record<string, string> = {
+  missing_po: "Need PO",
+  wrong_recipient: "Resend to AP / wrong recipient",
+  incorrect_amount: "Wrong amount / line items",
+  need_w9: "Need W-9 / vendor onboarding",
+  waiting_approval: "Waiting approval",
+  scope_timesheet: "Scope / timesheet question",
+  paid_already: "Paid already",
+  other: "Other",
+};
+
+function formatBlockerLabel(value: string): string {
+  return BLOCKER_LABELS[value] ?? value.replace(/_/g, " ");
+}
+
 export default function DisputesPage() {
   const [list, setList] = useState<Awaited<ReturnType<typeof getDisputes>>>([]);
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +42,7 @@ export default function DisputesPage() {
     <div className="space-y-6">
       <header className="page-header">
         <h1 className="page-title">Blockers</h1>
-        <p className="page-subtitle">Payment blockers from your invoice links show here. Resolve them and we’ll resume reminders when you’re ready.</p>
+        <p className="page-subtitle">Payment blockers from your invoice links show here. Resolve them and we’ll resume autopilot when you’re ready.</p>
       </header>
 
       {list.length > 0 ? (
@@ -35,7 +50,7 @@ export default function DisputesPage() {
           <table>
           <thead>
             <tr>
-              <th>Reason</th>
+              <th>Blocker</th>
               <th>Status</th>
               <th>Created</th>
               <th>Invoice</th>
@@ -46,7 +61,7 @@ export default function DisputesPage() {
               <tr key={d.id}>
                 <td>
                   <Link href={`/disputes/${d.id}`} className="link">
-                    {d.reason.replace(/_/g, " ")}
+                    {formatBlockerLabel(d.reason)}
                   </Link>
                 </td>
                 <td>

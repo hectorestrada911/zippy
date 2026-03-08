@@ -3,11 +3,14 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-const REASONS = [
-  { value: "missing_po", label: "Missing PO" },
-  { value: "incorrect_amount", label: "Incorrect amount" },
-  { value: "need_w9", label: "Need W-9" },
+const BLOCKER_CATEGORIES = [
+  { value: "missing_po", label: "Need PO" },
+  { value: "wrong_recipient", label: "Resend to AP / wrong recipient" },
+  { value: "incorrect_amount", label: "Wrong amount / line items" },
+  { value: "need_w9", label: "Need W-9 / vendor onboarding" },
+  { value: "waiting_approval", label: "Waiting approval" },
   { value: "scope_timesheet", label: "Scope / timesheet question" },
+  { value: "paid_already", label: "Paid already" },
   { value: "other", label: "Other" },
 ];
 
@@ -97,7 +100,7 @@ function DisputeContent() {
         Invoice {invoice.number} · ${invoice.amount.toLocaleString()} (due {invoice.due_date})
       </p>
       <p className="mt-2 text-sm text-[var(--muted)]">
-        Tell us what’s blocking payment. The sender will see this and can fix it before the next reminder.
+        Tell us what’s blocking payment. The sender will see this in Blockers and can fix it; follow-ups stay paused until they’re done.
       </p>
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
         <div>
@@ -110,7 +113,7 @@ function DisputeContent() {
             required
           >
             <option value="">Select…</option>
-            {REASONS.map((r) => (
+            {BLOCKER_CATEGORIES.map((r) => (
               <option key={r.value} value={r.value}>{r.label}</option>
             ))}
           </select>

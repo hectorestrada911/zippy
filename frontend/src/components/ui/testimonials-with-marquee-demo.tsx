@@ -8,7 +8,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Reminders go out on their own. I see who paid in one place. No more spreadsheets or chasing over email.",
+    text: "Follow-ups run on autopilot. I see who paid in one place. No more spreadsheets or chasing over email.",
   },
   {
     author: {
@@ -17,7 +17,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Overdue AR dropped by a third. Same friendly reminders, just automated. Clients actually pay faster.",
+    text: "Overdue AR dropped by a third. Resolution on autopilot. Clients actually pay faster.",
   },
   {
     author: {

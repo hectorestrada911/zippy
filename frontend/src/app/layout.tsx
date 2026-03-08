@@ -5,7 +5,7 @@ import { TwentyFirstToolbarWrapper } from "@/components/TwentyFirstToolbarWrappe
 
 export const metadata: Metadata = {
   title: "Zippy. Invoice resolution on autopilot.",
-  description: "Reminders run on your schedule. When a customer reports what’s blocking payment, we pause until you fix it. Blockers inbox, safe autopilot, get paid faster.",
+  description: "Invoice resolution on autopilot. Recover overdue invoices without awkward chasing. Blockers inbox, safe autopilot, get paid faster.",
 };
 
 export default function RootLayout({

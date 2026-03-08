@@ -76,7 +76,7 @@ export default function Home() {
               className="animate-fade-in-up mx-auto mt-6 max-w-md text-base text-[var(--muted)] md:text-lg lg:mx-0"
               style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
             >
-              Reminders run on your schedule. When a customer reports what’s blocking payment, we pause until you fix it. Get paid faster without awkward follow-up.
+              Recover overdue invoices without awkward chasing. When a customer reports what’s blocking payment, we pause until you fix it.
             </p>
             <div
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
@@ -122,7 +122,7 @@ export default function Home() {
           </p>
           <p className="text-[var(--muted)] leading-relaxed">
             Consultants, agencies, bookkeepers, and small teams. Missing PO, W-9, or approval questions?
-            Zippy’s Blockers Inbox collects them in one place and auto-pauses reminders until you resolve them.
+            Zippy’s Blockers Inbox collects them in one place and auto-pauses follow-ups until you resolve them.
           </p>
         </div>
       </section>
@@ -173,7 +173,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <h2 className="page-title text-center">See the difference</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-            Move your cursor over the cards — reminders that follow you.
+            Move your cursor over the cards — they follow you.
           </p>
           <SpotlightCardDemo />
         </div>
@@ -189,14 +189,20 @@ export default function Home() {
         <FlowFieldBackgroundDemo />
       </section>
 
-      {/* Why Zippy vs QuickBooks / generic AR */}
+      {/* Why Zippy vs QuickBooks / resolution workflow */}
       <section className="relative px-4 py-20 md:py-28" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(34,211,238,0.04),transparent)]" />
         <div className="relative mx-auto max-w-5xl">
           <h2 className="page-title text-center">Why Zippy vs QuickBooks reminders</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-            QuickBooks can send reminders—but they don’t stop when there’s a problem. Zippy pauses automatically when a customer reports an issue (wrong amount, missing PO, W-9). You resolve it in one inbox; we resume when you’re ready. Tokenized pay and report-issue links: no customer login.
+            QuickBooks can send reminders—but they don’t stop when there’s a problem. Zippy runs a resolution workflow: blockers triaged, reminders pause safely, escalation rules, ROI proof.
           </p>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[var(--border)] bg-[var(--card)]/80 px-6 py-5 text-center">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Why not just QuickBooks reminders?</h3>
+            <p className="mt-2 text-sm text-[var(--muted)]">
+              QuickBooks shows invoices and can send reminders. Zippy runs the full resolution workflow: replies and blockers in one place, auto-pause when something’s wrong, escalation when needed, and clear “recovered” outcomes.
+            </p>
+          </div>
           <div className="mt-14">
             <GlowingEffectDemo />
           </div>
@@ -233,7 +239,7 @@ export default function Home() {
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">Safe Autopilot (with stop rules)</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Reminders send at the right time. When someone reports an issue, we auto-pause that invoice until you resolve it.
+                Follow-ups send at the right time. When someone reports a blocker, we auto-pause that invoice until you resolve it.
               </p>
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
@@ -242,7 +248,7 @@ export default function Home() {
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">Blockers Inbox (auto-pause on issues)</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Pay and Report issue in every email. You see what’s blocking payment in one place; reminders stay paused until you’re done.
+                Pay and Report issue in every email. You see what’s blocking payment in one place; follow-ups stay paused until you’re done.
               </p>
             </div>
           </div>
@@ -253,7 +259,7 @@ export default function Home() {
             <ul className="mx-auto mt-6 grid max-w-2xl gap-3 text-sm text-[var(--muted)] sm:grid-cols-2 sm:gap-4">
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
-                Auto-remind based on due dates and your rules
+                Autopilot follow-ups based on due dates and your rules
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
@@ -261,7 +267,7 @@ export default function Home() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
-                Issues auto-pause reminders until resolved
+                Blockers auto-pause follow-ups until resolved
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
@@ -303,7 +309,7 @@ export default function Home() {
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent)]">Payments</p>
               <h3 className="mt-1 text-lg font-semibold text-white">Stripe</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                Accept payments from reminder links. Payouts go to your account.
+                Accept payments from pay links. Payouts go to your account.
               </p>
             </div>
             <div className="hidden flex-shrink-0 items-center justify-center sm:flex sm:w-8">
@@ -317,7 +323,7 @@ export default function Home() {
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent)]">Email</p>
               <h3 className="mt-1 text-lg font-semibold text-white">Resend</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                Reminders go out from your domain. Reliable, professional email.
+                Follow-ups go out from your domain. Reliable, professional email.
               </p>
             </div>
           </div>
@@ -345,15 +351,15 @@ export default function Home() {
             {[
               {
                 q: "How does Zippy work with my books?",
-                a: "Zippy connects to QuickBooks and syncs your customers and open invoices. Reminders and pay links work from that data. No double entry.",
+                a: "Zippy connects to QuickBooks and syncs your customers and open invoices. Resolution and pay links work from that data. No double entry.",
               },
               {
-                q: "Does Zippy stop reminding when there’s an issue?",
-                a: "Yes. When a customer reports an issue from the link in the email, we pause reminders for that invoice until you mark it resolved. No more reminders while you’re fixing the problem.",
+                q: "Does Zippy pause follow-ups when there’s a blocker?",
+                a: "Yes. When a customer reports what’s blocking payment from the link in the email, we pause follow-ups for that invoice until you mark it resolved. No more chasing while you’re fixing the problem.",
               },
               {
                 q: "What if a customer has a question about an invoice?",
-                a: "Every reminder includes a “Report an issue” link. They describe what’s blocking payment (e.g. missing PO, wrong amount); it lands in your Blockers inbox. We auto-pause reminders on that invoice until you resolve it, then you choose when to resume.",
+                a: "Every email includes a “Report an issue” link. They pick a blocker (e.g. need PO, wrong amount); it lands in your Blockers inbox. We auto-pause follow-ups on that invoice until you resolve it, then you choose when to resume.",
               },
               {
                 q: "Is my data secure?",
@@ -361,7 +367,7 @@ export default function Home() {
               },
               {
                 q: "Can I try it before committing?",
-                a: "Yes. Sign up with email, connect QuickBooks, and run reminders. No credit card required to start.",
+                a: "Yes. Sign up with email, connect QuickBooks, and start resolution. No credit card required to start.",
               },
             ].map((faq) => (
               <div key={faq.q}>

@@ -17,7 +17,7 @@ const defaultCards = [
   {
     icon: <Banknote className="size-4 text-emerald-300" />,
     title: "Paid this week",
-    description: "Money in via reminder links",
+    description: "Money in via pay links",
     date: "From Zippy",
     iconClassName: "text-emerald-500",
     titleClassName: "text-emerald-500",
@@ -27,7 +27,7 @@ const defaultCards = [
   {
     icon: <MessageCircle className="size-4 text-cyan-300" />,
     title: "Payment blockers",
-    description: "Issues to resolve — reminders paused",
+    description: "Blockers to resolve — autopilot paused",
     date: "One place",
     iconClassName: "text-cyan-500",
     titleClassName: "text-cyan-500",

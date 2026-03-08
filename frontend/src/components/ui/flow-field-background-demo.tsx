@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import NeuralBackground from "@/components/ui/flow-field-background";
 
+/** Flow-field section styled to match hero: same typography, tokens, and CTA. */
 export function FlowFieldBackgroundDemo() {
   return (
     <div className="relative w-full min-h-[60vh] md:min-h-[70vh]">
@@ -16,25 +17,27 @@ export function FlowFieldBackgroundDemo() {
         className="absolute inset-0"
       />
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white/90 backdrop-blur-sm">
-          <Sparkles className="h-4 w-4 text-[#22d3ee]" />
-          <span>Invoice resolution on autopilot</span>
-        </div>
-        <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+          Invoice resolution on autopilot
+        </p>
+        <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl xl:leading-[1.05]">
           Stop chasing.
           <br />
-          <span className="text-[#22d3ee]">Start resolving.</span>
+          <span className="text-[var(--accent)]">Start resolving.</span>
         </h2>
-        <p className="max-w-lg text-base text-white/80 md:text-lg">
-          Reminders run on your schedule. When a customer reports what’s blocking payment, we pause until you fix it.
+        <p className="mx-auto max-w-md text-base text-[var(--muted)] md:text-lg">
+          Recover overdue invoices without awkward chasing. Connect QuickBooks once; we run the resolution workflow.
         </p>
         <Link
           href="/login"
-          className="inline-flex items-center gap-2 rounded-lg bg-[#22d3ee] px-6 py-3 font-semibold text-zinc-900 transition-opacity hover:opacity-90"
+          className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
         >
           Connect QuickBooks
           <ArrowRight className="h-4 w-4" />
         </Link>
+        <p className="text-sm text-[var(--muted-soft)]">
+          No credit card · 2 minutes to first sync
+        </p>
       </div>
     </div>
   );

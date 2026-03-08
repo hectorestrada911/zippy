@@ -5,6 +5,21 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { getDispute, updateDispute } from "@/lib/api";
 
+const BLOCKER_LABELS: Record<string, string> = {
+  missing_po: "Need PO",
+  wrong_recipient: "Resend to AP / wrong recipient",
+  incorrect_amount: "Wrong amount / line items",
+  need_w9: "Need W-9 / vendor onboarding",
+  waiting_approval: "Waiting approval",
+  scope_timesheet: "Scope / timesheet question",
+  paid_already: "Paid already",
+  other: "Other",
+};
+
+function formatBlockerLabel(value: string): string {
+  return BLOCKER_LABELS[value] ?? value.replace(/_/g, " ");
+}
+
 export default function DisputeDetailPage() {
   const params = useParams();
   const id = params.id as string;
@@ -58,7 +73,7 @@ export default function DisputeDetailPage() {
       <div className="card">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h1 className="page-title text-2xl">{d.reason.replace(/_/g, " ")}</h1>
+            <h1 className="page-title text-2xl">{formatBlockerLabel(d.reason)}</h1>
             <p className="page-subtitle mt-0">From their invoice link</p>
           </div>
           {d.status !== "resolved" && (

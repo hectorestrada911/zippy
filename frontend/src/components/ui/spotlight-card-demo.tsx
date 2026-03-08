@@ -26,7 +26,7 @@ export function SpotlightCardDemo() {
           </div>
           <h3 className="text-lg font-semibold text-white">Autopilot</h3>
           <p className="text-sm text-[var(--muted)]">
-            Reminders on your schedule. We pause when there’s an issue.
+            Follow-ups on your schedule. We pause when there’s a blocker.
           </p>
         </div>
       </GlowCard>

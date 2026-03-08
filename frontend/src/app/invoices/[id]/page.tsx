@@ -5,6 +5,21 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { getInvoice } from "@/lib/api";
 
+const BLOCKER_LABELS: Record<string, string> = {
+  missing_po: "Need PO",
+  wrong_recipient: "Resend to AP / wrong recipient",
+  incorrect_amount: "Wrong amount / line items",
+  need_w9: "Need W-9 / vendor onboarding",
+  waiting_approval: "Waiting approval",
+  scope_timesheet: "Scope / timesheet question",
+  paid_already: "Paid already",
+  other: "Other",
+};
+
+function formatBlockerLabel(value: string): string {
+  return BLOCKER_LABELS[value] ?? value.replace(/_/g, " ");
+}
+
 export default function InvoiceDetailPage() {
   const params = useParams();
   const id = params.id as string;
@@ -79,16 +94,19 @@ export default function InvoiceDetailPage() {
             </dd>
           </div>
           <div>
-            <dt className="stat-label">Dispute open</dt>
-            <dd>{inv.dispute_open ? "Yes" : "No"}</dd>
+            <dt className="stat-label">Blocker open</dt>
+            <dd>{inv.dispute_open ? "Yes — autopilot paused" : "No"}</dd>
           </div>
         </dl>
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Customers can report <strong className="text-white">What’s blocking payment?</strong> from the link in their email. It lands in Blockers and we auto-pause follow-ups for this invoice until you resolve it.
+        </p>
       </div>
 
       <div className="card">
-        <h2 className="section-title">Reminders we’ve sent</h2>
+        <h2 className="section-title">Follow-ups sent</h2>
         {inv.messages.length === 0 ? (
-          <p className="text-sm text-[var(--muted)]">No reminders sent for this invoice yet.</p>
+          <p className="text-sm text-[var(--muted)]">No follow-ups sent for this invoice yet.</p>
         ) : (
           <ul className="space-y-3">
             {inv.messages.map((m) => (
@@ -107,15 +125,15 @@ export default function InvoiceDetailPage() {
       </div>
 
       <div className="card">
-        <h2 className="section-title">Questions or issues from this invoice</h2>
+        <h2 className="section-title">What’s blocking payment?</h2>
         {inv.disputes.length === 0 ? (
-          <p className="text-sm text-[var(--muted)]">No customer questions or issues for this invoice.</p>
+          <p className="text-sm text-[var(--muted)]">No blockers reported for this invoice. Customer can use the link in their email to report one.</p>
         ) : (
           <ul className="space-y-2">
             {inv.disputes.map((d) => (
               <li key={d.id} className="flex items-center gap-3">
                 <Link href={`/disputes/${d.id}`} className="link">
-                  {d.reason.replace(/_/g, " ")}
+                  {formatBlockerLabel(d.reason)}
                 </Link>
                 <span className="text-sm text-[var(--muted)]">{d.status}</span>
               </li>

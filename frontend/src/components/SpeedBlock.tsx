@@ -14,7 +14,7 @@ export default function SpeedBlock() {
           </span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--muted)] leading-relaxed">
-          <strong className="text-white">Friendly reminders</strong> at the right time.{" "}
+          <strong className="text-white">Resolution follow-ups</strong> at the right time.{" "}
           <strong className="text-white">One-click pay links</strong> in every email.{" "}
           <strong className="text-white">Questions in one place.</strong> So you spend less time in your inbox and more time on work that matters.
         </p>

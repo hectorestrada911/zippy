@@ -18,7 +18,7 @@ export function SplineSceneBasic() {
             Payments & cash flow, automated
           </h1>
           <p className="mt-4 max-w-lg text-neutral-300">
-            Sync with your books. Reminders send on schedule. You see who paid,
+            Sync with your books. Follow-ups send on schedule. You see who paid,
             what’s overdue, and what needs attention—all in one place.
           </p>
         </div>

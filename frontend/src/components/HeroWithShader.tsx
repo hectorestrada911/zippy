@@ -48,7 +48,7 @@ export function HeroWithShader() {
               className="animate-fade-in-up mx-auto mt-6 max-w-md text-base text-[var(--muted)] md:text-lg lg:mx-0"
               style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
             >
-              Friendly reminders with a one-click pay link. Questions land in
+              Resolution follow-ups with a one-click pay link. Blockers land in
               one place. You get paid faster.
             </p>
             <div

@@ -27,7 +27,7 @@ export default function InvoicesList() {
     <div className="space-y-6">
       <header className="page-header">
         <h1 className="page-title">Who owes you what</h1>
-        <p className="page-subtitle">All open invoices and when we’ll send the next reminder</p>
+        <p className="page-subtitle">All open invoices and next autopilot action</p>
       </header>
 
       {list.length > 0 ? (
@@ -40,7 +40,7 @@ export default function InvoicesList() {
               <th>Due date</th>
               <th>Status</th>
               <th>Issue?</th>
-              <th>Next reminder</th>
+              <th>Next action</th>
               </tr>
             </thead>
             <tbody>

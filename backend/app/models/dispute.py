@@ -15,12 +15,15 @@ def gen_uuid():
     return str(uuid.uuid4())
 
 
-# Dispute reasons (customer-facing)
+# Blocker categories (customer-facing; used for "What's blocking payment?")
 DISPUTE_REASONS = [
     "missing_po",
+    "wrong_recipient",
     "incorrect_amount",
     "need_w9",
+    "waiting_approval",
     "scope_timesheet",
+    "paid_already",
     "other",
 ]
 

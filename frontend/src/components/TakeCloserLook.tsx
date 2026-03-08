@@ -13,8 +13,8 @@ import { Zap } from "lucide-react";
 const features = [
   {
     id: "reminders",
-    label: "Smart reminders",
-    description: "One reminder per step, at the right time. Before due, on due, after. No duplicate emails.",
+    label: "Resolution autopilot",
+    description: "Follow-ups at the right time. Before due, on due, after. No duplicate emails.",
     icon: BellAlertIcon,
     visual: "reminders",
   },
@@ -28,7 +28,7 @@ const features = [
   {
     id: "disputes",
     label: "Questions in one place",
-    description: "Wrong amount, need a W-9? They report it with one link. You fix it; we pause reminders.",
+    description: "Wrong amount, need a W-9? They report it with one link. You fix it; we pause follow-ups until you’re done.",
     icon: ChatBubbleBottomCenterTextIcon,
     visual: "disputes",
   },

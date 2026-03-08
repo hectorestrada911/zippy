@@ -5,7 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 const testimonials = [
   {
-    quote: "Reminders go out on their own. I see who paid in one place.",
+    quote: "Follow-ups run on autopilot. I see who paid in one place.",
     attribution: "Bookkeeper, small firm",
   },
   {
@@ -13,7 +13,7 @@ const testimonials = [
     attribution: "Freelance consultant",
   },
   {
-    quote: "Overdue AR dropped by a third. Same reminders, just automated.",
+    quote: "Overdue AR dropped by a third. Resolution on autopilot.",
     attribution: "Agency owner",
   },
 ];

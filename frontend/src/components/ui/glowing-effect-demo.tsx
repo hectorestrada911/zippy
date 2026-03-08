@@ -12,19 +12,19 @@ export function GlowingEffectDemo() {
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<CreditCard className="h-4 w-4 text-[var(--accent)]" />}
         title="Get your money faster"
-        description="Reminders go out at the right time. Every message includes a pay link so customers settle in one click."
+        description="Follow-ups go out at the right time. Every message includes a pay link so customers settle in one click."
       />
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Bell className="h-4 w-4 text-[var(--accent)]" />}
-        title="Friendly reminders, not spam"
-        description="One reminder per step so customers never get duplicate emails. You look professional; they know what to do."
+title="Professional follow-ups, not spam"
+    description="One message per step so customers never get duplicate emails. You look professional; they know what to do."
       />
       <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-[var(--accent)]" />}
         title="Blockers in one place"
-        description="Wrong amount, missing PO, W-9? They report it with one link. You fix it; we auto-pause reminders until you're done."
+        description="Wrong amount, missing PO, W-9? They report it with one link. You fix it; we auto-pause follow-ups until you're done."
       />
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
