@@ -8,7 +8,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
     },
-    text: "I stopped chasing. Money comes in faster. One place to see who paid—no more spreadsheets.",
+    text: "I stopped chasing. Money comes in faster. One place to see who paid, no more spreadsheets.",
   },
   {
     author: {
@@ -26,7 +26,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Five minutes to set up. One link to pay or say what’s wrong. Everything lands in one place—no digging through inbox.",
+    text: "Five minutes to set up. One link to pay or say what’s wrong. Everything lands in one place, no digging through inbox.",
   },
 ];
 

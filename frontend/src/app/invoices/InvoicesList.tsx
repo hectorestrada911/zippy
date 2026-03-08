@@ -61,14 +61,14 @@ export default function InvoicesList() {
                       <span className="ml-2 rounded bg-amber-500/20 px-1.5 py-0.5 text-xs text-amber-400">Escalated</span>
                     )}
                   </td>
-                  <td>{inv.dispute_open ? "Yes" : "—"}</td>
+                  <td>{inv.dispute_open ? "Yes" : "-"}</td>
                   <td className="text-[var(--muted)]">
                     {inv.next_scheduled_at
                       ? new Date(inv.next_scheduled_at).toLocaleString(undefined, {
                           dateStyle: "short",
                           timeStyle: "short",
                         })
-                      : "—"}
+                      : "-"}
                   </td>
                 </tr>
               ))}

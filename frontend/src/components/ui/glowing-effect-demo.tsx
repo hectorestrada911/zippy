@@ -4,7 +4,7 @@ import { Box, Bell, Lock, Sparkles, CreditCard } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 
-/** Bento grid with cursor-following glowing border — Zippy feature highlights. */
+/** Bento grid with cursor-following glowing border: Zippy feature highlights. */
 export function GlowingEffectDemo() {
   return (
     <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
@@ -12,18 +12,18 @@ export function GlowingEffectDemo() {
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<CreditCard className="h-4 w-4 text-[var(--accent)]" />}
         title="Get your money faster"
-        description="We nudge at the right time. Every message has a pay link—they click, they pay. No chase."
+        description="We nudge at the right time. Every message has a pay link: they click, they pay. No chase."
       />
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Bell className="h-4 w-4 text-[var(--accent)]" />}
-        title="You look professional—not desperate"
+        title="You look professional, not desperate"
         description="One message per step. No duplicate emails. They know what to do. You never look like you’re nagging."
       />
       <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-[var(--accent)]" />}
-        title="See why they haven’t paid—fix it once"
+        title="See why they haven’t paid, fix it once"
         description="Wrong amount? Need a PO or W-9? They tell you with one link. It lands in one place. You fix it. We only nudge again when you’re ready."
       />
       <GridItem

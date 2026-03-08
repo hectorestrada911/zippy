@@ -4,7 +4,7 @@ import React from "react";
 import { Link2, Bell, MessageCircle } from "lucide-react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
-/** Three spotlight/glow cards with cursor-following effect — Zippy value props. */
+/** Three spotlight/glow cards with cursor-following effect: Zippy value props. */
 export function SpotlightCardDemo() {
   return (
     <div className="flex flex-wrap items-stretch justify-center gap-6 py-8 md:gap-10">
@@ -26,7 +26,7 @@ export function SpotlightCardDemo() {
           </div>
           <h3 className="text-lg font-semibold text-white">We nudge so you don’t have to</h3>
           <p className="text-sm text-[var(--muted)]">
-            Friendly follow-ups at the right time. When something’s wrong, we stop—you never look like you’re nagging.
+            Friendly follow-ups at the right time. When something’s wrong, we stop so you never look like you’re nagging.
           </p>
         </div>
       </GlowCard>

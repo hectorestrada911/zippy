@@ -60,7 +60,7 @@ export default function InvoiceDetailPage() {
           <div>
             <h1 className="page-title text-2xl">{inv.number || inv.id}</h1>
             <p className="page-subtitle mt-0">
-              {inv.customer_name || "—"}
+              {inv.customer_name || "-"}
               {inv.customer_email ? ` · ${inv.customer_email}` : ""}
             </p>
           </div>
@@ -95,7 +95,7 @@ export default function InvoiceDetailPage() {
           </div>
           <div>
             <dt className="stat-label">Someone reported an issue</dt>
-            <dd>{inv.dispute_open ? "Yes — we’ve paused follow-ups until you fix it" : "No"}</dd>
+            <dd>{inv.dispute_open ? "Yes, we’ve paused follow-ups until you fix it" : "No"}</dd>
           </div>
         </dl>
         <p className="mt-4 text-sm text-[var(--muted)]">

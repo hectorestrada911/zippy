@@ -21,7 +21,6 @@ import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
-import { FlowFieldBackgroundDemo } from "@/components/ui/flow-field-background-demo";
 
 export default function Home() {
   return (
@@ -29,7 +28,7 @@ export default function Home() {
       {/* Hero: split layout, product-led visual */}
       <section className="relative min-h-[90vh] overflow-hidden px-4 pb-20 pt-16 md:min-h-[88vh] md:pb-28 md:pt-24">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[var(--background)]" />
-        {/* Gradient orbs — no blur for Safari performance */}
+        {/* Gradient orbs: no blur for Safari performance */}
         <div
           className="pointer-events-none absolute -left-1/2 top-0 h-[80vh] w-full -z-10 opacity-30"
           style={{
@@ -55,7 +54,7 @@ export default function Home() {
               className="animate-fade-in text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
               style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
-              Get paid what you’re owed—without the awkward chase
+              Get paid what you’re owed, without the awkward chase
             </p>
             <h1
               className="animate-fade-in-up mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl xl:leading-[1.05]"
@@ -76,7 +75,7 @@ export default function Home() {
               className="animate-fade-in-up mx-auto mt-6 max-w-md text-base text-[var(--muted)] md:text-lg lg:mx-0"
               style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
             >
-              We nudge. They pay or tell you why not. You fix it once—and the money lands. No awkward texts, no lost relationships.
+              We nudge. They pay or tell you why not. You fix it once, and the money lands. No awkward texts, no lost relationships.
             </p>
             <div
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
@@ -121,12 +120,12 @@ export default function Home() {
             Tired of being the bad guy? Get paid without the awkward follow-ups.
           </p>
           <p className="text-[var(--muted)] leading-relaxed">
-            You send invoices. They sit. You don’t want to nag—but you need the cash. Zippy does the nudge. When something’s wrong (wrong amount, need PO, W-9), they tell you in one place. You fix it. You get paid. Relationships stay intact.
+            You send invoices. They sit. You don’t want to nag, but you need the cash. Zippy does the nudge. When something’s wrong (wrong amount, need PO, W-9), they tell you in one place. You fix it. You get paid. Relationships stay intact.
           </p>
         </div>
       </section>
 
-      {/* Supporting headline — static to avoid Safari lag from hover-disperse */}
+      {/* Supporting headline: static to avoid Safari lag from hover-disperse */}
       <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-2xl font-light text-[var(--muted)] md:text-3xl">
@@ -138,36 +137,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Supporting headline — static (no cycle animation for Safari) */}
+      {/* Supporting headline: static (no cycle animation for Safari) */}
       <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
         <div className="mx-auto flex max-w-6xl justify-center">
           <div className="max-w-[500px] p-4">
             <h2 className="text-left text-4xl font-light text-[var(--muted)]">
-              Your <span className="font-semibold text-[var(--foreground)]">invoices</span> get paid—you stay the good guy
+              Your <span className="font-semibold text-[var(--foreground)]">invoices</span> get paid, and you stay the good guy
             </h2>
           </div>
         </div>
       </section>
 
-      {/* Social proof — carousel */}
+      {/* Social proof: carousel */}
       <TestimonialCarousel />
 
-      {/* Social proof — marquee testimonials */}
+      {/* Social proof: marquee testimonials */}
       <TestimonialsSectionDemo />
 
-      {/* Interactive 3D — Spline scene */}
+      {/* Interactive 3D: Spline scene */}
       <section className="px-4 py-12 md:py-16">
         <div className="mx-auto max-w-6xl">
           <SplineSceneBasic />
         </div>
       </section>
 
-      {/* Display cards — stacked cards */}
+      {/* Display cards: stacked cards */}
       <section className="px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <DisplayCardsDemo />
       </section>
 
-      {/* Spotlight cards — cursor-following glow cards */}
+      {/* Spotlight cards: cursor-following glow cards */}
       <section className="px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <div className="mx-auto max-w-5xl">
           <h2 className="page-title text-center">See the difference</h2>
@@ -178,14 +177,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pulse beams — animated gradient beams + Connect CTA */}
+      {/* Pulse beams: animated gradient beams + Connect CTA */}
       <section className="min-h-screen">
         <PulseBeamsFirstDemo />
-      </section>
-
-      {/* Flow field background — particle canvas + CTA */}
-      <section className="relative overflow-hidden">
-        <FlowFieldBackgroundDemo />
       </section>
 
       {/* Why Zippy vs QuickBooks */}
@@ -194,12 +188,12 @@ export default function Home() {
         <div className="relative mx-auto max-w-5xl">
           <h2 className="page-title text-center">Why not just use QuickBooks?</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-            QuickBooks can remind. But when there’s a problem, it keeps reminding. Zippy stops. You see what’s wrong, fix it, then we nudge again—and you see exactly how much you’ve gotten paid.
+            QuickBooks can remind. But when there’s a problem, it keeps reminding. Zippy stops. You see what’s wrong, fix it, then we nudge again, and you see exactly how much you’ve gotten paid.
           </p>
           <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[var(--border)] bg-[var(--card)]/80 px-6 py-5 text-center">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">The difference in plain English</h3>
             <p className="mt-2 text-sm text-[var(--muted)]">
-              QuickBooks: sends reminders. Zippy: sends reminders that stop when something’s wrong, shows you why they haven’t paid in one place, and only starts again when you’re ready. So you get paid—without annoying your clients.
+              QuickBooks: sends reminders. Zippy: sends reminders that stop when something’s wrong, shows you why they haven’t paid in one place, and only starts again when you’re ready. So you get paid without annoying your clients.
             </p>
           </div>
           <div className="mt-14">
@@ -214,13 +208,13 @@ export default function Home() {
       {/* Speed / performance block */}
       <SpeedBlock />
 
-      {/* What you get — results, not steps */}
+      {/* What you get: results, not steps */}
       <section id="how-it-works" className="relative border-t border-[var(--border)] px-4 py-20 md:py-28" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(34,211,238,0.03),transparent)]" />
         <div className="relative mx-auto max-w-5xl">
           <h2 className="page-title text-center">What you get</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-lg text-center">
-            Know who owes what. We nudge so you don’t have to. See why they haven’t paid—fix it once, get paid.
+            Know who owes what. We nudge so you don’t have to. See why they haven’t paid, fix it once, get paid.
           </p>
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
@@ -238,14 +232,14 @@ export default function Home() {
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">We nudge so you don’t have to</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Friendly follow-ups go out at the right time. When they have a problem, we stop—so you never look like you’re nagging.
+                Friendly follow-ups go out at the right time. When they have a problem, we stop so you never look like you’re nagging.
               </p>
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
                 <ChatBubbleBottomCenterTextIcon className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold text-white">See why they haven’t paid—fix it once</h3>
+              <h3 className="mt-6 text-xl font-semibold text-white">See why they haven’t paid, fix it once</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
                 Wrong amount? Need a PO? They tell you with one link. It all lands in one place. You fix it. We only nudge again when you’re ready. You get paid.
               </p>
@@ -262,11 +256,11 @@ export default function Home() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
-                One-click pay link in every email—they pay without leaving their inbox
+                One-click pay link in every email: they pay without leaving their inbox
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
-                When something’s wrong, we stop—you fix it, then we nudge again
+                When something’s wrong, we stop; you fix it, then we nudge again
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
@@ -277,7 +271,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Integrations — connector strip + trust bar */}
+      {/* Integrations: connector strip + trust bar */}
       <section className="relative border-t border-[var(--border)] px-4 py-20 md:py-24" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(34,211,238,0.03),transparent)]" />
         <div className="relative mx-auto max-w-5xl">
@@ -286,7 +280,7 @@ export default function Home() {
             Connect once. Zippy stays in sync with your books and payments.
           </p>
           <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-stretch sm:justify-center sm:gap-4">
-            {/* QuickBooks — books */}
+            {/* QuickBooks: books */}
             <div className="group flex flex-1 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/30 hover:shadow-lg sm:max-w-[280px]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)]/20">
                 <BookOpenIcon className="h-6 w-6" />
@@ -300,7 +294,7 @@ export default function Home() {
             <div className="hidden flex-shrink-0 items-center justify-center sm:flex sm:w-8">
               <div className="h-6 w-px bg-[var(--border)]" />
             </div>
-            {/* Stripe — payments */}
+            {/* Stripe: payments */}
             <div className="group flex flex-1 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/30 hover:shadow-lg sm:max-w-[280px]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)]/20">
                 <CreditCardIcon className="h-6 w-6" />
@@ -314,7 +308,7 @@ export default function Home() {
             <div className="hidden flex-shrink-0 items-center justify-center sm:flex sm:w-8">
               <div className="h-6 w-px bg-[var(--border)]" />
             </div>
-            {/* Resend — email */}
+            {/* Resend: email */}
             <div className="group flex flex-1 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/30 hover:shadow-lg sm:max-w-[280px]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)]/20">
                 <EnvelopeIcon className="h-6 w-6" />
@@ -337,12 +331,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How to get started — step-by-step with images */}
+      {/* How to get started: step-by-step with images */}
       <section className="border-t border-[var(--border)]" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <FeatureStepsDemo />
       </section>
 
-      {/* FAQ — trust + blocker resolution + safe autopilot */}
+      {/* FAQ: trust + blocker resolution + safe autopilot */}
       <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(20, 20, 22, 0.5)" }}>
         <div className="mx-auto max-w-2xl">
           <h2 className="page-title text-center">Common questions</h2>
@@ -378,7 +372,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Service-tier blurb — Concierge / Managed Autopilot */}
+      {/* Service-tier blurb: Concierge / Managed Autopilot */}
       <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-wider text-[var(--accent)]">Optional</p>
@@ -402,7 +396,7 @@ export default function Home() {
             <span>Free to start</span>
           </div>
           <h2 className="mt-8 text-3xl font-bold text-white md:text-4xl">
-            Ready to get paid faster—without the awkward chase?
+            Ready to get paid faster, without the awkward chase?
           </h2>
           <p className="mt-4 text-[var(--muted)]">
             Log in with your email. We’ll send you a link. No password, no credit card.

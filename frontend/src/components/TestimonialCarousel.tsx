@@ -9,7 +9,7 @@ const testimonials = [
     attribution: "Bookkeeper, small firm",
   },
   {
-    quote: "Set up in five minutes. They get one link—pay or tell me what’s wrong. No more digging through email.",
+    quote: "Set up in five minutes. They get one link: pay or tell me what’s wrong. No more digging through email.",
     attribution: "Freelance consultant",
   },
   {

@@ -8,7 +8,7 @@ import HeroVisual from "@/components/HeroVisual";
 export function HeroWithShader() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden md:min-h-[88vh]">
-      {/* Shader background — full bleed */}
+      {/* Shader background: full bleed */}
       <div className="absolute inset-0 z-0 opacity-80">
         <ShaderAnimation />
       </div>
@@ -25,7 +25,7 @@ export function HeroWithShader() {
               className="animate-fade-in text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
               style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
-              Get paid what you’re owed—without the awkward chase
+              Get paid what you’re owed, without the awkward chase
             </p>
             <h1
               className="animate-fade-in-up mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl xl:leading-[1.05]"
@@ -48,7 +48,7 @@ export function HeroWithShader() {
               className="animate-fade-in-up mx-auto mt-6 max-w-md text-base text-[var(--muted)] md:text-lg lg:mx-0"
               style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
             >
-              We nudge. They pay or tell you why not. One place to fix what’s wrong. You get paid—relationships intact.
+              We nudge. They pay or tell you why not. One place to fix what’s wrong. You get paid, relationships intact.
             </p>
             <div
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"

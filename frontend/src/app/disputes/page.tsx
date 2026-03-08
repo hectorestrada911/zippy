@@ -78,7 +78,7 @@ export default function DisputesPage() {
                   </span>
                 </td>
                 <td className="text-[var(--muted)]">
-                  {d.created_at ? new Date(d.created_at).toLocaleDateString(undefined, { dateStyle: "medium" }) : "—"}
+                  {d.created_at ? new Date(d.created_at).toLocaleDateString(undefined, { dateStyle: "medium" }) : "-"}
                 </td>
                 <td>
                   <Link href={`/invoices/${d.invoice_id}`} className="link">

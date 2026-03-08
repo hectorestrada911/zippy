@@ -14,7 +14,7 @@ const features = [
   {
     id: "reminders",
     label: "We nudge so you don’t have to",
-    description: "Friendly follow-ups at the right time. Before due, on due, after. You look professional—they know what to do. No duplicate emails.",
+    description: "Friendly follow-ups at the right time. Before due, on due, after. You look professional: they know what to do. No duplicate emails.",
     icon: BellAlertIcon,
     visual: "reminders",
   },

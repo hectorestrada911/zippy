@@ -111,7 +111,7 @@ export default function DisputeDetailPage() {
           </div>
           <div className="col-span-2 md:col-span-3">
             <dt className="stat-label">Description</dt>
-            <dd className="mt-1 text-white">{d.description || "—"}</dd>
+            <dd className="mt-1 text-white">{d.description || "-"}</dd>
           </div>
         </dl>
       </div>

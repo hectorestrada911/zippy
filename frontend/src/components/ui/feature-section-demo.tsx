@@ -15,7 +15,7 @@ const features = [
     step: "Step 2",
     title: "We nudge. You don’t.",
     content:
-      "Set your schedule. We send friendly follow-ups at the right time. When they have a problem, we stop—so you never look like you’re nagging.",
+      "Set your schedule. We send friendly follow-ups at the right time. When they have a problem, we stop so you never look like you’re nagging.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&q=80&auto=format&fit=crop",
   },

@@ -8,7 +8,7 @@ export function ParticleTextEffectDemo() {
   return (
     <ParticleTextEffect
       words={WORDS}
-      caption="Get paid what you're owed—without the awkward chase"
+      caption="Get paid what you're owed, without the awkward chase"
       subcaption="We nudge. They pay or tell you why not. You fix it once. Money lands."
     />
   );

@@ -2,7 +2,7 @@
 
 import { LinkIcon, BellAlertIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 
-/** Animated strip: Sync → Autopilot → Resolve blockers — differentiator flow. */
+/** Animated strip: Connect → We nudge → You get paid. */
 export default function FlowStrip() {
   return (
     <div
