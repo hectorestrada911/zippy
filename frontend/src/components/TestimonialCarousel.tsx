@@ -5,15 +5,15 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 const testimonials = [
   {
-    quote: "Follow-ups run on autopilot. I see who paid in one place.",
+    quote: "I stopped chasing. Money comes in faster. I finally see who paid in one place.",
     attribution: "Bookkeeper, small firm",
   },
   {
-    quote: "Five minutes to set up. One link to pay or report an issue.",
+    quote: "Set up in five minutes. They get one link—pay or tell me what’s wrong. No more digging through email.",
     attribution: "Freelance consultant",
   },
   {
-    quote: "Overdue AR dropped by a third. Resolution on autopilot.",
+    quote: "Overdue dropped by a third. I look professional. Clients actually pay.",
     attribution: "Agency owner",
   },
 ];

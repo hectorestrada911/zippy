@@ -47,8 +47,8 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <header className="page-header">
-        <h1 className="page-title">Resolution at a glance</h1>
-        <p className="page-subtitle">What’s owed, what’s overdue, and what you’ve recovered</p>
+        <h1 className="page-title">Your money at a glance</h1>
+        <p className="page-subtitle">Who owes what, what’s overdue, and how much you’ve gotten paid</p>
       </header>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
@@ -86,24 +86,24 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
         <div className="stat-card stat-card-glass">
-          <span className="stat-label">Recovered this month</span>
+          <span className="stat-label">Got paid this month</span>
           <span className="stat-value text-[var(--success)]">
             <CountUp value={summary.paid_count_this_month} />
           </span>
-          <span className="text-xs text-[var(--muted)]">invoices paid</span>
+          <span className="text-xs text-[var(--muted)]">invoices</span>
         </div>
         <div className="stat-card stat-card-glass">
-          <span className="stat-label">Paid since connecting</span>
+          <span className="stat-label">Money in since you started</span>
           <span className="stat-value text-[var(--success)]">
             <CountUp value={Number(summary.paid_after_reminder_total)} prefix="$" />
           </span>
-          <span className="text-xs text-[var(--muted)]">recovered via autopilot</span>
+          <span className="text-xs text-[var(--muted)]">from Zippy</span>
         </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="card">
-          <h2 className="section-title">Overdue (needs a nudge)</h2>
+          <h2 className="section-title">Overdue (we’ll nudge them)</h2>
           {overdue_invoices.length === 0 ? (
             <div className="empty-state">
               <p className="empty-state-title">You’re all caught up</p>
@@ -127,11 +127,11 @@ export default function DashboardPage() {
         </div>
 
         <div className="card">
-          <h2 className="section-title">Blockers (your reply needed)</h2>
+          <h2 className="section-title">Why they haven’t paid (needs your reply)</h2>
           {disputes_needing_action.length === 0 ? (
             <div className="empty-state">
               <p className="empty-state-title">Nothing waiting</p>
-              <p className="empty-state-desc">When someone reports a payment blocker from their invoice link, it’ll show here. Resolve it and we’ll resume autopilot when you’re ready.</p>
+              <p className="empty-state-desc">When someone says “wrong amount” or “need a PO” from their invoice link, it’ll show here. Fix it and we’ll only nudge again when you’re ready.</p>
             </div>
           ) : (
             <ul className="divide-y divide-[var(--border-subtle)]">

@@ -15,11 +15,10 @@ export function SplineSceneBasic() {
       <div className="flex h-full">
         <div className="relative z-10 flex flex-1 flex-col justify-center p-8">
           <h1 className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-            Payments & cash flow, automated
+            Get paid faster. Less chasing.
           </h1>
           <p className="mt-4 max-w-lg text-neutral-300">
-            Sync with your books. Follow-ups send on schedule. You see who paid,
-            what’s overdue, and what needs attention—all in one place.
+            Connect your books. We nudge at the right time. You see who paid, what’s overdue, and what needs your attention—one place.
           </p>
         </div>
 

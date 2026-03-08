@@ -94,12 +94,12 @@ export default function InvoiceDetailPage() {
             </dd>
           </div>
           <div>
-            <dt className="stat-label">Blocker open</dt>
-            <dd>{inv.dispute_open ? "Yes — autopilot paused" : "No"}</dd>
+            <dt className="stat-label">Someone reported an issue</dt>
+            <dd>{inv.dispute_open ? "Yes — we’ve paused follow-ups until you fix it" : "No"}</dd>
           </div>
         </dl>
         <p className="mt-4 text-sm text-[var(--muted)]">
-          Customers can report <strong className="text-white">What’s blocking payment?</strong> from the link in their email. It lands in Blockers and we auto-pause follow-ups for this invoice until you resolve it.
+          Customers can say what’s wrong (wrong amount, need PO, etc.) from the link in their email. It lands in one place for you. We don’t send another nudge until you’re ready.
         </p>
       </div>
 
@@ -125,9 +125,9 @@ export default function InvoiceDetailPage() {
       </div>
 
       <div className="card">
-        <h2 className="section-title">What’s blocking payment?</h2>
+        <h2 className="section-title">Why they haven’t paid</h2>
         {inv.disputes.length === 0 ? (
-          <p className="text-sm text-[var(--muted)]">No blockers reported for this invoice. Customer can use the link in their email to report one.</p>
+          <p className="text-sm text-[var(--muted)]">No issues reported for this invoice. They can use the link in their email to tell you what’s wrong.</p>
         ) : (
           <ul className="space-y-2">
             {inv.disputes.map((d) => (

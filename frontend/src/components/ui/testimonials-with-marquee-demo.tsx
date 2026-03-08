@@ -8,7 +8,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Follow-ups run on autopilot. I see who paid in one place. No more spreadsheets or chasing over email.",
+    text: "I stopped chasing. Money comes in faster. One place to see who paid—no more spreadsheets.",
   },
   {
     author: {
@@ -17,7 +17,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Overdue AR dropped by a third. Resolution on autopilot. Clients actually pay faster.",
+    text: "Overdue dropped by a third. I look professional. Clients actually pay.",
   },
   {
     author: {
@@ -26,7 +26,7 @@ const testimonials = [
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Five minutes to set up. One link to pay or report an issue. Questions land in one place so I’m not digging through inbox.",
+    text: "Five minutes to set up. One link to pay or say what’s wrong. Everything lands in one place—no digging through inbox.",
   },
 ];
 

@@ -13,29 +13,29 @@ import { Zap } from "lucide-react";
 const features = [
   {
     id: "reminders",
-    label: "Resolution autopilot",
-    description: "Follow-ups at the right time. Before due, on due, after. No duplicate emails.",
+    label: "We nudge so you don’t have to",
+    description: "Friendly follow-ups at the right time. Before due, on due, after. You look professional—they know what to do. No duplicate emails.",
     icon: BellAlertIcon,
     visual: "reminders",
   },
   {
     id: "pay",
-    label: "Pay links",
-    description: "Every email includes a one-click pay link. Customers settle without leaving their inbox.",
+    label: "One-click pay",
+    description: "Every email has a pay link. They click, they pay. Money lands without you chasing.",
     icon: LinkIcon,
     visual: "pay",
   },
   {
     id: "disputes",
-    label: "Questions in one place",
-    description: "Wrong amount, need a W-9? They report it with one link. You fix it; we pause follow-ups until you’re done.",
+    label: "See why they haven’t paid",
+    description: "Wrong amount? Need a PO or W-9? They tell you with one link. It lands in one place. You fix it. We only nudge again when you’re ready.",
     icon: ChatBubbleBottomCenterTextIcon,
     visual: "disputes",
   },
   {
     id: "dashboard",
-    label: "One dashboard",
-    description: "Who owes what, what’s overdue, what’s coming in. No more digging through email.",
+    label: "One screen, zero guesswork",
+    description: "Who owes what. What’s overdue. What’s coming in. What needs your attention. No digging through email.",
     icon: Squares2X2Icon,
     visual: "dashboard",
   },
@@ -52,7 +52,7 @@ export default function TakeCloserLook() {
       <div className="mx-auto max-w-6xl">
         <h2 className="page-title text-center">See it in action</h2>
         <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-          Everything you need to get paid faster, in one place.
+          Less chasing. More money in. Here’s how.
         </p>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[320px_1fr]">

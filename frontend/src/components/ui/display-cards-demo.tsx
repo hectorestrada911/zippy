@@ -7,7 +7,7 @@ const defaultCards = [
   {
     icon: <AlertCircle className="size-4 text-amber-300" />,
     title: "Overdue",
-    description: "Invoices past due — needs a nudge",
+    description: "Who's past due—we'll nudge them",
     date: "See dashboard",
     iconClassName: "text-amber-500",
     titleClassName: "text-amber-500",
@@ -16,8 +16,8 @@ const defaultCards = [
   },
   {
     icon: <Banknote className="size-4 text-emerald-300" />,
-    title: "Paid this week",
-    description: "Money in via pay links",
+    title: "Got paid this week",
+    description: "Money in—from your pay links",
     date: "From Zippy",
     iconClassName: "text-emerald-500",
     titleClassName: "text-emerald-500",
@@ -26,8 +26,8 @@ const defaultCards = [
   },
   {
     icon: <MessageCircle className="size-4 text-cyan-300" />,
-    title: "Payment blockers",
-    description: "Blockers to resolve — autopilot paused",
+    title: "Why they haven't paid",
+    description: "Wrong amount? Need PO? Fix it here—one place",
     date: "One place",
     iconClassName: "text-cyan-500",
     titleClassName: "text-cyan-500",

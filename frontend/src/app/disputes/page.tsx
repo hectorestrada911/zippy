@@ -42,7 +42,7 @@ export default function DisputesPage() {
     <div className="space-y-6">
       <header className="page-header">
         <h1 className="page-title">Blockers</h1>
-        <p className="page-subtitle">Payment blockers from your invoice links show here. Resolve them and we’ll resume autopilot when you’re ready.</p>
+        <p className="page-subtitle">When someone says “wrong amount” or “need a PO” from their invoice link, it shows here. Fix it and we’ll only nudge again when you’re ready.</p>
       </header>
 
       {list.length > 0 ? (

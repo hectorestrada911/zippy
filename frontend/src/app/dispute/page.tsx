@@ -100,7 +100,7 @@ function DisputeContent() {
         Invoice {invoice.number} · ${invoice.amount.toLocaleString()} (due {invoice.due_date})
       </p>
       <p className="mt-2 text-sm text-[var(--muted)]">
-        Tell us what’s blocking payment. The sender will see this in Blockers and can fix it; follow-ups stay paused until they’re done.
+        Tell the sender what’s wrong. They’ll see it in one place and can fix it. No more reminders will go out until they’re ready.
       </p>
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
         <div>

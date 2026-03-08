@@ -13,9 +13,9 @@ export function SpotlightCardDemo() {
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
             <Link2 className="h-6 w-6" />
           </div>
-          <h3 className="text-lg font-semibold text-white">Sync</h3>
+          <h3 className="text-lg font-semibold text-white">Know who owes what</h3>
           <p className="text-sm text-[var(--muted)]">
-            Customers and invoices from QuickBooks. Always current.
+            Connect QuickBooks once. Customers and invoices stay in sync. No guesswork.
           </p>
         </div>
       </GlowCard>
@@ -24,9 +24,9 @@ export function SpotlightCardDemo() {
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
             <Bell className="h-6 w-6" />
           </div>
-          <h3 className="text-lg font-semibold text-white">Autopilot</h3>
+          <h3 className="text-lg font-semibold text-white">We nudge so you don’t have to</h3>
           <p className="text-sm text-[var(--muted)]">
-            Follow-ups on your schedule. We pause when there’s a blocker.
+            Friendly follow-ups at the right time. When something’s wrong, we stop—you never look like you’re nagging.
           </p>
         </div>
       </GlowCard>
@@ -35,9 +35,9 @@ export function SpotlightCardDemo() {
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
             <MessageCircle className="h-6 w-6" />
           </div>
-          <h3 className="text-lg font-semibold text-white">Blockers</h3>
+          <h3 className="text-lg font-semibold text-white">See why they haven’t paid</h3>
           <p className="text-sm text-[var(--muted)]">
-            One inbox for payment blockers. Resolve, then we resume.
+            Wrong amount? Need a PO? It lands in one place. You fix it. We only nudge again when you’re ready.
           </p>
         </div>
       </GlowCard>

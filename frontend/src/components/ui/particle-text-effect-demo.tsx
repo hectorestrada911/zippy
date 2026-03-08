@@ -2,14 +2,14 @@
 
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 
-const WORDS = ["ZIPPY", "GET PAID", "AUTOPILOT", "BLOCKERS", "RESOLVE"];
+const WORDS = ["ZIPPY", "GET PAID", "LESS CHASE", "MORE CASH", "RESOLVE"];
 
 export function ParticleTextEffectDemo() {
   return (
     <ParticleTextEffect
       words={WORDS}
-      caption="Invoice resolution on autopilot"
-      subcaption="Autopilot runs. Blockers land in one inbox. We pause until you resolve."
+      caption="Get paid what you're owed—without the awkward chase"
+      subcaption="We nudge. They pay or tell you why not. You fix it once. Money lands."
     />
   );
 }

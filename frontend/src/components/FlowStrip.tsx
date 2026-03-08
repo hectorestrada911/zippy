@@ -16,7 +16,7 @@ export default function FlowStrip() {
         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--background)]/80">
           <LinkIcon className="h-6 w-6 text-[var(--muted)]" />
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Sync</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Connect</span>
       </div>
 
       <div className="relative flex-1 px-1" aria-hidden>
@@ -29,7 +29,7 @@ export default function FlowStrip() {
         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--accent)]/50 bg-[var(--accent)]/15 shadow-[0_0_20px_-4px_rgba(34,211,238,0.25)]">
           <BellAlertIcon className="h-6 w-6 text-[var(--accent)]" />
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Autopilot</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">We nudge</span>
       </div>
 
       <div className="relative flex-1 px-1" aria-hidden>
@@ -42,7 +42,7 @@ export default function FlowStrip() {
         <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--success)]/50 bg-[var(--success)]/15 shadow-[0_0_16px_-4px_rgba(52,211,153,0.2)]">
           <ChatBubbleBottomCenterTextIcon className="h-6 w-6 text-[var(--success)]" />
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">Resolve blockers</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">You get paid</span>
       </div>
     </div>
   );

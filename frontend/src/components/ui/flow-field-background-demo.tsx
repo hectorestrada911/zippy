@@ -18,15 +18,15 @@ export function FlowFieldBackgroundDemo() {
       />
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-          Invoice resolution on autopilot
+          Get paid what you’re owed—without the awkward chase
         </p>
         <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl xl:leading-[1.05]">
           Stop chasing.
           <br />
-          <span className="text-[var(--accent)]">Start resolving.</span>
+          <span className="text-[var(--accent)]">Start getting paid.</span>
         </h2>
         <p className="mx-auto max-w-md text-base text-[var(--muted)] md:text-lg">
-          Recover overdue invoices without awkward chasing. Connect QuickBooks once; we run the resolution workflow.
+          We nudge. They pay or tell you why not. You fix it once—money lands. No awkward texts.
         </p>
         <Link
           href="/login"
