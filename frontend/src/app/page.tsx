@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       {/* Hero: split layout, product-led visual */}
-      <section className="relative min-h-[90vh] overflow-hidden px-4 pb-20 pt-16 md:min-h-[88vh] md:pb-28 md:pt-24">
+      <section className="relative min-h-0 overflow-hidden px-4 pb-16 pt-8 md:min-h-[88vh] md:pb-28 md:pt-24">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[var(--background)]" />
         {/* Gradient orbs: no blur for Safari performance */}
         <div
@@ -48,7 +48,7 @@ export default function Home() {
             backgroundSize: "32px 32px",
           }}
         />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <div className="text-center lg:text-left">
             <p
               className="animate-fade-in text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
