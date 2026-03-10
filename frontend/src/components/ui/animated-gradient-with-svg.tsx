@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useDimensions } from "@/components/hooks/use-debounced-dimensions";
 
@@ -23,6 +23,8 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dimensions = useDimensions(containerRef);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const circleSize = useMemo(
     () => Math.max(dimensions.width, dimensions.height),
@@ -38,22 +40,36 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
 
   const circles = useMemo(
     () =>
-      colors.map((color, index) => ({
-        color,
-        top: Math.random() * 50,
-        left: Math.random() * 50,
-        size: randomInt(50, 150) / 100,
-        tx1: Math.random() - 0.5,
-        ty1: Math.random() - 0.5,
-        tx2: Math.random() - 0.5,
-        ty2: Math.random() - 0.5,
-        tx3: Math.random() - 0.5,
-        ty3: Math.random() - 0.5,
-        tx4: Math.random() - 0.5,
-        ty4: Math.random() - 0.5,
-      })),
-    [colors]
+      mounted
+        ? colors.map((color, index) => ({
+            color,
+            top: Math.random() * 50,
+            left: Math.random() * 50,
+            size: randomInt(50, 150) / 100,
+            tx1: Math.random() - 0.5,
+            ty1: Math.random() - 0.5,
+            tx2: Math.random() - 0.5,
+            ty2: Math.random() - 0.5,
+            tx3: Math.random() - 0.5,
+            ty3: Math.random() - 0.5,
+            tx4: Math.random() - 0.5,
+            ty4: Math.random() - 0.5,
+          }))
+        : [],
+    [colors, mounted]
   );
+
+  if (!mounted) {
+    return (
+      <div
+        ref={containerRef}
+        className={cn("absolute inset-0 overflow-hidden", className)}
+        aria-hidden
+      >
+        <div className={cn("absolute inset-0", blurClass)} />
+      </div>
+    );
+  }
 
   return (
     <div
