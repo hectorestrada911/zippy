@@ -15,10 +15,10 @@ export function SplineSceneBasic() {
       <div className="flex h-full">
         <div className="relative z-10 flex flex-1 flex-col justify-center p-8">
           <h1 className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-            Tech that gets you paid.
+            Get paid faster. Less chasing.
           </h1>
           <p className="mt-4 max-w-lg text-neutral-300">
-            Connect your books. Zippy runs the chase so you don't have to: nudges at the right time, who paid and what’s overdue, all in one place. You stay the good guy; the system does the work.
+            Connect your books. Zippy runs the chase so you don't have to: nudges at the right time, who paid and what’s overdue, all in one place. You stay the good guy. You get paid.
           </p>
         </div>
 

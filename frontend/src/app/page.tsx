@@ -21,6 +21,7 @@ import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
+import { AnimatedGradientDemo } from "@/components/ui/animated-gradient-demo";
 
 export default function Home() {
   return (
@@ -174,6 +175,19 @@ export default function Home() {
             What you see when you use Zippy: who’s overdue, who paid, what needs your attention.
           </p>
           <SpotlightCardDemo />
+        </div>
+      </section>
+
+      {/* Animated gradient bento: example outcomes */}
+      <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
+        <div className="mx-auto max-w-5xl">
+          <h2 className="page-title text-center">What you can expect</h2>
+          <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
+            One place for who owes what, what's overdue, and what you've gotten paid.
+          </p>
+          <div className="mt-10">
+            <AnimatedGradientDemo />
+          </div>
         </div>
       </section>
 

@@ -37,33 +37,33 @@ const BentoCard: React.FC<BentoCardProps> = ({
 
   return (
     <motion.div
-      className="relative h-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)]/80"
+      className="relative h-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)]/90 shadow-[0_0_0_1px_rgba(255,255,255,0.03)]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay }}
     >
-      <AnimatedGradient colors={colors} speed={0.05} blur="medium" />
+      <AnimatedGradient colors={colors} speed={0.05} blur="heavy" />
       <motion.div
-        className="relative z-10 p-4 backdrop-blur-sm sm:p-5 md:p-6"
+        className="relative z-10 p-4 backdrop-blur-md sm:p-5 md:p-6"
         variants={container}
         initial="hidden"
         animate="show"
       >
         <motion.h3
-          className="text-sm font-medium text-[var(--muted)] sm:text-base"
+          className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] sm:text-sm"
           variants={item}
         >
           {title}
         </motion.h3>
         <motion.p
-          className="mt-1 text-2xl font-semibold text-white sm:text-3xl md:text-4xl"
+          className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl"
           variants={item}
         >
           {value}
         </motion.p>
         {subtitle && (
           <motion.p
-            className="mt-2 text-sm text-[var(--muted)]"
+            className="mt-2 text-sm leading-relaxed text-[var(--muted)]"
             variants={item}
           >
             {subtitle}
@@ -74,7 +74,20 @@ const BentoCard: React.FC<BentoCardProps> = ({
   );
 };
 
-/** Zippy-themed bento grid: AR stats with animated gradient backgrounds. Uses Zippy palette (accent, success, warning). */
+/** Zippy-themed bento grid: AR stats with animated gradient backgrounds. Uses only Zippy palette for a cohesive look. */
+const ZIPPY = {
+  accent: "#22d3ee",
+  accentDim: "#0891b2",
+  accentLight: "#67e8f9",
+  success: "#34d399",
+  successDim: "#047857",
+  successLight: "#6ee7b7",
+  warning: "#fbbf24",
+  warningDim: "#b45309",
+  warningLight: "#fde047",
+  muted: "#71717a",
+} as const;
+
 export function AnimatedGradientDemo() {
   return (
     <div className="w-full">
@@ -84,7 +97,7 @@ export function AnimatedGradientDemo() {
             title="Total outstanding"
             value="$47,200"
             subtitle="Across all open invoices"
-            colors={["#22d3ee", "#0891b2", "#67e8f9"]}
+            colors={[ZIPPY.accent, ZIPPY.accentDim, ZIPPY.accentLight]}
             delay={0.2}
           />
         </div>
@@ -93,7 +106,7 @@ export function AnimatedGradientDemo() {
             title="Overdue"
             value="$12,400"
             subtitle="Needs a nudge"
-            colors={["#fbbf24", "#f59e0b", "#fcd34d"]}
+            colors={[ZIPPY.warning, ZIPPY.warningDim, ZIPPY.warningLight]}
             delay={0.4}
           />
         </div>
@@ -102,7 +115,7 @@ export function AnimatedGradientDemo() {
             title="Got paid this month"
             value="18"
             subtitle="Invoices closed"
-            colors={["#34d399", "#10b981", "#6ee7b7"]}
+            colors={[ZIPPY.success, ZIPPY.successDim, ZIPPY.successLight]}
             delay={0.6}
           />
         </div>
@@ -111,7 +124,7 @@ export function AnimatedGradientDemo() {
             title="Blockers needing reply"
             value="3"
             subtitle="Why they haven't paid"
-            colors={["#22d3ee", "#a78bfa", "#c4b5fd"]}
+            colors={[ZIPPY.accent, ZIPPY.accentDim, ZIPPY.muted]}
             delay={0.8}
           />
         </div>
@@ -120,7 +133,7 @@ export function AnimatedGradientDemo() {
             title="Invoices past due"
             value="7"
             subtitle="We'll nudge them. You stay the good guy."
-            colors={["#22d3ee", "#f472b6", "#34d399"]}
+            colors={[ZIPPY.accent, ZIPPY.success, ZIPPY.accentDim]}
             delay={1}
           />
         </div>
