@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getDashboard } from "@/lib/api";
 import CountUp from "@/components/CountUp";
+import { AnimatedGradientDemo } from "@/components/ui/animated-gradient-demo";
 
 export default function DashboardPage() {
   const [data, setData] = useState<Awaited<ReturnType<typeof getDashboard>> | null>(null);
@@ -100,6 +101,11 @@ export default function DashboardPage() {
           <span className="text-xs text-[var(--muted)]">from Zippy</span>
         </div>
       </div>
+
+      <section className="mt-8">
+        <h2 className="section-title mb-4">Stats at a glance</h2>
+        <AnimatedGradientDemo />
+      </section>
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="card">
