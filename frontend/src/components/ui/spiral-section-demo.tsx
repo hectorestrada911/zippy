@@ -36,7 +36,7 @@ export function SpiralSectionDemo() {
       >
         <Link
           href="/login"
-          className="inline-flex h-[120px] w-[320px] items-center justify-center rounded-full border border-white/10 bg-black/80 px-8 py-4 text-xl font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur-sm transition-all hover:brightness-110 md:text-3xl"
+          className="inline-flex h-[120px] w-[320px] items-center justify-center rounded-full border border-white/40 bg-transparent px-8 py-4 text-xl font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.25)] transition-all hover:bg-white/5 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.4)] md:text-3xl"
         >
           Connect QuickBooks
         </Link>
