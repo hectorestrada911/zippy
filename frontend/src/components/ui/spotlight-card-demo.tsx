@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Link2, Bell, MessageCircle } from "lucide-react";
+import { Database, BellRing, MessageCircle } from "lucide-react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
 /** Three spotlight/glow cards with cursor-following effect: Zippy value props. */
@@ -11,7 +11,7 @@ export function SpotlightCardDemo() {
       <GlowCard glowColor="blue" size="md" className="bg-[var(--card)]/80">
         <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
-            <Link2 className="h-6 w-6" />
+            <Database className="h-6 w-6" strokeWidth={1.75} />
           </div>
           <h3 className="text-lg font-semibold text-white">Know who owes what</h3>
           <p className="text-sm text-[var(--muted)]">
@@ -22,7 +22,7 @@ export function SpotlightCardDemo() {
       <GlowCard glowColor="blue" size="md" className="bg-[var(--card)]/80">
         <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
-            <Bell className="h-6 w-6" />
+            <BellRing className="h-6 w-6" strokeWidth={1.75} />
           </div>
           <h3 className="text-lg font-semibold text-white">We nudge so you don’t have to</h3>
           <p className="text-sm text-[var(--muted)]">
@@ -33,7 +33,7 @@ export function SpotlightCardDemo() {
       <GlowCard glowColor="blue" size="md" className="bg-[var(--card)]/80">
         <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
-            <MessageCircle className="h-6 w-6" />
+            <MessageCircle className="h-6 w-6" strokeWidth={1.75} />
           </div>
           <h3 className="text-lg font-semibold text-white">See why they haven’t paid</h3>
           <p className="text-sm text-[var(--muted)]">

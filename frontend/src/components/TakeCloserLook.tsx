@@ -1,42 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import {
-  BellAlertIcon,
-  LinkIcon,
-  ChatBubbleBottomCenterTextIcon,
-  Squares2X2Icon,
-  ChevronRightIcon,
-} from "@heroicons/react/24/outline";
-import { Zap } from "lucide-react";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { BellRing, CreditCard, MessageCircle, LayoutDashboard, Zap } from "lucide-react";
 
 const features = [
   {
     id: "reminders",
     label: "We nudge so you don’t have to",
     description: "Friendly follow-ups at the right time. Before due, on due, after. You look professional: they know what to do. No duplicate emails.",
-    icon: BellAlertIcon,
+    icon: BellRing,
     visual: "reminders",
   },
   {
     id: "pay",
     label: "One-click pay",
     description: "Every email has a pay link. They click, they pay. Money lands without you chasing.",
-    icon: LinkIcon,
+    icon: CreditCard,
     visual: "pay",
   },
   {
     id: "disputes",
     label: "See why they haven’t paid",
     description: "Wrong amount? Need a PO or W-9? They tell you with one link. It lands in one place. You fix it. We only nudge again when you’re ready.",
-    icon: ChatBubbleBottomCenterTextIcon,
+    icon: MessageCircle,
     visual: "disputes",
   },
   {
     id: "dashboard",
     label: "One screen, zero guesswork",
     description: "Who owes what. What’s overdue. What’s coming in. What needs your attention. No digging through email.",
-    icon: Squares2X2Icon,
+    icon: LayoutDashboard,
     visual: "dashboard",
   },
 ];
@@ -91,8 +85,8 @@ export default function TakeCloserLook() {
                 <div className="flex h-24 w-24 items-center justify-center rounded-2xl border-2 border-[var(--accent)]/50 bg-[var(--background)] shadow-[0_0_40px_var(--accent-glow)]">
                   <ActiveIcon className="h-12 w-12 text-[var(--accent)]" />
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">
-                  <Zap className="h-6 w-6" strokeWidth={2} />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">
+                  <Zap className="h-5 w-5" strokeWidth={2} />
                 </div>
               </div>
             </div>

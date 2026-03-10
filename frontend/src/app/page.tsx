@@ -1,13 +1,6 @@
 import Link from "next/link";
-import {
-  LinkIcon,
-  CalendarDaysIcon,
-  ChatBubbleBottomCenterTextIcon,
-  BookOpenIcon,
-  CreditCardIcon,
-  EnvelopeIcon,
-  ShieldCheckIcon,
-} from "@heroicons/react/24/outline";
+import { ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { Database, BellRing, MessageCircle, BookOpen, CreditCard, Mail } from "lucide-react";
 import ZippyLogo from "@/components/ZippyLogo";
 import TakeCloserLook from "@/components/TakeCloserLook";
 import SpeedBlock from "@/components/SpeedBlock";
@@ -250,7 +243,7 @@ export default function Home() {
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
-                <LinkIcon className="h-8 w-8" />
+                <Database className="h-8 w-8" strokeWidth={1.75} />
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">Know exactly who owes what</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
@@ -259,7 +252,7 @@ export default function Home() {
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
-                <CalendarDaysIcon className="h-8 w-8" />
+                <BellRing className="h-8 w-8" strokeWidth={1.75} />
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">We nudge so you don’t have to</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
@@ -268,7 +261,7 @@ export default function Home() {
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]">
-                <ChatBubbleBottomCenterTextIcon className="h-8 w-8" />
+                <MessageCircle className="h-8 w-8" strokeWidth={1.75} />
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">See why they haven’t paid, fix it once</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
@@ -314,7 +307,7 @@ export default function Home() {
             {/* QuickBooks: books */}
             <div className="group flex flex-1 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/30 hover:shadow-lg sm:max-w-[280px]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)]/20">
-                <BookOpenIcon className="h-6 w-6" />
+                <BookOpen className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent)]">Books</p>
               <h3 className="mt-1 text-lg font-semibold text-white">QuickBooks</h3>
@@ -328,7 +321,7 @@ export default function Home() {
             {/* Stripe: payments */}
             <div className="group flex flex-1 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/30 hover:shadow-lg sm:max-w-[280px]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)]/20">
-                <CreditCardIcon className="h-6 w-6" />
+                <CreditCard className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent)]">Payments</p>
               <h3 className="mt-1 text-lg font-semibold text-white">Stripe</h3>
@@ -342,7 +335,7 @@ export default function Home() {
             {/* Resend: email */}
             <div className="group flex flex-1 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/30 hover:shadow-lg sm:max-w-[280px]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)]/20">
-                <EnvelopeIcon className="h-6 w-6" />
+                <Mail className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent)]">Email</p>
               <h3 className="mt-1 text-lg font-semibold text-white">Resend</h3>

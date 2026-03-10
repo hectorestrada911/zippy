@@ -3,22 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  ChartBarSquareIcon,
-  DocumentTextIcon,
-  ChatBubbleLeftRightIcon,
-  Cog6ToothIcon,
-  ArrowRightOnRectangleIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { BarChart3, FileText, MessageSquare, Settings, LogIn, Menu, X } from "lucide-react";
 import ZippyLogo from "./ZippyLogo";
 
 const links = [
-  { href: "/dashboard", label: "Dashboard", icon: ChartBarSquareIcon },
-  { href: "/invoices", label: "Invoices", icon: DocumentTextIcon },
-  { href: "/disputes", label: "Blockers", icon: ChatBubbleLeftRightIcon },
-  { href: "/settings/integrations", label: "Settings", icon: Cog6ToothIcon },
+  { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
+  { href: "/invoices", label: "Invoices", icon: FileText },
+  { href: "/disputes", label: "Blockers", icon: MessageSquare },
+  { href: "/settings/integrations", label: "Settings", icon: Settings },
 ];
 
 export default function Nav() {
@@ -58,7 +50,7 @@ export default function Nav() {
             href="/login"
             className="ml-2 flex items-center gap-2 rounded-[var(--radius-sm)] bg-[var(--accent)] px-3 py-2 text-sm font-semibold text-zinc-900 transition-all hover:brightness-110"
           >
-            <ArrowRightOnRectangleIcon className="h-4 w-4" />
+            <LogIn className="h-4 w-4" strokeWidth={2} />
             Log in
           </Link>
         </div>
@@ -71,13 +63,13 @@ export default function Nav() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+            {menuOpen ? <X className="h-6 w-6" strokeWidth={2} /> : <Menu className="h-6 w-6" strokeWidth={2} />}
           </button>
           <Link
             href="/login"
             className="flex items-center gap-2 rounded-[var(--radius-sm)] bg-[var(--accent)] px-3 py-2 text-sm font-semibold text-zinc-900 transition-all hover:brightness-110"
           >
-            <ArrowRightOnRectangleIcon className="h-4 w-4" />
+            <LogIn className="h-4 w-4" strokeWidth={2} />
             Log in
           </Link>
         </div>
