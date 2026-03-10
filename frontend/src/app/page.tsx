@@ -17,11 +17,12 @@ import FlowStrip from "@/components/FlowStrip";
 import { GlowingEffectDemo } from "@/components/ui/glowing-effect-demo";
 import { SplineSceneBasic } from "@/components/ui/spline-scene-demo";
 import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
-import { PulseBeamsFirstDemo } from "@/components/ui/pulse-beams-demo";
+import { SpiralSectionDemo } from "@/components/ui/spiral-section-demo";
 import { TestimonialsSectionDemo } from "@/components/ui/testimonials-with-marquee-demo";
 import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
 import { AnimatedGradientDemo } from "@/components/ui/animated-gradient-demo";
+import { MapDemo } from "@/components/ui/map-demo";
 
 export default function Home() {
   return (
@@ -178,6 +179,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* World map: get paid from anywhere */}
+      <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
+        <MapDemo />
+      </section>
+
       {/* Animated gradient bento: example outcomes */}
       <section className="border-t border-[var(--border)] px-4 py-16 md:py-20" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
         <div className="mx-auto max-w-5xl">
@@ -191,9 +197,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pulse beams: animated gradient beams + Connect CTA */}
+      {/* Spiral animation: full-section Connect QuickBooks CTA */}
       <section className="min-h-screen">
-        <PulseBeamsFirstDemo />
+        <SpiralSectionDemo />
       </section>
 
       {/* Why Zippy vs QuickBooks */}

@@ -1,0 +1,63 @@
+"use client";
+
+import { WorldMap } from "@/components/ui/map";
+import { DollarSign } from "lucide-react";
+
+const MAP_DOTS = [
+  {
+    start: { lat: 40.7128, lng: -74.006, label: "New York" },
+    end: { lat: 34.0522, lng: -118.2437, label: "Los Angeles" },
+  },
+  {
+    start: { lat: 40.7128, lng: -74.006, label: "New York" },
+    end: { lat: 51.5074, lng: -0.1278, label: "London" },
+  },
+  {
+    start: { lat: 51.5074, lng: -0.1278, label: "London" },
+    end: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
+  },
+  {
+    start: { lat: 34.0522, lng: -118.2437, label: "Los Angeles" },
+    end: { lat: -33.8688, lng: 151.2093, label: "Sydney" },
+  },
+  {
+    start: { lat: 35.6762, lng: 139.6503, label: "Tokyo" },
+    end: { lat: 37.7749, lng: -122.4194, label: "San Francisco" },
+  },
+  {
+    start: { lat: -15.7975, lng: -47.8919, label: "Brasília" },
+    end: { lat: 40.7128, lng: -74.006, label: "New York" },
+  },
+];
+
+export function MapDemo() {
+  return (
+    <div className="w-full py-12 md:py-16">
+      <div className="mx-auto max-w-5xl px-4 text-center">
+        <div className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)]/80 px-4 py-2">
+          <DollarSign className="h-5 w-5 text-[var(--success)]" aria-hidden />
+          <span className="text-sm font-medium text-[var(--muted)]">
+            Get paid from anywhere
+          </span>
+        </div>
+        <h2 className="page-title mt-4">
+          Money flows to you, no matter where your clients are
+        </h2>
+        <p className="page-subtitle mx-auto mt-2 max-w-2xl">
+          Send invoices and follow up from one place. Your customers can be
+          anywhere. Zippy keeps track so you get paid.
+        </p>
+      </div>
+      <div className="mx-auto mt-8 max-w-6xl px-4">
+        <WorldMap
+          dots={MAP_DOTS}
+          lineColor="#22d3ee"
+          showLabels={true}
+          animationDuration={2}
+          loop={true}
+          theme="dark"
+        />
+      </div>
+    </div>
+  );
+}
