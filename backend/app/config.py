@@ -24,12 +24,15 @@ class Settings(BaseSettings):
     # Integrations
     quickbooks_client_id: str = ""
     quickbooks_client_secret: str = ""
-    quickbooks_redirect_uri: str = "http://localhost:3000/settings/integrations"  # frontend callback
+    quickbooks_redirect_uri: str = "http://localhost:3000/settings/integrations/callback"
     quickbooks_environment: str = "sandbox"  # sandbox | production
 
     stripe_secret_key: str = ""
     stripe_webhook_secret: str = ""
     stripe_publishable_key: str = ""
+
+    # Magic link: create user+org if not found (open signup)
+    allow_public_signup: bool = False
 
     resend_api_key: str = ""
     email_from: str = "Zippy <noreply@example.com>"

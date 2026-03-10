@@ -62,7 +62,14 @@ async def run_sync(
             "realm_id": cred_row.metadata_.get("realm_id") if cred_row.metadata_ else None,
         }
         try:
-            cred = await provider.refresh_credential(cred) or cred
+            refreshed = await provider.refresh_credential(cred)
+            if refreshed:
+                cred = refreshed
+                cred_row.access_token = cred.get("access_token")
+                cred_row.refresh_token = cred.get("refresh_token") or cred_row.refresh_token
+                if cred.get("expires_at"):
+                    from datetime import datetime as dt, timezone as tz
+                    cred_row.expires_at = dt.fromtimestamp(cred["expires_at"], tz=tz.utc)
         except Exception:
             pass
         if cred_row.metadata_:

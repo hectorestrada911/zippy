@@ -11,6 +11,7 @@ function AuthCallbackContent() {
 
   useEffect(() => {
     const token = searchParams.get("token");
+    const nextPath = searchParams.get("next") || "/dashboard";
     if (!token) {
       setError("Missing token");
       return;
@@ -18,7 +19,7 @@ function AuthCallbackContent() {
     authCallback(token)
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
-        router.replace("/dashboard");
+        router.replace(nextPath);
       })
       .catch(() => setError("Invalid or expired link"));
   }, [searchParams, router]);

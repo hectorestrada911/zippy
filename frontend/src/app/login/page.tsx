@@ -1,36 +1,36 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { magicLink, authCallback } from "@/lib/api";
 
-export default function LoginPage() {
+function LoginContent() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextPath = searchParams.get("next") || "/dashboard";
 
-  // Check for token in URL (magic link callback)
-  if (typeof window !== "undefined") {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
-    if (token && !message) {
-      authCallback(token)
-        .then((data) => {
-          localStorage.setItem("access_token", data.access_token);
-          router.replace("/dashboard");
-        })
-        .catch(() => setMessage("Invalid or expired link"));
-    }
-  }
+  // If token in URL (e.g. user opened magic link on /login), exchange and redirect
+  useEffect(() => {
+    const token = searchParams.get("token");
+    if (!token) return;
+    authCallback(token)
+      .then((data) => {
+        localStorage.setItem("access_token", data.access_token);
+        router.replace(nextPath);
+      })
+      .catch(() => setMessage("Invalid or expired link"));
+  }, [searchParams, router, nextPath]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setMessage("");
     try {
-      const data = await magicLink(email);
+      const data = await magicLink(email, nextPath);
       setMessage(data.message + (data.dev_link ? ` Check your email or use: ${data.dev_link}` : ""));
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "Request failed");
@@ -75,5 +75,13 @@ export default function LoginPage() {
         <Link href="/" className="link">← Back to home</Link>
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="mx-auto max-w-md"><div className="card animate-pulse h-64" /></div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

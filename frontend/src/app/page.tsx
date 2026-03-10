@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
+import ConnectQuickBooksLink from "@/components/ConnectQuickBooksLink";
 import { Database, BellRing, MessageCircle, BookOpen, CreditCard, Mail } from "lucide-react";
 import ZippyLogo from "@/components/ZippyLogo";
 import TakeCloserLook from "@/components/TakeCloserLook";
@@ -81,12 +82,9 @@ export default function Home() {
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
               style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
             >
-              <Link
-                href="/login"
-                className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
-              >
+              <ConnectQuickBooksLink className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110">
                 Connect QuickBooks
-              </Link>
+              </ConnectQuickBooksLink>
               <Link href="#how-it-works" className="btn-secondary text-base">
                 What you get
               </Link>

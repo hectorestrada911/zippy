@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
+import ConnectQuickBooksLink from "@/components/ConnectQuickBooksLink";
 import { SpiralAnimation } from "@/components/ui/spiral-animation";
 
 /**
@@ -34,12 +34,11 @@ export function SpiralSectionDemo() {
           ${buttonVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
-        <Link
-          href="/login"
+        <ConnectQuickBooksLink
           className="inline-flex h-[120px] w-[320px] items-center justify-center rounded-full border border-white/40 bg-transparent px-8 py-4 text-xl font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.25)] transition-all hover:bg-white/5 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.4)] md:text-3xl"
         >
           Connect QuickBooks
-        </Link>
+        </ConnectQuickBooksLink>
       </div>
     </div>
   );

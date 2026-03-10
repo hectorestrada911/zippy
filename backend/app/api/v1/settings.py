@@ -93,18 +93,33 @@ async def quickbooks_oauth_callback(
   db: AsyncSession = Depends(get_db),
   user: User = Depends(get_current_user),
 ):
-    """Exchange code for tokens and store credential."""
+    """Exchange code for tokens and store credential (upsert one QBO cred per org)."""
     tokens = await exchange_code_for_tokens(code)
-    cred = IntegrationCredential(
-        organization_id=user.organization_id,
-        provider="quickbooks",
-        access_token=tokens["access_token"],
-        refresh_token=tokens.get("refresh_token"),
-        metadata_={"realm_id": realm_id},
+    r = await db.execute(
+        select(IntegrationCredential).where(
+            IntegrationCredential.organization_id == user.organization_id,
+            IntegrationCredential.provider == "quickbooks",
+        )
     )
-    if tokens.get("expires_in"):
-        from datetime import datetime, timezone, timedelta
-        cred.expires_at = datetime.now(timezone.utc) + timedelta(seconds=tokens["expires_in"])
-    db.add(cred)
+    existing = r.scalar_one_or_none()
+    if existing:
+        existing.access_token = tokens["access_token"]
+        existing.refresh_token = tokens.get("refresh_token") or existing.refresh_token
+        existing.metadata_ = (existing.metadata_ or {}) | {"realm_id": realm_id}
+        if tokens.get("expires_in"):
+            from datetime import datetime, timezone, timedelta
+            existing.expires_at = datetime.now(timezone.utc) + timedelta(seconds=tokens["expires_in"])
+    else:
+        cred = IntegrationCredential(
+            organization_id=user.organization_id,
+            provider="quickbooks",
+            access_token=tokens["access_token"],
+            refresh_token=tokens.get("refresh_token"),
+            metadata_={"realm_id": realm_id},
+        )
+        if tokens.get("expires_in"):
+            from datetime import datetime, timezone, timedelta
+            cred.expires_at = datetime.now(timezone.utc) + timedelta(seconds=tokens["expires_in"])
+        db.add(cred)
     await db.commit()
     return {"status": "connected"}

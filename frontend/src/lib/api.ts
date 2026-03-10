@@ -130,10 +130,10 @@ export async function getQuickBooksAuthUrl(state: string) {
   return api<{ url: string }>(`/api/v1/settings/integrations/quickbooks/authorize-url?state=${encodeURIComponent(state)}`);
 }
 
-export async function magicLink(email: string) {
+export async function magicLink(email: string, next?: string) {
   return api<{ message: string; dev_link?: string }>("/api/v1/auth/magic-link", {
     method: "POST",
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, next: next ?? undefined }),
   });
 }
 
