@@ -15,9 +15,11 @@ export default function HeroVisual() {
       />
       {/* Main "window" frame */}
       <div
-        className="relative w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)]/90 p-6 shadow-2xl backdrop-blur-sm"
+        className="relative w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)]/90 p-6 shadow-2xl backdrop-blur-sm transition-transform duration-700 ease-out hover:-translate-y-1"
         style={{
-          boxShadow: "0 0 0 1px rgba(255,255,255,0.03), 0 32px 64px -12px rgba(0,0,0,0.6), 0 0 80px -20px rgba(34, 211, 238, 0.15)",
+          boxShadow:
+            "0 0 0 1px rgba(255,255,255,0.03), 0 32px 64px -12px rgba(0,0,0,0.6), 0 0 80px -20px rgba(34, 211, 238, 0.15)",
+          animation: "hero-float 10s ease-in-out infinite",
         }}
       >
         {/* Window chrome */}

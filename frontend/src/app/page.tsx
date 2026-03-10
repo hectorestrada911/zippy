@@ -52,7 +52,13 @@ export default function Home() {
         <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <div className="text-center lg:text-left">
             <p
-              className="animate-fade-in text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
+              className="animate-fade-in text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--muted-soft)]"
+              style={{ animationDelay: "0.05s", animationFillMode: "forwards" }}
+            >
+              For small teams who hate chasing invoices
+            </p>
+            <p
+              className="animate-fade-in mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
               style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
               Get paid what you're owed, without the awkward chase
@@ -93,10 +99,16 @@ export default function Home() {
               </Link>
             </div>
             <p
-              className="animate-fade-in mt-6 text-sm text-[var(--muted-soft)]"
-              style={{ animationDelay: "0.6s", animationFillMode: "forwards" }}
+              className="animate-fade-in mt-4 text-xs text-[var(--muted-soft)]"
+              style={{ animationDelay: "0.55s", animationFillMode: "forwards" }}
             >
-              No credit card · 2 minutes to first sync
+              Built with bookkeepers and fractional CFOs so your follow-ups feel professional, not pushy.
+            </p>
+            <p
+              className="animate-fade-in mt-2 text-sm text-[var(--muted-soft)]"
+              style={{ animationDelay: "0.65s", animationFillMode: "forwards" }}
+            >
+              Safe to try · Nothing changes in QuickBooks · 2 minutes to first sync
             </p>
             <div
               className="animate-fade-in-up mt-12 opacity-0 lg:mt-14"
