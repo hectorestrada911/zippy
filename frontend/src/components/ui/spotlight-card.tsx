@@ -41,15 +41,38 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const hasHover = typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+
+    const setGlowFromCenter = () => {
+      const rect = card.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      card.style.setProperty("--x", x.toFixed(2));
+      card.style.setProperty("--xp", (x / window.innerWidth).toFixed(2));
+      card.style.setProperty("--y", y.toFixed(2));
+      card.style.setProperty("--yp", (y / window.innerHeight).toFixed(2));
+    };
+
+    if (!hasHover) {
+      const schedule = () => {
+        setGlowFromCenter();
+        requestAnimationFrame(setGlowFromCenter);
+      };
+      schedule();
+      const ro = new ResizeObserver(schedule);
+      ro.observe(card);
+      return () => ro.disconnect();
+    }
+
     const syncPointer = (e: PointerEvent) => {
       const { clientX: x, clientY: y } = e;
-
-      if (cardRef.current) {
-        cardRef.current.style.setProperty("--x", x.toFixed(2));
-        cardRef.current.style.setProperty("--xp", (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty("--y", y.toFixed(2));
-        cardRef.current.style.setProperty("--yp", (y / window.innerHeight).toFixed(2));
-      }
+      card.style.setProperty("--x", x.toFixed(2));
+      card.style.setProperty("--xp", (x / window.innerWidth).toFixed(2));
+      card.style.setProperty("--y", y.toFixed(2));
+      card.style.setProperty("--yp", (y / window.innerHeight).toFixed(2));
     };
 
     document.addEventListener("pointermove", syncPointer);
