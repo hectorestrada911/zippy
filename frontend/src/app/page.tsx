@@ -85,6 +85,9 @@ export default function Home() {
               <ConnectQuickBooksLink className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110">
                 Connect QuickBooks
               </ConnectQuickBooksLink>
+              <Link href="#pricing" className="btn-secondary text-base">
+                Pricing
+              </Link>
               <Link href="#how-it-works" className="btn-secondary text-base">
                 What you get
               </Link>
@@ -122,6 +125,81 @@ export default function Home() {
           </p>
           <p className="text-[var(--muted)] leading-relaxed">
             You send invoices. They sit. You don’t want to nag, but you need the cash. Zippy does the nudge. When something’s wrong (wrong amount, need PO, W-9), they tell you in one place. You fix it. You get paid. Relationships stay intact.
+          </p>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="border-y border-[var(--border)] px-4 py-14 md:py-20" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
+        <div className="mx-auto max-w-4xl">
+          <h2 className="page-title text-center">Pricing</h2>
+          <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
+            Simple pricing for small teams. Start free, upgrade when you’re ready.
+          </p>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--border-subtle)]">
+              <p className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Starter</p>
+              <p className="mt-2 text-3xl font-bold text-white">
+                Free <span className="text-base font-normal text-[var(--muted)]">to start</span>
+              </p>
+              <p className="mt-2 text-sm text-[var(--muted)]">
+                Connect QuickBooks, sync customers and invoices, and run your first reminders.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-[var(--muted)]">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  QuickBooks sync
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  Automated follow-ups
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  AR dashboard
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  Pay & dispute links
+                </li>
+              </ul>
+              <ConnectQuickBooksLink className="btn-secondary mt-6 block w-full text-center">
+                Get started free
+              </ConnectQuickBooksLink>
+            </div>
+            <div className="rounded-2xl border border-[var(--accent)]/40 bg-[var(--card)] p-6 shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-colors hover:border-[var(--accent)]/60">
+              <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Pro</p>
+              <p className="mt-2 text-3xl font-bold text-white">
+                Coming soon
+              </p>
+              <p className="mt-2 text-sm text-[var(--muted)]">
+                More reminders, team seats, and priority support as we grow.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-[var(--muted)]">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  Everything in Starter
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  Extended reminder schedule
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  Team collaboration
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                  Priority support
+                </li>
+              </ul>
+              <button type="button" disabled className="btn-secondary mt-6 w-full cursor-not-allowed opacity-60">
+                Notify me
+              </button>
+            </div>
+          </div>
+          <p className="mt-8 text-center text-xs text-[var(--muted-soft)]">
+            No credit card required · Cancel anytime · Questions? Contact us
           </p>
         </div>
       </section>
