@@ -129,77 +129,116 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Pricing — cashflow control, not reminders */}
       <section id="pricing" className="border-y border-[var(--border)] px-4 py-14 md:py-20" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <h2 className="page-title text-center">Pricing</h2>
-          <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-            Simple pricing for small teams. Start free, upgrade when you’re ready.
+          <p className="page-subtitle mx-auto mt-2 max-w-2xl text-center">
+            Control cashflow and get paid faster. Most teams sit on ~$17k+ in unpaid invoices—recover more, sooner.
           </p>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--border-subtle)]">
-              <p className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Starter</p>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {/* Core — best default */}
+            <div className="rounded-2xl border border-[var(--accent)]/40 bg-[var(--card)] p-6 shadow-[0_0_0_1px_rgba(34,211,238,0.12)] transition-colors hover:border-[var(--accent)]/60">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--accent)]">Best default</p>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Core</p>
               <p className="mt-2 text-3xl font-bold text-white">
-                Free <span className="text-base font-normal text-[var(--muted)]">to start</span>
+                $199<span className="text-base font-normal text-[var(--muted)]">/mo</span>
               </p>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                Connect QuickBooks, sync customers and invoices, and run your first reminders.
+                Safe autopilot, blockers capture, escalation ladder, and ROI reporting.
               </p>
-              <ul className="mt-6 space-y-3 text-sm text-[var(--muted)]">
+              <ul className="mt-6 space-y-2.5 text-sm text-[var(--muted)]">
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  QuickBooks sync
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Safe autopilot
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  Automated follow-ups
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Blockers capture
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  AR dashboard
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Escalation ladder
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  Pay & dispute links
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  ROI reporting
+                </li>
+              </ul>
+              <ConnectQuickBooksLink className="btn-primary mt-6 block w-full text-center">
+                Get started
+              </ConnectQuickBooksLink>
+            </div>
+            {/* Team — higher AR volume */}
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--border-subtle)]">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-soft)]">Higher AR volume</p>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Team</p>
+              <p className="mt-2 text-3xl font-bold text-white">
+                $399<span className="text-base font-normal text-[var(--muted)]">/mo</span>
+              </p>
+              <p className="mt-2 text-sm text-[var(--muted)]">
+                Everything in Core, plus roles, approvals, escalation rules, and better reporting.
+              </p>
+              <ul className="mt-6 space-y-2.5 text-sm text-[var(--muted)]">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Everything in Core
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Roles & approvals
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Escalation rules
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Better reporting
                 </li>
               </ul>
               <ConnectQuickBooksLink className="btn-secondary mt-6 block w-full text-center">
-                Get started free
+                Get started
               </ConnectQuickBooksLink>
             </div>
-            <div className="rounded-2xl border border-[var(--accent)]/40 bg-[var(--card)] p-6 shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-colors hover:border-[var(--accent)]/60">
-              <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Pro</p>
-              <p className="mt-2 text-3xl font-bold text-white">
-                Coming soon
+            {/* Concierge / AR Sprint */}
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--border-subtle)]">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--success)]">Best early revenue</p>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Concierge / AR Sprint</p>
+              <p className="mt-2 text-2xl font-bold text-white">
+                $999 <span className="text-sm font-normal text-[var(--muted)]">setup</span>
+              </p>
+              <p className="text-lg font-bold text-white">
+                + $399<span className="text-sm font-normal text-[var(--muted)]">/mo</span>
               </p>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                More reminders, team seats, and priority support as we grow.
+                14-day overdue invoice rescue + ongoing autopilot. We get you caught up, then keep you there.
               </p>
-              <ul className="mt-6 space-y-3 text-sm text-[var(--muted)]">
+              <ul className="mt-6 space-y-2.5 text-sm text-[var(--muted)]">
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  Everything in Starter
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  14-day rescue sprint
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  Extended reminder schedule
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Ongoing autopilot
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  Team collaboration
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Everything in Team
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                  Priority support
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Dedicated setup
                 </li>
               </ul>
-              <button type="button" disabled className="btn-secondary mt-6 w-full cursor-not-allowed opacity-60">
-                Notify me
-              </button>
+              <a href="mailto:sales@zippy.com?subject=AR%20Sprint%20inquiry" className="btn-secondary mt-6 block w-full text-center">
+                Contact sales
+              </a>
             </div>
           </div>
           <p className="mt-8 text-center text-xs text-[var(--muted-soft)]">
-            No credit card required · Cancel anytime · Questions? Contact us
+            Outcomes-focused. Recover more cash, faster—easy to justify when you’re sitting on unpaid invoices.
           </p>
         </div>
       </section>
