@@ -48,7 +48,7 @@ export function MapDemo() {
           anywhere. Zippy keeps track so you get paid.
         </p>
       </div>
-      <div className="mx-auto mt-8 max-w-6xl px-4 min-h-[min(85vh,520px)] sm:min-h-0">
+      <div className="mx-auto mt-8 max-w-6xl px-0 sm:px-4 h-screen min-h-[100dvh] sm:h-auto sm:min-h-0">
         <WorldMap
           dots={MAP_DOTS}
           lineColor="#22d3ee"

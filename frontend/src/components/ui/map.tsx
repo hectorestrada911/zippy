@@ -68,7 +68,7 @@ export function WorldMap({
 
   return (
     <div
-      className={`w-full aspect-[3/2] sm:aspect-[4/3] md:aspect-[2/1] lg:aspect-[2/1] rounded-lg relative font-sans overflow-hidden ${theme === "dark" ? "bg-black" : "bg-white"}`}
+      className={`w-full h-full min-h-0 sm:h-auto sm:aspect-[3/2] md:aspect-[2/1] lg:aspect-[2/1] rounded-none sm:rounded-lg relative font-sans overflow-hidden ${theme === "dark" ? "bg-black" : "bg-white"}`}
       style={{ touchAction: "pan-y" }}
     >
       <img
