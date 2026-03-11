@@ -5,7 +5,6 @@ import { Database, BellRing, MessageCircle, BookOpen, CreditCard, Mail } from "l
 import ZippyLogo from "@/components/ZippyLogo";
 import TakeCloserLook from "@/components/TakeCloserLook";
 import SpeedBlock from "@/components/SpeedBlock";
-import HeroVisual from "@/components/HeroVisual";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import FlowStrip from "@/components/FlowStrip";
 import { GlowingEffectDemo } from "@/components/ui/glowing-effect-demo";
@@ -17,6 +16,7 @@ import { SpotlightCardDemo } from "@/components/ui/spotlight-card-demo";
 import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
 import { AnimatedGradientDemo } from "@/components/ui/animated-gradient-demo";
 import { MapDemo } from "@/components/ui/map-demo";
+import HeroVisual from "@/components/HeroVisual";
 
 export default function Home() {
   return (
