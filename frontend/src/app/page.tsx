@@ -108,10 +108,7 @@ export default function Home() {
               <FlowStrip />
             </div>
           </div>
-          <div
-            className="animate-fade-in-up relative flex justify-center opacity-0 lg:justify-end"
-            style={{ animation: "fade-in-up 0.8s ease-out 0.4s forwards" }}
-          >
+          <div className="relative flex justify-center lg:justify-end">
             <HeroVisual />
           </div>
         </div>
