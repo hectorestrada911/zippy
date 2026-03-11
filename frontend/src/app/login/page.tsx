@@ -39,6 +39,8 @@ function LoginContent() {
     }
   }
 
+  const isConnectingQuickBooks = nextPath.includes("integrations");
+
   return (
     <div className="mx-auto max-w-md">
       <div className="card">
@@ -46,6 +48,41 @@ function LoginContent() {
         <p className="page-subtitle mt-1">
           Enter your email and we’ll send you a sign-in link. No password to remember.
         </p>
+
+        {isConnectingQuickBooks && (
+          <div className="mt-6 rounded-lg border border-[var(--border-subtle)] bg-[var(--background)]/60 px-4 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-3">
+              To connect QuickBooks
+            </p>
+            <ol className="space-y-3">
+              <li className="flex items-start gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/20 text-xs font-semibold text-[var(--accent)]">
+                  1
+                </span>
+                <span className="text-sm text-[var(--muted)]">
+                  Enter your email below — we’ll send a sign-in link.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-xs font-semibold text-[var(--muted)]">
+                  2
+                </span>
+                <span className="text-sm text-[var(--muted)]">
+                  Check your inbox and click the link to sign in.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-xs font-semibold text-[var(--muted)]">
+                  3
+                </span>
+                <span className="text-sm text-[var(--muted)]">
+                  You’ll land on the integrations page to connect QuickBooks.
+                </span>
+              </li>
+            </ol>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           <div>
             <label htmlFor="email" className="stat-label block mb-2">
