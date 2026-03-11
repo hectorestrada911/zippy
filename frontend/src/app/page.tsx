@@ -443,7 +443,13 @@ export default function Home() {
           <span className="text-sm text-[var(--muted-soft)]">
             © {new Date().getFullYear()} Zippy. Invoice resolution on autopilot.
           </span>
-          <div className="flex gap-8 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm">
+            <Link href="/privacy" className="text-[var(--muted)] transition-colors hover:text-white">
+              Privacy
+            </Link>
+            <Link href="/terms" className="text-[var(--muted)] transition-colors hover:text-white">
+              Terms
+            </Link>
             <Link href="/login" className="text-[var(--muted)] transition-colors hover:text-white">
               Log in
             </Link>
