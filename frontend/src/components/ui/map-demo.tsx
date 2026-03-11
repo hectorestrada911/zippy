@@ -32,8 +32,8 @@ const MAP_DOTS = [
 
 export function MapDemo() {
   return (
-    <div className="w-full py-12 md:py-16">
-      <div className="mx-auto max-w-5xl px-4 text-center">
+    <div className="w-full">
+      <div className="mx-auto max-w-5xl px-4 sm:px-4 text-center">
         <div className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)]/80 px-4 py-2">
           <DollarSign className="h-5 w-5 text-[var(--success)]" aria-hidden />
           <span className="text-sm font-medium text-[var(--muted)]">
@@ -48,7 +48,7 @@ export function MapDemo() {
           anywhere. Zippy keeps track so you get paid.
         </p>
       </div>
-      <div className="mx-auto mt-8 max-w-6xl px-0 sm:px-4 h-screen min-h-[100dvh] sm:h-auto sm:min-h-0">
+      <div className="mt-8 w-full sm:mx-auto sm:max-w-6xl sm:px-4 h-screen min-h-[100dvh] sm:h-auto sm:min-h-0">
         <WorldMap
           dots={MAP_DOTS}
           lineColor="#22d3ee"

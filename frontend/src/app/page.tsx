@@ -181,8 +181,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* World map: get paid from anywhere */}
-      <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
+      {/* World map: get paid from anywhere — full-bleed on mobile, no grey sides */}
+      <section className="border-t border-[var(--border)] px-0 sm:px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <MapDemo />
       </section>
 
