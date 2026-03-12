@@ -459,9 +459,9 @@ export default function Home() {
             <Link href="/terms" className="text-[var(--muted)] transition-colors hover:text-white">
               Terms
             </Link>
-            <a href="mailto:zippysupport@gmail.com" className="text-[var(--muted)] transition-colors hover:text-white">
+            <Link href="/support" className="text-[var(--muted)] transition-colors hover:text-white">
               Support
-            </a>
+            </Link>
             <Link href="/login" className="text-[var(--muted)] transition-colors hover:text-white">
               Log in
             </Link>
