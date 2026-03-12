@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getDisputes } from "@/lib/api";
+import { getFriendlyError } from "@/lib/getFriendlyError";
 
 const BLOCKER_LABELS: Record<string, string> = {
   missing_po: "Need PO",
@@ -30,10 +31,14 @@ export default function DisputesPage() {
   }, []);
 
   if (error) {
+    const { message, primary, secondary } = getFriendlyError(error);
     return (
       <div className="card max-w-md">
-        <p className="text-[var(--error)]">{error}</p>
-        <Link href="/login" className="mt-4 inline-block link">Log in</Link>
+        <p className="text-[var(--error)]">{message}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {primary && <Link href={primary.href} className="link">{primary.label}</Link>}
+          {secondary && <Link href={secondary.href} className="link">{secondary.label}</Link>}
+        </div>
       </div>
     );
   }
@@ -96,6 +101,7 @@ export default function DisputesPage() {
           <p className="empty-state-desc">
             When a customer clicks “Report an issue” on their invoice email, it’ll appear here so you can resolve it quickly.
           </p>
+          <Link href="/help" className="mt-4 btn-secondary">How follow-ups & blockers work</Link>
         </div>
       )}
     </div>

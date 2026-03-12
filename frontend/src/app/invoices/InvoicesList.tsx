@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getInvoices } from "@/lib/api";
+import { getFriendlyError } from "@/lib/getFriendlyError";
 
 export default function InvoicesList() {
   const [list, setList] = useState<Awaited<ReturnType<typeof getInvoices>>>([]);
@@ -15,10 +16,14 @@ export default function InvoicesList() {
   }, []);
 
   if (error) {
+    const { message, primary, secondary } = getFriendlyError(error);
     return (
       <div className="card max-w-md">
-        <p className="text-[var(--error)]">{error}</p>
-        <Link href="/login" className="mt-4 inline-block link">Log in</Link>
+        <p className="text-[var(--error)]">{message}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {primary && <Link href={primary.href} className="link">{primary.label}</Link>}
+          {secondary && <Link href={secondary.href} className="link">{secondary.label}</Link>}
+        </div>
       </div>
     );
   }
@@ -79,11 +84,16 @@ export default function InvoicesList() {
         <div className="empty-state">
           <p className="empty-state-title">No invoices yet</p>
           <p className="empty-state-desc">
-            Connect QuickBooks in Settings to pull in your customers and open invoices. You can also run a quick sync with sample data to try Zippy.
+            Connect QuickBooks in Settings to pull in your customers and open invoices. Once synced, set your first reminder schedule so we know when to nudge.
           </p>
-          <Link href="/settings/integrations" className="mt-4 btn-secondary">
-            Connect your books
-          </Link>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link href="/settings/integrations" className="btn-primary">
+              Connect QuickBooks
+            </Link>
+            <Link href="/settings/autopilot" className="btn-secondary">
+              Set reminder schedule
+            </Link>
+          </div>
         </div>
       )}
     </div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getDashboard } from "@/lib/api";
+import { getFriendlyError } from "@/lib/getFriendlyError";
 import CountUp from "@/components/CountUp";
 import { AnimatedGradientDemo } from "@/components/ui/animated-gradient-demo";
 
@@ -17,12 +18,14 @@ export default function DashboardPage() {
   }, []);
 
   if (error) {
+    const { message, primary, secondary } = getFriendlyError(error);
     return (
       <div className="card max-w-md">
-        <p className="text-[var(--error)]">{error}</p>
-        <Link href="/login" className="mt-4 inline-block link">
-          Log in
-        </Link>
+        <p className="text-[var(--error)]">{message}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {primary && <Link href={primary.href} className="link">{primary.label}</Link>}
+          {secondary && <Link href={secondary.href} className="link">{secondary.label}</Link>}
+        </div>
       </div>
     );
   }
@@ -114,6 +117,7 @@ export default function DashboardPage() {
             <div className="empty-state">
               <p className="empty-state-title">You’re all caught up</p>
               <p className="empty-state-desc">No overdue invoices right now. When something is past due, it’ll show here.</p>
+              <Link href="/invoices" className="mt-4 btn-secondary">View all invoices</Link>
             </div>
           ) : (
             <ul className="divide-y divide-[var(--border-subtle)]">
@@ -138,6 +142,7 @@ export default function DashboardPage() {
             <div className="empty-state">
               <p className="empty-state-title">Nothing waiting</p>
               <p className="empty-state-desc">When someone says “wrong amount” or “need a PO” from their invoice link, it’ll show here. Fix it and we’ll only nudge again when you’re ready.</p>
+              <Link href="/help" className="mt-4 btn-secondary">How blockers work</Link>
             </div>
           ) : (
             <ul className="divide-y divide-[var(--border-subtle)]">

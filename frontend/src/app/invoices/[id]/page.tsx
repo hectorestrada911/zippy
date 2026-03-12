@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { getInvoice } from "@/lib/api";
+import { getFriendlyError } from "@/lib/getFriendlyError";
 
 const BLOCKER_LABELS: Record<string, string> = {
   missing_po: "Need PO",
@@ -33,10 +34,15 @@ export default function InvoiceDetailPage() {
   }, [id]);
 
   if (error) {
+    const { message, primary, secondary } = getFriendlyError(error);
     return (
       <div className="card max-w-md">
-        <p className="text-[var(--error)]">{error}</p>
-        <Link href="/invoices" className="mt-4 inline-block link">← Back to invoices</Link>
+        <p className="text-[var(--error)]">{message}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {primary && <Link href={primary.href} className="link">{primary.label}</Link>}
+          {secondary && <Link href={secondary.href} className="link">{secondary.label}</Link>}
+          <Link href="/invoices" className="text-[var(--muted)] hover:text-white">← Back to invoices</Link>
+        </div>
       </div>
     );
   }
@@ -106,7 +112,11 @@ export default function InvoiceDetailPage() {
       <div className="card">
         <h2 className="section-title">Follow-ups sent</h2>
         {inv.messages.length === 0 ? (
-          <p className="text-sm text-[var(--muted)]">No follow-ups sent for this invoice yet.</p>
+          <div className="empty-state">
+            <p className="empty-state-title">No follow-ups sent yet</p>
+            <p className="empty-state-desc">Set your reminder schedule in Autopilot and we’ll send friendly follow-ups at the right time.</p>
+            <Link href="/settings/autopilot" className="mt-4 btn-secondary">Set reminder schedule</Link>
+          </div>
         ) : (
           <ul className="space-y-3">
             {inv.messages.map((m) => (

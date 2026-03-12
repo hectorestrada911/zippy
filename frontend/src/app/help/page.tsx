@@ -105,6 +105,11 @@ export default function HelpPage() {
           </a>{" "}
           and we’ll get back to you as soon as we can.
         </p>
+        <p className="mt-4">
+          <Link href="/quickbooks" className="text-sm text-[var(--accent)] hover:underline">
+            How Zippy works with QuickBooks →
+          </Link>
+        </p>
       </section>
     </div>
   );

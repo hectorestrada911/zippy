@@ -2,6 +2,8 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { getFriendlyError } from "@/lib/getFriendlyError";
 
 function QuickBooksCallbackContent() {
   const router = useRouter();
@@ -31,10 +33,15 @@ function QuickBooksCallbackContent() {
   }, [searchParams, router]);
 
   if (error) {
+    const { message, primary, secondary } = getFriendlyError(error);
     return (
       <div className="card max-w-md mx-auto mt-12">
-        <p className="text-amber-400">{error}</p>
-        <a href="/settings/integrations" className="mt-4 inline-block text-cyan-400 hover:underline">Back to settings</a>
+        <p className="text-[var(--error)]">{message}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {primary && <Link href={primary.href} className="text-[var(--accent)] hover:underline">{primary.label}</Link>}
+          {secondary && <Link href={secondary.href} className="text-[var(--accent)] hover:underline">{secondary.label}</Link>}
+          <Link href="/settings/integrations" className="text-[var(--muted)] hover:text-white">← Back to settings</Link>
+        </div>
       </div>
     );
   }

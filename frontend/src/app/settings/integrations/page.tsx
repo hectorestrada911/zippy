@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getSyncStatus, runSync, getQuickBooksAuthUrl } from "@/lib/api";
+import { getFriendlyError } from "@/lib/getFriendlyError";
 
 export default function SettingsIntegrationsPage() {
   const [status, setStatus] = useState<Awaited<ReturnType<typeof getSyncStatus>> | null>(null);
@@ -24,7 +25,8 @@ export default function SettingsIntegrationsPage() {
       setSyncResult(`Synced ${r.customers} customers, ${r.invoices} invoices.`);
       getSyncStatus().then(setStatus);
     } catch (e) {
-      setSyncResult(e instanceof Error ? e.message : "Sync failed");
+      const msg = e instanceof Error ? e.message : "Sync failed";
+      setSyncResult(getFriendlyError(msg).message);
     } finally {
       setSyncing(false);
     }
@@ -40,10 +42,15 @@ export default function SettingsIntegrationsPage() {
   }
 
   if (error) {
+    const { message, primary, secondary } = getFriendlyError(error);
     return (
       <div className="card max-w-md">
-        <p className="text-[var(--error)]">{error}</p>
-        <Link href="/dashboard" className="mt-4 inline-block link">← Dashboard</Link>
+        <p className="text-[var(--error)]">{message}</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {primary && <Link href={primary.href} className="link">{primary.label}</Link>}
+          {secondary && <Link href={secondary.href} className="link">{secondary.label}</Link>}
+          <Link href="/dashboard" className="text-[var(--muted)] hover:text-white">← Dashboard</Link>
+        </div>
       </div>
     );
   }
@@ -88,11 +95,35 @@ export default function SettingsIntegrationsPage() {
             {syncing ? "Syncing…" : "Sync now"}
           </button>
           {syncResult && (
-            <p className={`text-sm ${syncResult.startsWith("Synced") ? "text-[var(--success)]" : "text-[var(--error)]"}`}>
-              {syncResult}
-            </p>
+            <div className="space-y-2">
+              <p className={`text-sm ${syncResult.startsWith("Synced") ? "text-[var(--success)]" : "text-[var(--error)]"}`}>
+                {syncResult}
+              </p>
+              {!syncResult.startsWith("Synced") && (
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/settings/integrations" className="text-sm font-medium text-[var(--accent)] hover:underline">
+                    Reconnect QuickBooks
+                  </Link>
+                  <Link href="/support" className="text-sm font-medium text-[var(--accent)] hover:underline">
+                    Contact support
+                  </Link>
+                </div>
+              )}
+            </div>
           )}
         </div>
+        {status.quickbooks_connected && (
+          <div className="mt-6 rounded-xl border border-[var(--accent)]/20 bg-[var(--accent)]/5 p-4">
+            <p className="text-sm font-medium text-white">What happens next</p>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              We’ll sync your customers and open invoices. Set your first reminder schedule in{" "}
+              <Link href="/settings/autopilot" className="text-[var(--accent)] hover:underline">Autopilot</Link>
+              {" "}so we know when to nudge. You can also see who owes what on the{" "}
+              <Link href="/dashboard" className="text-[var(--accent)] hover:underline">Dashboard</Link> and{" "}
+              <Link href="/invoices" className="text-[var(--accent)] hover:underline">Invoices</Link>.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="card max-w-2xl">

@@ -52,6 +52,12 @@ export default function Home() {
               For small teams who hate chasing invoices
             </p>
             <p
+              className="animate-fade-in mt-1 text-[10px] text-[var(--muted-soft)]"
+              style={{ animationDelay: "0.08s", animationFillMode: "forwards" }}
+            >
+              Built for small business & bookkeepers
+            </p>
+            <p
               className="animate-fade-in mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]"
               style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
@@ -157,6 +163,30 @@ export default function Home() {
 
       {/* Social proof: marquee testimonials */}
       <TestimonialsSectionDemo />
+
+      {/* Testimonials / case blurbs — replace with real quotes when you have permission */}
+      <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(20, 20, 22, 0.5)" }}>
+        <div className="mx-auto max-w-4xl">
+          <h2 className="page-title text-center">What people say</h2>
+          <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
+            Teams and bookkeepers getting paid faster without the awkward chase.
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)]/50 p-6">
+              <p className="text-[var(--muted)] italic">
+                &ldquo;We stopped chasing. Reminders go out at the right time, and when something’s wrong we see it in one place. Got paid faster.&rdquo;
+              </p>
+              <p className="mt-4 text-sm font-medium text-white">Small business owner</p>
+            </div>
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)]/50 p-6">
+              <p className="text-[var(--muted)] italic">
+                &ldquo;My clients’ AR used to slip through the cracks. Now I set the schedule once and Zippy handles the nudge. Professional, not pushy.&rdquo;
+              </p>
+              <p className="mt-4 text-sm font-medium text-white">Bookkeeper</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Interactive 3D: Spline scene */}
       <section className="px-4 py-12 md:py-16">
@@ -452,6 +482,9 @@ export default function Home() {
             </Link>
             <Link href="/help" className="text-[var(--muted)] transition-colors hover:text-white">
               Help
+            </Link>
+            <Link href="/quickbooks" className="text-[var(--muted)] transition-colors hover:text-white">
+              QuickBooks
             </Link>
             <Link href="/privacy" className="text-[var(--muted)] transition-colors hover:text-white">
               Privacy
