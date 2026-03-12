@@ -37,8 +37,10 @@ export default function PrivacyPage() {
               organization details when you sign up or use our services.
             </li>
             <li>
-              <strong className="text-white">Integration data:</strong> Information from connected services (e.g.,
-              QuickBooks) such as customer and invoice data that you authorize us to access.
+              <strong className="text-white">Integration data:</strong> When you connect QuickBooks (via Intuit’s
+              platform), we receive only the data necessary to provide our service—such as customer names and contact
+              details, open invoices, and payment status—as authorized by you through the OAuth consent flow. We do not
+              receive or store your QuickBooks password; access is via secure tokens only.
             </li>
             <li>
               <strong className="text-white">Usage and device information:</strong> Log data, IP address, browser type,
@@ -61,26 +63,45 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">4. Sharing and Disclosure</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">4. QuickBooks and Intuit</h2>
+          <p>
+            Our integration with QuickBooks Online is powered by Intuit’s APIs. We access your QuickBooks data only
+            with your explicit authorization and only to the extent needed to provide invoice follow-up and accounts
+            receivable features. We do not sell your personal information or your QuickBooks data. We may share data
+            with Intuit only as necessary to operate the integration (e.g., API requests) and as required by Intuit’s
+            developer terms. We do not use your QuickBooks data for advertising or for any purpose unrelated to
+            providing our service to you.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-white mb-3">5. Sharing and Disclosure</h2>
           <p>
             We do not sell your personal information. We may share information with service providers who assist us
-            (e.g., hosting, email delivery, analytics), with your connected integrations (e.g., QuickBooks) as
-            authorized by you, and when required by law or to protect our rights. We require our service providers to
-            use your information only as necessary to perform services for us.
+            (e.g., hosting, email delivery) under contracts that require them to use data only to perform services for
+            us and to protect it appropriately; with Intuit as described in Section 4; and when required by law or to
+            protect our rights. We do not share your data with third parties for their marketing purposes.
           </p>
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">5. Data Retention and Security</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">6. Data Retention and Security</h2>
           <p>
             We retain your information for as long as your account is active or as needed to provide services and
-            comply with legal obligations. We implement reasonable technical and organizational measures to protect
-            your data against unauthorized access, loss, or misuse.
+            comply with legal obligations. After you disconnect QuickBooks or close your account, we will cease using
+            your integration data for new processing and will delete or anonymize it in accordance with our retention
+            practices and applicable law.
+          </p>
+          <p className="mt-3">
+            We use industry-standard security measures, including encryption in transit (TLS) and appropriate
+            safeguards for data at rest, restricted access to personal and integration data, and secure development
+            practices. We do not store your QuickBooks login credentials; we use OAuth tokens that you can revoke at any
+            time via your QuickBooks or Intuit account settings.
           </p>
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">6. Your Rights (Including California)</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">7. Your Rights (Including California)</h2>
           <p className="mb-3">
             Depending on where you live, you may have the right to access, correct, delete, or port your personal
             information, or to opt out of certain uses. If you are a California resident, the CCPA may provide you with
@@ -99,7 +120,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">7. Cookies and Similar Technologies</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">8. Cookies and Similar Technologies</h2>
           <p>
             We use cookies and similar technologies to maintain your session, remember preferences, and understand how
             you use our services. You can manage cookie settings in your browser.
@@ -107,7 +128,16 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">8. Changes to This Policy</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">9. Children’s Privacy</h2>
+          <p>
+            The Service is not directed at individuals under 18. We do not knowingly collect personal information from
+            anyone under 18. If you believe we have collected such information, please contact us and we will delete
+            it promptly.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-white mb-3">10. Changes to This Policy</h2>
           <p>
             We may update this Privacy Policy from time to time. We will post the updated policy on this page and
             update the “Last updated” date. Continued use of our services after changes constitutes acceptance of the
@@ -116,22 +146,23 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">9. Contact Us</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">11. Contact Us</h2>
           <p>
-            For questions about this Privacy Policy or to exercise your privacy rights, contact us at:
+            For questions about this Privacy Policy or to exercise your privacy rights (access, correction, deletion,
+            or opt-out), contact us at:
           </p>
           <p className="mt-2 text-white">
             Zippy
           </p>
           <p className="mt-2">
-            Email: privacy@zippy.com (or your preferred contact email)
+            Email: privacy@zippy.com for privacy-specific requests, or zippysupport@gmail.com for general support. We
+            will respond to verified requests in accordance with applicable law.
           </p>
         </section>
       </div>
 
       <p className="mt-12 pt-8 border-t border-[var(--border)] text-xs text-[var(--muted-soft)]">
-        This privacy policy is provided for informational purposes. You may wish to have it reviewed by legal counsel
-        and to replace placeholder contact information with your actual details.
+        This privacy policy is provided for informational purposes. You may wish to have it reviewed by legal counsel.
       </p>
     </div>
   );

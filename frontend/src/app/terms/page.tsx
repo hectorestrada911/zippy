@@ -31,14 +31,30 @@ export default function TermsPage() {
           <h2 className="text-lg font-semibold text-white mb-3">2. Description of Service</h2>
           <p>
             Zippy provides tools for invoice resolution, accounts receivable management, and follow-up communications.
-            The Service may integrate with third-party platforms (e.g., QuickBooks) that you connect at your
-            discretion. We do not guarantee uninterrupted or error-free operation and may modify or discontinue
-            features with reasonable notice where practicable.
+            The Service may integrate with third-party platforms (e.g., QuickBooks Online via Intuit) that you connect at
+            your discretion. We do not guarantee uninterrupted or error-free operation and may modify or discontinue
+            features with reasonable notice where practicable. We are not Intuit, Inc., and the Service is provided by
+            Zippy independently; your use of QuickBooks is also subject to Intuit’s terms and policies.
           </p>
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">3. Account and Eligibility</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">3. Third-Party Integrations (QuickBooks / Intuit)</h2>
+          <p>
+            If you connect QuickBooks or other third-party services, you authorize us to access and use the data made
+            available to us through those integrations solely to provide the Service, as described in our{" "}
+            <Link href="/privacy" className="text-[var(--accent)] hover:underline">
+              Privacy Policy
+            </Link>
+            . Your use of QuickBooks is subject to Intuit’s terms of service and developer policies. We are not
+            responsible for the availability, accuracy, or conduct of Intuit or any other third-party service. You may
+            revoke our access at any time through your QuickBooks or Intuit account settings; doing so may limit or
+            disable integration features in the Service.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-white mb-3">4. Account and Eligibility</h2>
           <p>
             You must provide accurate information when creating an account and keep it current. You are responsible for
             maintaining the confidentiality of your account and for all activity under your account. You must be at
@@ -47,7 +63,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">4. Acceptable Use</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">5. Acceptable Use</h2>
           <p className="mb-3">You agree not to:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Use the Service in violation of any applicable law or third-party rights</li>
@@ -63,7 +79,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">5. Your Data and Privacy</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">6. Your Data and Privacy</h2>
           <p>
             You retain ownership of data you provide or that we process on your behalf. Our collection and use of
             personal information is described in our{" "}
@@ -77,7 +93,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">6. Fees and Payment</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">7. Fees and Payment</h2>
           <p>
             Certain features may be subject to fees as described on our website or in separate ordering terms. You
             agree to pay all applicable fees when due. Fees are non-refundable unless otherwise required by law or
@@ -87,17 +103,27 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">7. Disclaimers</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">8. No Professional Advice</h2>
           <p>
-            THE SERVICE IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
-            INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-            NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE. WE ARE
-            NOT RESPONSIBLE FOR THE ACCURACY OR RELIABILITY OF DATA FROM THIRD-PARTY INTEGRATIONS.
+            Zippy does not provide accounting, tax, legal, or financial advice. The Service is a tool to help you
+            manage follow-ups and visibility into receivables. You are responsible for your own bookkeeping, tax
+            compliance, and business decisions. When in doubt, consult a qualified professional.
           </p>
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">8. Limitation of Liability</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">9. Disclaimers</h2>
+          <p>
+            THE SERVICE IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+            INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+            NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE. WE ARE
+            NOT RESPONSIBLE FOR THE ACCURACY, AVAILABILITY, OR CONDUCT OF THIRD-PARTY SERVICES (INCLUDING INTUIT OR
+            QUICKBOOKS). WE ARE NOT LIABLE FOR ACTIONS OR OMISSIONS OF INTUIT OR ANY OTHER THIRD PARTY.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-white mb-3">10. Limitation of Liability</h2>
           <p>
             TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, ZIPPY AND ITS AFFILIATES, OFFICERS, DIRECTORS,
             EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE
@@ -110,7 +136,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">9. Indemnification</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">11. Indemnification</h2>
           <p>
             You agree to indemnify, defend, and hold harmless Zippy and its affiliates and their respective officers,
             directors, employees, and agents from and against any claims, damages, losses, liabilities, costs, and
@@ -120,7 +146,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">10. Governing Law and Disputes</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">12. Governing Law and Disputes</h2>
           <p>
             These Terms shall be governed by and construed in accordance with the laws of the State of California,
             United States, without regard to its conflict of law principles. Any dispute arising out of or relating to
@@ -130,7 +156,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">11. General</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">13. General</h2>
           <p>
             These Terms constitute the entire agreement between you and Zippy regarding the Service. Our failure to
             enforce any right or provision shall not constitute a waiver. If any provision is held invalid or
@@ -142,7 +168,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-white mb-3">12. Contact</h2>
+          <h2 className="text-lg font-semibold text-white mb-3">14. Contact</h2>
           <p>
             For questions about these Terms of Service, contact us at:
           </p>
@@ -150,14 +176,13 @@ export default function TermsPage() {
             Zippy
           </p>
           <p className="mt-2">
-            Email: legal@zippy.com (or your preferred contact email)
+            Email: legal@zippy.com for legal/terms inquiries, or zippysupport@gmail.com for general support.
           </p>
         </section>
       </div>
 
       <p className="mt-12 pt-8 border-t border-[var(--border)] text-xs text-[var(--muted-soft)]">
-        This terms of service is provided for informational purposes. You may wish to have it reviewed by legal counsel
-        and to replace placeholder contact information with your actual details.
+        This terms of service is provided for informational purposes. You may wish to have it reviewed by legal counsel.
       </p>
     </div>
   );
