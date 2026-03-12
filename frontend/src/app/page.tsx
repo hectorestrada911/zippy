@@ -450,12 +450,18 @@ export default function Home() {
             <Link href="/pricing" className="text-[var(--muted)] transition-colors hover:text-white">
               Pricing
             </Link>
+            <Link href="/help" className="text-[var(--muted)] transition-colors hover:text-white">
+              Help
+            </Link>
             <Link href="/privacy" className="text-[var(--muted)] transition-colors hover:text-white">
               Privacy
             </Link>
             <Link href="/terms" className="text-[var(--muted)] transition-colors hover:text-white">
               Terms
             </Link>
+            <a href="mailto:zippysupport@gmail.com" className="text-[var(--muted)] transition-colors hover:text-white">
+              Support
+            </a>
             <Link href="/login" className="text-[var(--muted)] transition-colors hover:text-white">
               Log in
             </Link>
