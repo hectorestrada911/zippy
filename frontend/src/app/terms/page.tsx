@@ -147,9 +147,7 @@ export default function TermsPage() {
             For questions about these Terms of Service, contact us at:
           </p>
           <p className="mt-2 text-white">
-            Zippy<br />
-            [Your business address]<br />
-            California, USA
+            Zippy
           </p>
           <p className="mt-2">
             Email: legal@zippy.com (or your preferred contact email)
@@ -159,7 +157,7 @@ export default function TermsPage() {
 
       <p className="mt-12 pt-8 border-t border-[var(--border)] text-xs text-[var(--muted-soft)]">
         This terms of service is provided for informational purposes. You may wish to have it reviewed by legal counsel
-        and to replace placeholder contact and address information with your actual details.
+        and to replace placeholder contact information with your actual details.
       </p>
     </div>
   );
