@@ -29,9 +29,14 @@ app = FastAPI(
     title=settings.app_name,
     lifespan=lifespan,
 )
+# Normalize frontend URL (no trailing slash) so CORS matches browser Origin header
+_frontend_origin = (settings.frontend_url or "").rstrip("/")
+_origins = ["http://localhost:3000", "http://localhost:3001"]
+if _frontend_origin:
+    _origins.append(_frontend_origin)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url, "http://localhost:3000"],
+    allow_origins=_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
