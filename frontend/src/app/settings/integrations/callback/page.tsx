@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getFriendlyError } from "@/lib/getFriendlyError";
+import { API_BASE } from "@/lib/api";
 
 function QuickBooksCallbackContent() {
   const router = useRouter();
@@ -24,7 +25,7 @@ function QuickBooksCallbackContent() {
       return;
     }
     fetch(
-      `/api/v1/settings/integrations/quickbooks/callback?code=${encodeURIComponent(code)}&realm_id=${encodeURIComponent(realmId)}&state=${encodeURIComponent(state || "")}`,
+      `${API_BASE}/api/v1/settings/integrations/quickbooks/callback?code=${encodeURIComponent(code)}&realm_id=${encodeURIComponent(realmId)}&state=${encodeURIComponent(state || "")}`,
       { method: "POST", headers: { Authorization: `Bearer ${token}` } }
     )
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Connection failed"))))

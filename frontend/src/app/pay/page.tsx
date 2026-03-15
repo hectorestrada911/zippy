@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { API_BASE } from "@/lib/api";
 
 function PayContent() {
   const searchParams = useSearchParams();
@@ -24,7 +25,7 @@ function PayContent() {
       setError("Missing payment link. Use the link from your invoice email.");
       return;
     }
-    fetch(`/api/v1/public/invoice-by-token?token=${encodeURIComponent(token)}`)
+    fetch(`${API_BASE}/api/v1/public/invoice-by-token?token=${encodeURIComponent(token)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Invalid or expired link"))))
       .then(setInvoice)
       .catch((e) => setError(e.message));

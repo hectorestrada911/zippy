@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { API_BASE } from "@/lib/api";
 
 const BLOCKER_CATEGORIES = [
   { value: "missing_po", label: "Need PO" },
@@ -36,7 +37,7 @@ function DisputeContent() {
       setError("Missing link. Use the link from your invoice email.");
       return;
     }
-    fetch(`/api/v1/public/invoice-by-token?token=${encodeURIComponent(token)}`)
+    fetch(`${API_BASE}/api/v1/public/invoice-by-token?token=${encodeURIComponent(token)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Invalid or expired link"))))
       .then(setInvoice)
       .catch((e) => setError(e.message));
@@ -48,7 +49,7 @@ function DisputeContent() {
     setSubmitting(true);
     try {
       const res = await fetch(
-        `/api/v1/public/dispute?token=${encodeURIComponent(token)}`,
+        `${API_BASE}/api/v1/public/dispute?token=${encodeURIComponent(token)}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

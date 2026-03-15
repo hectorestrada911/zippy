@@ -1,4 +1,8 @@
-const API_BASE = typeof window !== "undefined" ? "" : "http://localhost:8000";
+// In browser: use backend URL if set (avoids relying on Vercel rewrites). In SSR: use same or localhost.
+export const API_BASE =
+  typeof window !== "undefined"
+    ? (process.env.NEXT_PUBLIC_API_URL || "")
+    : (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000");
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
@@ -138,7 +142,7 @@ export async function magicLink(email: string, next?: string) {
 }
 
 export async function authCallback(token: string) {
-  const res = await fetch(`/api/v1/auth/callback?token=${encodeURIComponent(token)}`, {
+  const res = await fetch(`${API_BASE}/api/v1/auth/callback?token=${encodeURIComponent(token)}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
   });
