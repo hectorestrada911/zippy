@@ -177,10 +177,22 @@ export function WorldMap({
                     setHoveredLocation(dot.start.label ?? `Location ${i}`)
                   }
                   onHoverEnd={() => setHoveredLocation(null)}
-                  className="cursor-pointer"
+                  onClick={() =>
+                    setHoveredLocation(dot.start.label ?? `Location ${i}`)
+                  }
+                  className="cursor-pointer touch-manipulation"
                   whileHover={{ scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  style={{ touchAction: "manipulation" }}
                 >
+                  {/* Large invisible hit area for mobile tap targets (~44px) */}
+                  <circle
+                    cx={startPoint.x}
+                    cy={startPoint.y}
+                    r="30"
+                    fill="transparent"
+                    aria-label={dot.start.label}
+                  />
                   <circle
                     cx={startPoint.x}
                     cy={startPoint.y}
@@ -219,7 +231,7 @@ export function WorldMap({
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 * i + 0.3, duration: 0.5 }}
-                    className="pointer-events-none"
+                    className="pointer-events-none hidden sm:block"
                   >
                     <foreignObject
                       x={startPoint.x - 50}
@@ -245,10 +257,22 @@ export function WorldMap({
                     setHoveredLocation(dot.end.label ?? `Destination ${i}`)
                   }
                   onHoverEnd={() => setHoveredLocation(null)}
-                  className="cursor-pointer"
+                  onClick={() =>
+                    setHoveredLocation(dot.end.label ?? `Destination ${i}`)
+                  }
+                  className="cursor-pointer touch-manipulation"
                   whileHover={{ scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  style={{ touchAction: "manipulation" }}
                 >
+                  {/* Large invisible hit area for mobile tap targets (~44px) */}
+                  <circle
+                    cx={endPoint.x}
+                    cy={endPoint.y}
+                    r="30"
+                    fill="transparent"
+                    aria-label={dot.end.label}
+                  />
                   <circle
                     cx={endPoint.x}
                     cy={endPoint.y}
@@ -287,7 +311,7 @@ export function WorldMap({
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 * i + 0.5, duration: 0.5 }}
-                    className="pointer-events-none"
+                    className="pointer-events-none hidden sm:block"
                   >
                     <foreignObject
                       x={endPoint.x - 50}

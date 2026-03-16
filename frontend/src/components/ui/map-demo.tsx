@@ -57,6 +57,9 @@ export function MapDemo() {
           loop={true}
           theme="dark"
         />
+        <p className="sm:hidden text-center text-xs text-[var(--muted)] mt-3 px-4">
+          Tap a dot to see the city name
+        </p>
       </div>
     </div>
   );
