@@ -15,10 +15,10 @@ export function SplineSceneBasic() {
       <div className="flex h-full">
         <div className="relative z-10 flex flex-1 flex-col justify-center p-8">
           <h1 className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-            The tech does the follow-up. You get paid.
+            Who owes what. One place.
           </h1>
           <p className="mt-4 max-w-lg text-neutral-300">
-            Connect your books. Smart reminders run on autopilot—right nudge at the right time, who paid and what’s overdue, all in one place. You stay the good guy. You get paid.
+            Connect your books. We nudge. You see what’s overdue and who paid. You get paid.
           </p>
         </div>
 
