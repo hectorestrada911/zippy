@@ -20,7 +20,7 @@ export function SpiralSectionDemo() {
   return (
     <div
       ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden bg-black"
+      className="relative min-h-screen w-full overflow-hidden bg-[var(--background)]"
     >
       <div className="absolute inset-0">
         <SpiralAnimation
