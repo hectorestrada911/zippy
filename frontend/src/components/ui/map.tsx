@@ -66,26 +66,34 @@ export function WorldMap({
   const pauseTime = 2;
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
+  // Center view on North America: longitudes ~-170° to ~-19° (x 22–378 in 0–800 coords)
+  const viewMinX = 22;
+  const viewWidth = 356;
+  const viewBox = `${viewMinX} 0 ${viewWidth} 400`;
+  const mapDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`;
+
   return (
     <div
       className={`w-full h-full min-h-0 sm:h-auto sm:aspect-[3/2] md:aspect-[2/1] lg:aspect-[2/1] rounded-none sm:rounded-lg relative font-sans overflow-hidden ${theme === "dark" ? "bg-black" : "bg-white"}`}
       style={{ touchAction: "pan-y" }}
     >
-      <img
-        src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="h-full w-full object-cover pointer-events-none select-none [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)]"
-        alt="World map"
-        width={1056}
-        height={495}
-        draggable={false}
-      />
       <svg
         ref={svgRef}
-        viewBox="0 0 800 400"
+        viewBox={viewBox}
         className="w-full h-full absolute inset-0 pointer-events-auto select-none"
         preserveAspectRatio="xMidYMid meet"
+        aria-label="World map centered on North America"
       >
         <defs>
+          <linearGradient id="map-fade-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="white" stopOpacity="0" />
+            <stop offset="10%" stopColor="white" stopOpacity="1" />
+            <stop offset="90%" stopColor="white" stopOpacity="1" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+          <mask id="map-fade-mask">
+            <rect x={viewMinX - 100} y={0} width={viewWidth + 200} height={400} fill="url(#map-fade-gradient)" />
+          </mask>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="white" stopOpacity="0" />
             <stop offset="5%" stopColor={lineColor} stopOpacity="1" />
@@ -101,7 +109,16 @@ export function WorldMap({
             </feMerge>
           </filter>
         </defs>
-
+        {/* Background map: Americas-focused view with top/bottom fade */}
+        <image
+          href={mapDataUrl}
+          x={-viewMinX}
+          y={0}
+          width={800}
+          height={400}
+          mask="url(#map-fade-mask)"
+          className="pointer-events-none select-none"
+        />
         {dots.map((dot, i) => {
           const startPoint = projectPoint(dot.start.lat, dot.start.lng);
           const endPoint = projectPoint(dot.end.lat, dot.end.lng);
