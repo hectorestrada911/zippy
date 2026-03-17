@@ -66,7 +66,7 @@ export function WorldMap({
   const pauseTime = 2;
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
-  // One label per unique location (avoid "San Los Angeles" / "Chicago /ork" overlap)
+  // One label per unique location; add y-offset when close to another so they don't overlap
   const uniqueLabels = useMemo(() => {
     const seen = new Map<string, { lat: number; lng: number; label: string }>();
     const key = (lat: number, lng: number) => `${lat.toFixed(2)}_${lng.toFixed(2)}`;
@@ -80,13 +80,23 @@ export function WorldMap({
         if (!seen.has(k)) seen.set(k, { lat: dot.end.lat, lng: dot.end.lng, label: dot.end.label });
       }
     }
-    return Array.from(seen.values());
+    const list = Array.from(seen.values());
+    const dist = (a: { x: number; y: number }, b: { x: number; y: number }) =>
+      Math.hypot(a.x - b.x, a.y - b.y);
+    const closeThreshold = 70;
+    const offsetY = 20;
+    return list.map((item, i) => {
+      const pt = { x: ((item.lng + 180) * 800) / 360, y: ((90 - item.lat) * 400) / 180 };
+      let dy = 0;
+      for (let j = 0; j < i; j++) {
+        const other = list[j];
+        const otherPt = { x: ((other.lng + 180) * 800) / 360, y: ((90 - other.lat) * 400) / 180 };
+        if (dist(pt, otherPt) < closeThreshold) dy += offsetY;
+      }
+      return { ...item, labelOffsetY: dy } as typeof item & { labelOffsetY: number };
+    });
   }, [dots]);
 
-  // Center view on North America: longitudes ~-170° to ~-19° (x 22–378 in 0–800 coords)
-  const viewMinX = 22;
-  const viewWidth = 356;
-  const viewBox = `${viewMinX} 0 ${viewWidth} 400`;
   const mapDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`;
 
   return (
@@ -96,10 +106,10 @@ export function WorldMap({
     >
       <svg
         ref={svgRef}
-        viewBox={viewBox}
+        viewBox="0 0 800 400"
         className="w-full h-full absolute inset-0 pointer-events-auto select-none"
         preserveAspectRatio="xMidYMid meet"
-        aria-label="World map centered on North America"
+        aria-label="World map"
       >
         <defs>
           <linearGradient id="map-fade-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -109,7 +119,7 @@ export function WorldMap({
             <stop offset="100%" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <mask id="map-fade-mask">
-            <rect x={viewMinX - 100} y={0} width={viewWidth + 200} height={400} fill="url(#map-fade-gradient)" />
+            <rect x={-50} y={0} width={900} height={400} fill="url(#map-fade-gradient)" />
           </mask>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="white" stopOpacity="0" />
@@ -126,10 +136,10 @@ export function WorldMap({
             </feMerge>
           </filter>
         </defs>
-        {/* Background map: Americas-focused view with top/bottom fade */}
+        {/* Full world background map with top/bottom fade */}
         <image
           href={mapDataUrl}
-          x={-viewMinX}
+          x={0}
           y={0}
           width={800}
           height={400}
@@ -321,10 +331,13 @@ export function WorldMap({
           );
         })}
 
-        {/* Single label per unique city (no overlap) */}
+        {/* Single label per unique city; wider box + offset so no truncation/overlap */}
         {showLabels &&
           uniqueLabels.map((item, i) => {
             const pt = projectPoint(item.lat, item.lng);
+            const labelW = 120;
+            const labelH = 28;
+            const offsetY = item.labelOffsetY ?? 0;
             return (
               <motion.g
                 key={`label-${item.label}-${i}`}
@@ -334,15 +347,15 @@ export function WorldMap({
                 className="pointer-events-none hidden sm:block"
               >
                 <foreignObject
-                  x={pt.x - 50}
-                  y={pt.y - 35}
-                  width="100"
-                  height="30"
-                  className="block"
+                  x={pt.x - labelW / 2}
+                  y={pt.y - 32 - offsetY}
+                  width={labelW}
+                  height={labelH}
+                  className="block overflow-visible"
                 >
-                  <div className="flex items-center justify-center h-full">
+                  <div className="flex items-center justify-center h-full w-full text-center">
                     <span
-                      className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm`}
+                      className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm whitespace-nowrap`}
                     >
                       {item.label}
                     </span>
