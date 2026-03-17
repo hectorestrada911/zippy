@@ -66,6 +66,23 @@ export function WorldMap({
   const pauseTime = 2;
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
+  // One label per unique location (avoid "San Los Angeles" / "Chicago /ork" overlap)
+  const uniqueLabels = useMemo(() => {
+    const seen = new Map<string, { lat: number; lng: number; label: string }>();
+    const key = (lat: number, lng: number) => `${lat.toFixed(2)}_${lng.toFixed(2)}`;
+    for (const dot of dots) {
+      if (dot.start.label) {
+        const k = key(dot.start.lat, dot.start.lng);
+        if (!seen.has(k)) seen.set(k, { lat: dot.start.lat, lng: dot.start.lng, label: dot.start.label });
+      }
+      if (dot.end.label) {
+        const k = key(dot.end.lat, dot.end.lng);
+        if (!seen.has(k)) seen.set(k, { lat: dot.end.lat, lng: dot.end.lng, label: dot.end.label });
+      }
+    }
+    return Array.from(seen.values());
+  }, [dots]);
+
   // Center view on North America: longitudes ~-170° to ~-19° (x 22–378 in 0–800 coords)
   const viewMinX = 22;
   const viewWidth = 356;
@@ -243,30 +260,6 @@ export function WorldMap({
                     />
                   </circle>
                 </motion.g>
-                {showLabels && dot.start.label && (
-                  <motion.g
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 * i + 0.3, duration: 0.5 }}
-                    className="pointer-events-none hidden sm:block"
-                  >
-                    <foreignObject
-                      x={startPoint.x - 50}
-                      y={startPoint.y - 35}
-                      width="100"
-                      height="30"
-                      className="block"
-                    >
-                      <div className="flex items-center justify-center h-full">
-                        <span
-                          className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm`}
-                        >
-                          {dot.start.label}
-                        </span>
-                      </div>
-                    </foreignObject>
-                  </motion.g>
-                )}
               </g>
               <g key={`end-${i}`}>
                 <motion.g
@@ -323,34 +316,41 @@ export function WorldMap({
                     />
                   </circle>
                 </motion.g>
-                {showLabels && dot.end.label && (
-                  <motion.g
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 * i + 0.5, duration: 0.5 }}
-                    className="pointer-events-none hidden sm:block"
-                  >
-                    <foreignObject
-                      x={endPoint.x - 50}
-                      y={endPoint.y - 35}
-                      width="100"
-                      height="30"
-                      className="block"
-                    >
-                      <div className="flex items-center justify-center h-full">
-                        <span
-                          className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm`}
-                        >
-                          {dot.end.label}
-                        </span>
-                      </div>
-                    </foreignObject>
-                  </motion.g>
-                )}
               </g>
             </g>
           );
         })}
+
+        {/* Single label per unique city (no overlap) */}
+        {showLabels &&
+          uniqueLabels.map((item, i) => {
+            const pt = projectPoint(item.lat, item.lng);
+            return (
+              <motion.g
+                key={`label-${item.label}-${i}`}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 * i + 0.3, duration: 0.5 }}
+                className="pointer-events-none hidden sm:block"
+              >
+                <foreignObject
+                  x={pt.x - 50}
+                  y={pt.y - 35}
+                  width="100"
+                  height="30"
+                  className="block"
+                >
+                  <div className="flex items-center justify-center h-full">
+                    <span
+                      className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm`}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                </foreignObject>
+              </motion.g>
+            );
+          })}
       </svg>
 
       <AnimatePresence>
