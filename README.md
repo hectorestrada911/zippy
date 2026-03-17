@@ -111,7 +111,7 @@ See `ARCHITECTURE.md` for design decisions and extension points.
 1. Create a **Web Service** (not Private Service) so the API is reachable by your frontend and QuickBooks.
 2. **Database**: Create a Postgres instance (Render or external) and set `DATABASE_URL` (e.g. `postgresql+asyncpg://user:pass@host:5432/dbname`).
 3. **Build**: Use the repo root; set **Dockerfile path** to `backend/Dockerfile` and **Root Directory** to `backend` (or build from repo root with dockerfilePath `./backend/Dockerfile` and context `./backend`). The image listens on `PORT` (set by Render).
-4. **Environment variables** (required): `SECRET_KEY`, `DATABASE_URL`, `FRONTEND_URL` (your deployed frontend origin, e.g. `https://yourapp.vercel.app`).
+4. **Environment variables** (required): `SECRET_KEY`, `DATABASE_URL`, `FRONTEND_URL` (your deployed frontend origin, e.g. `https://zippy-rose.vercel.app` — no trailing slash; this is used for CORS and magic-link redirects). Optional: `CORS_ORIGINS` (comma-separated list of extra origins if you have multiple frontends).
 5. **Optional**: `RESEND_API_KEY`, `EMAIL_FROM`, `ALLOW_PUBLIC_SIGNUP`, `QUICKBOOKS_*`, `STRIPE_*`. See `.env.example`.
 
 Health check: `GET /health` returns `{"status":"ok"}`.
@@ -119,7 +119,7 @@ Health check: `GET /health` returns `{"status":"ok"}`.
 ### Frontend (e.g. Vercel or Render Static Site)
 
 1. Set **NEXT_PUBLIC_API_URL** to your deployed backend URL (e.g. `https://zippy-api.onrender.com`). No trailing slash. The app rewrites `/api/*` to this URL so the browser still talks to the same origin.
-2. Ensure the backend has **FRONTEND_URL** set to this frontend’s origin (for CORS and magic-link links).
+2. Ensure the backend has **FRONTEND_URL** set to this frontend’s origin (e.g. `https://zippy-rose.vercel.app`) for CORS and magic-link links. If you use multiple frontend URLs, set **CORS_ORIGINS** to a comma-separated list of allowed origins.
 
 ### QuickBooks in production
 

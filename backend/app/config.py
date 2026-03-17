@@ -50,8 +50,10 @@ class Settings(BaseSettings):
     # Local fallback: store under this path if s3 not configured
     local_upload_path: str = "./uploads"
 
-    # Frontend (for links in emails)
+    # Frontend (for links in emails and CORS)
     frontend_url: str = "http://localhost:3000"
+    # Optional comma-separated extra CORS origins (e.g. production + preview URLs)
+    cors_origins: str = ""
 
     # Scheduler
     scheduler_run_reminders_every_seconds: int = 60
