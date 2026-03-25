@@ -12,6 +12,9 @@ function AuthCallbackContent() {
   useEffect(() => {
     const token = searchParams.get("token");
     const nextPath = searchParams.get("next") || "/dashboard";
+    // #region agent log
+    fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H1-H3",location:"frontend/src/app/auth/callback/page.tsx:useEffect",message:"Auth callback invoked",data:{hasToken:Boolean(token),nextPath,isAbsoluteUrl:/^https?:\/\//i.test(nextPath),isRootRelative:nextPath.startsWith("/")},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     if (!token) {
       setError("Missing token");
       return;
@@ -19,6 +22,9 @@ function AuthCallbackContent() {
     authCallback(token)
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
+        // #region agent log
+        fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H2-H3",location:"frontend/src/app/auth/callback/page.tsx:authSuccess",message:"Auth callback succeeded",data:{nextPath,tokenStored:typeof window!=="undefined"&&Boolean(localStorage.getItem("access_token")),isAbsoluteUrl:/^https?:\/\//i.test(nextPath)},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         router.replace(nextPath);
       })
       .catch(() => setError("Invalid or expired link"));

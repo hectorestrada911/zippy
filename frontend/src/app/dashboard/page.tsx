@@ -12,8 +12,16 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // #region agent log
+    fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H5",location:"frontend/src/app/dashboard/page.tsx:useEffect:start",message:"Dashboard load started",data:{viewportWidth:typeof window!=="undefined"?window.innerWidth:null,prefersReducedMotion:typeof window!=="undefined"&&window.matchMedia?window.matchMedia("(prefers-reduced-motion: reduce)").matches:false},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     getDashboard()
-      .then(setData)
+      .then((incoming) => {
+        // #region agent log
+        fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H5",location:"frontend/src/app/dashboard/page.tsx:useEffect:success",message:"Dashboard load succeeded",data:{overdueCount:incoming.summary.overdue_count,overdueInvoices:incoming.overdue_invoices.length,disputesNeedingAction:incoming.disputes_needing_action.length},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+        setData(incoming);
+      })
       .catch((e) => setError(e.message));
   }, []);
 

@@ -89,6 +89,12 @@ const ZIPPY = {
 } as const;
 
 export function AnimatedGradientDemo() {
+  React.useEffect(() => {
+    // #region agent log
+    fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H5",location:"frontend/src/components/ui/animated-gradient-demo.tsx:useEffect",message:"Animated gradient mounted",data:{viewportWidth:typeof window!=="undefined"?window.innerWidth:null,prefersReducedMotion:typeof window!=="undefined"&&window.matchMedia?window.matchMedia("(prefers-reduced-motion: reduce)").matches:false},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+  }, []);
+
   return (
     <div className="w-full">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4">

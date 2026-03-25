@@ -1,6 +1,9 @@
 """Dashboard: AR summary, overdue list, disputes needing action, ROI."""
+import json
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
+from pathlib import Path
+from time import time
 from fastapi import APIRouter, Depends
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -17,6 +20,25 @@ from app.schemas.dashboard import (
 )
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
+_DEBUG_LOG_PATH = Path("/Users/hectorestrada/Desktop/Z/PayWow/.cursor/debug-4c3e2e.log")
+
+
+def _debug_log(run_id: str, hypothesis_id: str, location: str, message: str, data: dict) -> None:
+    payload = {
+        "sessionId": "4c3e2e",
+        "runId": run_id,
+        "hypothesisId": hypothesis_id,
+        "location": location,
+        "message": message,
+        "data": data,
+        "timestamp": int(time() * 1000),
+    }
+    try:
+        _DEBUG_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with _DEBUG_LOG_PATH.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(payload, separators=(",", ":")) + "\n")
+    except Exception:
+        pass
 
 
 @router.get("", response_model=DashboardResponse)
@@ -24,6 +46,16 @@ async def get_dashboard(
     db: AsyncSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
+    started_at = int(time() * 1000)
+    # region agent log
+    _debug_log(
+        run_id="pre-fix",
+        hypothesis_id="H4-H5-H6",
+        location="backend/app/api/v1/dashboard.py:get_dashboard:start",
+        message="Dashboard endpoint entered",
+        data={"hasUser": bool(user), "orgIdPresent": bool(user.organization_id)},
+    )
+    # endregion
     org_id = user.organization_id
     today = date.today()
 
@@ -153,6 +185,20 @@ async def get_dashboard(
             )
         )
 
+    # region agent log
+    _debug_log(
+        run_id="pre-fix",
+        hypothesis_id="H4-H5-H6",
+        location="backend/app/api/v1/dashboard.py:get_dashboard:end",
+        message="Dashboard endpoint computed response",
+        data={
+            "overdueCount": overdue_count,
+            "overdueItems": len(overdue_items),
+            "disputeItems": len(dispute_items),
+            "durationMs": int(time() * 1000) - started_at,
+        },
+    )
+    # endregion
     return DashboardResponse(
         summary=DashboardSummary(
             total_ar=total_ar,

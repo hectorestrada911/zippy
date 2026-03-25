@@ -13,13 +13,20 @@ export async function api<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
+  const startedAt = Date.now();
   const token = getToken();
   const headers: HeadersInit = {
     "Content-Type": "application/json",
     ...options.headers,
   };
+  // #region agent log
+  fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H4",location:"frontend/src/lib/api.ts:api:start",message:"API request started",data:{path,method:options.method||"GET",hasToken:Boolean(token)},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   if (token) (headers as Record<string, string>)["Authorization"] = `Bearer ${token}`;
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  // #region agent log
+  fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H4",location:"frontend/src/lib/api.ts:api:response",message:"API response received",data:{path,status:res.status,ok:res.ok,durationMs:Date.now()-startedAt},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: res.statusText }));
     throw new Error(err.detail || "Request failed");
