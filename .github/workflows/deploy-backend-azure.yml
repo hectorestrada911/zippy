@@ -13,13 +13,8 @@
 #  secrets — copy the same three GUIDs into the names above, or edit this file.)
 name: Deploy backend to Azure Web App
 
+# Manual only — use main_zippyy.yml for Azure Deployment Center (has AZUREAPPSERVICE_* secrets).
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "backend/**"
-      - ".github/workflows/deploy-backend-azure.yml"
   workflow_dispatch:
 
 permissions:
