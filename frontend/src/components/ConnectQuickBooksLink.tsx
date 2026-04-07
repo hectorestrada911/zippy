@@ -9,13 +9,13 @@ const LOGIN_NEXT = "/login?next=/settings/integrations";
 type Props = {
   className?: string;
   children: React.ReactNode;
-};
+} & Omit<React.ComponentProps<typeof Link>, "href" | "className" | "children">;
 
 /**
  * Links to integrations when the user has a token, otherwise to login with next=/settings/integrations.
  * Uses client-side token check so landing page can stay static.
  */
-export default function ConnectQuickBooksLink({ className, children }: Props) {
+export default function ConnectQuickBooksLink({ className, children, ...rest }: Props) {
   const [href, setHref] = useState(LOGIN_NEXT);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function ConnectQuickBooksLink({ className, children }: Props) {
   }, []);
 
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} {...rest}>
       {children}
     </Link>
   );
