@@ -9,6 +9,7 @@ from app.models.file_upload import FileUpload
 from app.models.integration import IntegrationCredential
 from app.models.dunning import DunningRule, MessageTemplate
 from app.models.audit import AuditLog
+from app.models.waitlist import WaitlistEntry
 
 __all__ = [
     "Base",
@@ -24,5 +25,6 @@ __all__ = [
     "DunningRule",
     "MessageTemplate",
     "AuditLog",
+    "WaitlistEntry",
 ]
 
