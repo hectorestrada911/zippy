@@ -1,5 +1,8 @@
 """Zippy - FastAPI app and scheduler."""
+import json
 from contextlib import asynccontextmanager
+from pathlib import Path
+from time import time
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -9,6 +12,26 @@ from app.config import settings
 from app.database import engine, Base, get_db
 from app.api.v1 import auth, dashboard, invoices, disputes, public, sync, webhooks, settings as settings_router
 from app.jobs.dunning_runner import run_dunning_job
+
+_DEBUG_LOG_PATH = Path("/Users/hectorestrada/Desktop/Z/PayWow/.cursor/debug-4c3e2e.log")
+
+
+def _debug_log(run_id: str, hypothesis_id: str, location: str, message: str, data: dict) -> None:
+    payload = {
+        "sessionId": "4c3e2e",
+        "runId": run_id,
+        "hypothesisId": hypothesis_id,
+        "location": location,
+        "message": message,
+        "data": data,
+        "timestamp": int(time() * 1000),
+    }
+    try:
+        _DEBUG_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with _DEBUG_LOG_PATH.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(payload, separators=(",", ":")) + "\n")
+    except Exception:
+        pass
 
 
 @asynccontextmanager
@@ -45,6 +68,30 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def debug_request_logger(request, call_next):
+    # region agent log
+    _debug_log(
+        run_id="pre-fix",
+        hypothesis_id="H8",
+        location="backend/app/main.py:debug_request_logger:start",
+        message="Backend request received",
+        data={"method": request.method, "path": request.url.path},
+    )
+    # endregion
+    response = await call_next(request)
+    # region agent log
+    _debug_log(
+        run_id="pre-fix",
+        hypothesis_id="H8",
+        location="backend/app/main.py:debug_request_logger:end",
+        message="Backend response sent",
+        data={"method": request.method, "path": request.url.path, "statusCode": response.status_code},
+    )
+    # endregion
+    return response
 
 # API v1
 app.include_router(auth.router, prefix="/api/v1")
