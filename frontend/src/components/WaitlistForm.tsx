@@ -50,7 +50,7 @@ export default function WaitlistForm() {
         <p className="page-subtitle mx-auto mt-2 max-w-xl">
           We're opening spots in waves. Leave your email and we'll invite you first.
         </p>
-        <form onSubmit={onSubmit} className="mx-auto mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+        <form onSubmit={onSubmit} className="mx-auto mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-stretch">
           <input
             type="email"
             required
@@ -59,7 +59,11 @@ export default function WaitlistForm() {
             placeholder="you@company.com"
             className="h-12 w-full rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 text-white placeholder:text-[var(--muted-soft)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
           />
-          <button type="submit" className="btn-primary h-12 px-6 disabled:opacity-60" disabled={state.loading}>
+          <button
+            type="submit"
+            className="btn-primary h-12 min-w-40 whitespace-nowrap px-6 disabled:opacity-60"
+            disabled={state.loading}
+          >
             {state.loading ? "Joining..." : "Join waitlist"}
           </button>
         </form>
