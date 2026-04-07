@@ -1,5 +1,8 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { TestimonialCard, TestimonialAuthor } from "@/components/ui/testimonial-card";
+import { useAnimationPerfProbe } from "@/components/hooks/useAnimationPerfProbe";
 
 interface TestimonialsSectionProps {
   title: string;
@@ -18,6 +21,11 @@ export function TestimonialsSection({
   testimonials,
   className,
 }: TestimonialsSectionProps) {
+  useAnimationPerfProbe({
+    probeId: "testimonials-marquee",
+    hypothesisId: "A5",
+  });
+
   return (
     <section
       className={cn(

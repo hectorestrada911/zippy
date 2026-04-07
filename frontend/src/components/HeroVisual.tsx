@@ -1,9 +1,15 @@
 "use client";
 
+import { useAnimationPerfProbe } from "@/components/hooks/useAnimationPerfProbe";
 import { CheckCircleIcon, BoltIcon } from "@heroicons/react/24/solid";
 
 /** Hero right-side visual: "inbox to paid" flow with depth and subtle motion */
 export default function HeroVisual() {
+  useAnimationPerfProbe({
+    probeId: "hero-visual",
+    hypothesisId: "A1",
+  });
+
   return (
     <div className="relative flex items-center justify-center">
       {/* Glow behind the composition: no blur for Safari */}

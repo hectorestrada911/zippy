@@ -3,6 +3,7 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useDimensions } from "@/components/hooks/use-debounced-dimensions";
+import { useAnimationPerfProbe } from "@/components/hooks/useAnimationPerfProbe";
 
 interface AnimatedGradientProps {
   colors: string[];
@@ -21,6 +22,11 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
   blur = "light",
   className,
 }) => {
+  useAnimationPerfProbe({
+    probeId: "animated-gradient-svg",
+    hypothesisId: "A3",
+  });
+
   const containerRef = useRef<HTMLDivElement>(null);
   const dimensions = useDimensions(containerRef);
   const [mounted, setMounted] = useState(false);

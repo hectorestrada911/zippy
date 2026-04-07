@@ -1,10 +1,17 @@
 "use client";
 
+import { useAnimationPerfProbe } from "@/components/hooks/useAnimationPerfProbe";
 import { SplineScene } from "@/components/ui/spline";
 import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
 
 export function SplineSceneBasic() {
+  useAnimationPerfProbe({
+    probeId: "spline-scene",
+    hypothesisId: "A2",
+    sampleMs: 2500,
+  });
+
   return (
     <Card className="relative h-[500px] w-full overflow-hidden bg-black/[0.96]">
       <Spotlight
