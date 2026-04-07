@@ -1,17 +1,23 @@
 """Public endpoints: pay and dispute by token (no login)."""
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel, EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.database import get_db
-from app.models import Invoice, Dispute, DisputeEvent
+from app.models import Invoice, Dispute, DisputeEvent, WaitlistEntry
 from app.models.dispute import DISPUTE_REASONS, DISPUTE_STATUS_OPEN
 from app.schemas.disputes import DisputeCreate
 from app.services.audit import log as audit_log
 
 router = APIRouter(prefix="/public", tags=["public"])
+
+
+class WaitlistRequest(BaseModel):
+    email: EmailStr
+    source: str | None = "landing_page"
 
 
 async def _get_invoice_by_token(db: AsyncSession, token: str):
@@ -79,3 +85,25 @@ async def open_dispute(
     db.add(ev)
     await audit_log(db, inv.organization_id, "dispute_opened", actor_type="customer", entity_type="dispute", entity_id=dispute.id, payload={"reason": body.reason})
     return {"dispute_id": dispute.id, "message": "Dispute submitted. We will follow up shortly."}
+
+
+@router.post("/waitlist")
+async def join_waitlist(
+  body: WaitlistRequest,
+  db: AsyncSession = Depends(get_db),
+):
+    """Public waitlist signup. Idempotent by email."""
+    normalized_email = body.email.strip().lower()
+    existing = await db.execute(select(WaitlistEntry).where(WaitlistEntry.email == normalized_email))
+    entry = existing.scalar_one_or_none()
+
+    if entry:
+        if body.source:
+            entry.source = body.source
+        await db.flush()
+        return {"message": "You're already on the waitlist.", "already_joined": True}
+
+    entry = WaitlistEntry(email=normalized_email, source=body.source or "landing_page")
+    db.add(entry)
+    await db.flush()
+    return {"message": "Thanks! You are on the waitlist.", "already_joined": False}

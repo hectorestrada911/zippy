@@ -17,12 +17,15 @@ import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
 import { AnimatedGradientDemo } from "@/components/ui/animated-gradient-demo";
 import { MapDemo } from "@/components/ui/map-demo";
 import HeroVisual from "@/components/HeroVisual";
+import WaitlistForm from "@/components/WaitlistForm";
+import UxTelemetry from "@/components/UxTelemetry";
 
 export default function Home() {
   return (
     <>
+      <UxTelemetry page="home" />
       {/* Hero: dark background, clear contrast, Zippy messaging */}
-      <section className="relative min-h-0 overflow-hidden px-4 pb-16 pt-8 md:min-h-[85vh] md:pb-24 md:pt-20">
+      <section data-ux-section="hero" className="relative min-h-0 overflow-hidden px-4 pb-16 pt-8 md:min-h-[85vh] md:pb-24 md:pt-20">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[var(--background)]" />
         <div
           className="pointer-events-none absolute -left-1/2 top-0 h-[80vh] w-full -z-10 opacity-35"
@@ -88,13 +91,13 @@ export default function Home() {
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
               style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
             >
-              <ConnectQuickBooksLink className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110">
+              <ConnectQuickBooksLink data-ux-cta="hero-connect-quickbooks" className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110">
                 Connect QuickBooks
               </ConnectQuickBooksLink>
-              <Link href="/pricing" className="btn-secondary text-base">
+              <Link data-ux-cta="hero-pricing" href="/pricing" className="btn-secondary text-base">
                 Pricing
               </Link>
-              <Link href="#how-it-works" className="btn-secondary text-base">
+              <Link data-ux-cta="hero-what-you-get" href="#how-it-works" className="btn-secondary text-base">
                 What you get
               </Link>
             </div>
@@ -134,6 +137,8 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <WaitlistForm />
 
       {/* Supporting headline: static to avoid Safari lag from hover-disperse */}
       <section className="border-t border-[var(--border)] px-4 py-12 md:py-16" style={{ backgroundColor: "rgba(15, 15, 18, 0.4)" }}>
@@ -261,7 +266,7 @@ export default function Home() {
       <SpeedBlock />
 
       {/* What you get: results, not steps */}
-      <section id="how-it-works" className="relative border-t border-[var(--border)] px-4 py-20 md:py-28" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
+      <section data-ux-section="what-you-get" id="how-it-works" className="relative border-t border-[var(--border)] px-4 py-20 md:py-28" style={{ backgroundColor: "rgba(18, 18, 20, 0.6)" }}>
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(34,211,238,0.03),transparent)]" />
         <div className="relative mx-auto max-w-5xl">
           <h2 className="page-title text-center">What you get</h2>
@@ -324,7 +329,7 @@ export default function Home() {
       </section>
 
       {/* Integrations: connector strip + trust bar */}
-      <section className="relative border-t border-[var(--border)] px-4 py-20 md:py-24" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
+      <section data-ux-section="integrations" className="relative border-t border-[var(--border)] px-4 py-20 md:py-24" style={{ backgroundColor: "rgba(15, 15, 18, 0.5)" }}>
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(34,211,238,0.03),transparent)]" />
         <div className="relative mx-auto max-w-5xl">
           <h2 className="page-title text-center">Works with what you use</h2>
@@ -441,7 +446,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="px-4 py-20 md:py-28">
+      <section data-ux-section="final-cta" className="px-4 py-20 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--muted)]">
             <ZippyLogo className="text-base text-[var(--accent)]" />
@@ -454,10 +459,10 @@ export default function Home() {
             Log in with your email. We’ll send you a link. No password, no credit card.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href="/login" className="btn-primary text-base">
+            <Link data-ux-cta="final-get-started" href="/login" className="btn-primary text-base">
               Get started free
             </Link>
-            <Link href="/dashboard" className="btn-secondary text-base">
+            <Link data-ux-cta="final-dashboard" href="/dashboard" className="btn-secondary text-base">
               Go to dashboard
             </Link>
           </div>
