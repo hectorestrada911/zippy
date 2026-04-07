@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ConnectQuickBooksLink from "@/components/ConnectQuickBooksLink";
+import UxTelemetry from "@/components/UxTelemetry";
 
 export const metadata: Metadata = {
   title: "Pricing | Zippy",
@@ -10,11 +11,12 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <div className="py-12 md:py-20">
+      <UxTelemetry page="pricing" />
       <Link href="/" className="text-sm text-[var(--muted)] hover:text-white transition-colors">
         ← Back to home
       </Link>
 
-      <section className="mt-8 px-4">
+      <section data-ux-section="pricing-plans" className="mt-8 px-4">
         <div className="mx-auto max-w-5xl">
           <h1 className="page-title text-center">Pricing</h1>
           <p className="page-subtitle mx-auto mt-2 max-w-2xl text-center">
@@ -49,7 +51,7 @@ export default function PricingPage() {
                   ROI reporting
                 </li>
               </ul>
-              <ConnectQuickBooksLink className="btn-primary mt-6 block w-full text-center">
+              <ConnectQuickBooksLink data-ux-cta="pricing-core-get-started" className="btn-primary mt-6 block w-full text-center">
                 Get started
               </ConnectQuickBooksLink>
             </div>
@@ -81,7 +83,7 @@ export default function PricingPage() {
                   Better reporting
                 </li>
               </ul>
-              <ConnectQuickBooksLink className="btn-secondary mt-6 block w-full text-center">
+              <ConnectQuickBooksLink data-ux-cta="pricing-team-get-started" className="btn-secondary mt-6 block w-full text-center">
                 Get started
               </ConnectQuickBooksLink>
             </div>
@@ -116,7 +118,7 @@ export default function PricingPage() {
                   Dedicated setup
                 </li>
               </ul>
-              <a href="mailto:sales@zippy.com?subject=AR%20Sprint%20inquiry" className="btn-secondary mt-6 block w-full text-center">
+              <a data-ux-cta="pricing-concierge-contact-sales" href="mailto:sales@zippy.com?subject=AR%20Sprint%20inquiry" className="btn-secondary mt-6 block w-full text-center">
                 Contact sales
               </a>
             </div>
