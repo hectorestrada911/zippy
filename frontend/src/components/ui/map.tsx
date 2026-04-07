@@ -3,6 +3,7 @@
 import { useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DottedMap from "dotted-map";
+import { useAnimationPerfProbe } from "@/components/hooks/useAnimationPerfProbe";
 
 interface MapProps {
   dots?: Array<{
@@ -27,6 +28,12 @@ export function WorldMap({
   loop = true,
   theme = "dark",
 }: MapProps) {
+  useAnimationPerfProbe({
+    probeId: "world-map",
+    hypothesisId: "A4",
+    sampleMs: 3000,
+  });
+
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
 
