@@ -10,7 +10,6 @@ import { SpiralAnimation } from "@/components/ui/spiral-animation";
  */
 export function SpiralSectionDemo() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [buttonVisible, setButtonVisible] = useState(false);
   const [showSpiral, setShowSpiral] = useState(false);
 
   useEffect(() => {
@@ -26,16 +25,10 @@ export function SpiralSectionDemo() {
     };
   }, []);
 
-  useEffect(() => {
-    const delayMs = showSpiral ? 2000 : 400;
-    const timer = setTimeout(() => setButtonVisible(true), delayMs);
-    return () => clearTimeout(timer);
-  }, [showSpiral]);
-
   return (
     <div
       ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden bg-[var(--background)]"
+      className="relative min-h-[52vh] w-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--background)] md:min-h-[64vh]"
     >
       <div className="absolute inset-0">
         {showSpiral ? (
@@ -52,12 +45,12 @@ export function SpiralSectionDemo() {
       </div>
       <div
         className={`
-          absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ease-out
-          ${buttonVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+          absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2
         `}
       >
         <ConnectQuickBooksLink
-          className="inline-flex h-[120px] w-[320px] items-center justify-center rounded-full border border-white/40 bg-transparent px-8 py-4 text-xl font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.25)] transition-all hover:bg-white/5 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.4)] md:text-3xl"
+          data-ux-cta="spiral-connect-quickbooks"
+          className="inline-flex h-14 w-[220px] items-center justify-center rounded-full border border-[var(--accent)]/35 bg-[var(--card)]/55 px-5 py-3 text-base font-semibold text-white shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-all hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.35)] md:h-16 md:w-[260px] md:text-lg"
         >
           Connect QuickBooks
         </ConnectQuickBooksLink>
