@@ -1,12 +1,15 @@
 """Public endpoints: pay and dispute by token (no login)."""
+import html
 from datetime import datetime, timezone
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from pydantic import BaseModel, EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
+from app.config import settings
 from app.database import get_db
+from app.integrations.email_sender import email_configured, send_email
 from app.models import Invoice, Dispute, DisputeEvent, WaitlistEntry
 from app.models.dispute import DISPUTE_REASONS, DISPUTE_STATUS_OPEN
 from app.schemas.disputes import DisputeCreate
@@ -18,6 +21,33 @@ router = APIRouter(prefix="/public", tags=["public"])
 class WaitlistRequest(BaseModel):
     email: EmailStr
     source: str | None = "landing_page"
+
+
+def _waitlist_confirmation_html() -> str:
+    app = html.escape(settings.app_name)
+    return f"""
+    <div style="font-family: system-ui, -apple-system, Segoe UI, sans-serif; line-height: 1.5; color: #18181b;">
+      <p style="margin: 0 0 12px;">You're on the list.</p>
+      <p style="margin: 0 0 12px;">
+        We're finishing QuickBooks integration for {app}. You'll be among the first to know when it's ready—no spam, just a short note when you can connect.
+      </p>
+      <p style="margin: 0; color: #52525b; font-size: 14px;">
+        — The {app} team
+      </p>
+    </div>
+    """
+
+
+async def _send_waitlist_welcome_email(email: str) -> None:
+    """Fire-and-forget from BackgroundTasks; skips if Resend is not configured."""
+    if not email_configured():
+        return
+    await send_email(
+        to=email,
+        subject=f"You're on the {settings.app_name} waitlist",
+        html=_waitlist_confirmation_html(),
+        reply_to=settings.reply_to or None,
+    )
 
 
 async def _get_invoice_by_token(db: AsyncSession, token: str):
@@ -89,10 +119,11 @@ async def open_dispute(
 
 @router.post("/waitlist")
 async def join_waitlist(
-  body: WaitlistRequest,
-  db: AsyncSession = Depends(get_db),
+    body: WaitlistRequest,
+    background_tasks: BackgroundTasks,
+    db: AsyncSession = Depends(get_db),
 ):
-    """Public waitlist signup. Idempotent by email."""
+    """Public waitlist signup. Idempotent by email. Sends confirmation via Resend when configured."""
     normalized_email = body.email.strip().lower()
     existing = await db.execute(select(WaitlistEntry).where(WaitlistEntry.email == normalized_email))
     entry = existing.scalar_one_or_none()
@@ -106,4 +137,5 @@ async def join_waitlist(
     entry = WaitlistEntry(email=normalized_email, source=body.source or "landing_page")
     db.add(entry)
     await db.flush()
+    background_tasks.add_task(_send_waitlist_welcome_email, normalized_email)
     return {"message": "Thanks! You are on the waitlist.", "already_joined": False}

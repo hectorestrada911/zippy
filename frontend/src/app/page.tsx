@@ -94,6 +94,13 @@ export default function Home() {
               <ConnectQuickBooksLink data-ux-cta="hero-connect-quickbooks" className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110">
                 Connect QuickBooks
               </ConnectQuickBooksLink>
+              <Link
+                data-ux-cta="hero-waitlist"
+                href="/waitlist"
+                className="btn-secondary inline-flex items-center gap-2 text-base border-[var(--accent)]/30 text-[var(--accent)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/10"
+              >
+                QuickBooks waitlist
+              </Link>
               <Link data-ux-cta="hero-pricing" href="/pricing" className="btn-secondary text-base">
                 Pricing
               </Link>
@@ -112,6 +119,12 @@ export default function Home() {
               style={{ animationDelay: "0.65s", animationFillMode: "forwards" }}
             >
               Safe to try · Nothing changes in QuickBooks · 2 minutes to first sync
+            </p>
+            <p
+              className="animate-fade-in mt-2 text-xs text-[var(--muted)]"
+              style={{ animationDelay: "0.72s", animationFillMode: "forwards" }}
+            >
+              Many small businesses are owed around <span className="font-semibold text-white">$17,000+</span> in unpaid invoices at any given time.
             </p>
             <div
               className="animate-fade-in-up mt-12 opacity-0 lg:mt-14"
@@ -234,9 +247,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Spiral animation: full-section Connect QuickBooks CTA */}
-      <section className="min-h-screen">
-        <SpiralSectionDemo />
+      {/* Spiral animation: compact CTA transition section */}
+      <section className="border-t border-[var(--border)] px-4 py-14 md:py-18" style={{ backgroundColor: "rgba(16, 16, 19, 0.55)" }}>
+        <div className="mx-auto max-w-5xl">
+          <p className="section-title text-center">Next step</p>
+          <h2 className="page-title text-center">Connect once, then let Zippy run follow-ups for you</h2>
+          <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
+            Keep your client relationships clean while overdue cash gets handled in the background.
+          </p>
+          <div className="mt-8">
+            <SpiralSectionDemo />
+          </div>
+        </div>
       </section>
 
       {/* Why Zippy vs QuickBooks */}

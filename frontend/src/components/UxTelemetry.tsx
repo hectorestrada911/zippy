@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 type UxTelemetryProps = {
-  page: "home" | "pricing";
+  page: "home" | "pricing" | "waitlist";
 };
 
 const ENDPOINT = "http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540";
