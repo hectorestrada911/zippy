@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import ConnectQuickBooksLink from "@/components/ConnectQuickBooksLink";
+import Link from "next/link";
 import { SpiralAnimation } from "@/components/ui/spiral-animation";
 
 /**
- * Full-section spiral animation with centered "Connect QuickBooks" CTA.
+ * Full-section spiral animation with centered waitlist CTA.
  * Replaces the pulse-beams section: same dark full-screen block, spiral as background.
  */
 export function SpiralSectionDemo() {
@@ -81,12 +81,13 @@ export function SpiralSectionDemo() {
           absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2
         `}
       >
-        <ConnectQuickBooksLink
-          data-ux-cta="spiral-connect-quickbooks"
-          className="inline-flex h-14 w-[220px] items-center justify-center rounded-full border border-[var(--accent)]/35 bg-[var(--card)]/55 px-5 py-3 text-base font-semibold text-white shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-all hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.35)] md:h-16 md:w-[260px] md:text-lg"
+        <Link
+          href="/waitlist"
+          data-ux-cta="spiral-waitlist"
+          className="inline-flex h-14 min-w-[220px] items-center justify-center rounded-full border border-[var(--accent)]/35 bg-[var(--card)]/55 px-5 py-3 text-base font-semibold text-white shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-all hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.35)] md:h-16 md:min-w-[260px] md:text-lg"
         >
-          Connect QuickBooks
-        </ConnectQuickBooksLink>
+          Join the waitlist
+        </Link>
       </div>
     </div>
   );

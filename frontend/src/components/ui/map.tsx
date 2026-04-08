@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DottedMap from "dotted-map";
 import { useAnimationPerfProbe } from "@/components/hooks/useAnimationPerfProbe";
@@ -38,6 +38,7 @@ export function WorldMap({
   });
 
   const svgRef = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
 
   const map = useMemo(
@@ -185,8 +186,51 @@ export function WorldMap({
 
   const mapDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`;
 
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const containerAspect = rect.width / Math.max(1, rect.height);
+    const svgAspect = 2; // 800 / 400
+    const letterboxSeverity = Number(Math.abs(containerAspect - svgAspect).toFixed(2));
+    const payload = {
+      sessionId: "4c3e2e",
+      runId: "pre-fix-map-mobile",
+      hypothesisId: "M2-M4",
+      location: "frontend/src/components/ui/map.tsx:mount",
+      message: "WorldMap layout snapshot",
+      data: {
+        width: Math.round(rect.width),
+        height: Math.round(rect.height),
+        containerAspect: Number(containerAspect.toFixed(2)),
+        svgAspect,
+        letterboxSeverity,
+        dots: dots.length,
+        loop,
+        enableMarkerPulse,
+      },
+      timestamp: Date.now(),
+    };
+    // #region agent log
+    fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "4c3e2e",
+      },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+    fetch("/api/debug-log", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+    // #endregion
+  }, [dots.length, enableMarkerPulse, loop]);
+
   return (
     <div
+      ref={containerRef}
       className={`w-full h-full min-h-0 sm:h-auto sm:aspect-[3/2] md:aspect-[2/1] lg:aspect-[2/1] rounded-none sm:rounded-lg relative font-sans overflow-hidden ${theme === "dark" ? "bg-black" : "bg-white"}`}
       style={{ touchAction: "pan-y" }}
     >

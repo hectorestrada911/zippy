@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getSyncStatus, runSync, getQuickBooksAuthUrl } from "@/lib/api";
+import { getSyncStatus, runSync } from "@/lib/api";
 import { getFriendlyError } from "@/lib/getFriendlyError";
 
 export default function SettingsIntegrationsPage() {
@@ -29,15 +29,6 @@ export default function SettingsIntegrationsPage() {
       setSyncResult(getFriendlyError(msg).message);
     } finally {
       setSyncing(false);
-    }
-  }
-
-  async function connectQuickBooks() {
-    try {
-      const { url } = await getQuickBooksAuthUrl(Math.random().toString(36));
-      window.location.href = url;
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to get auth URL");
     }
   }
 
@@ -73,7 +64,7 @@ export default function SettingsIntegrationsPage() {
       <div className="card max-w-2xl">
         <h2 className="section-title">Your books</h2>
         <p className="text-sm text-[var(--muted)] mb-6">
-          Connect QuickBooks so Zippy can see your customers and open invoices. Not connected yet? You can still run a sync with sample data to try everything out.
+          QuickBooks integration is invite-only while we finish the launch. Join the waitlist to get access; you can still run a sync with sample data to try the product.
         </p>
         <div className="flex flex-wrap items-center gap-4">
           <span
@@ -85,9 +76,9 @@ export default function SettingsIntegrationsPage() {
             QuickBooks {status.quickbooks_connected ? "Connected" : "Not connected"}
           </span>
           {!status.quickbooks_connected && (
-            <button onClick={connectQuickBooks} className="btn-primary">
-              Connect QuickBooks
-            </button>
+            <Link href="/waitlist" className="btn-primary">
+              Join the waitlist
+            </Link>
           )}
         </div>
         <div className="mt-6 flex items-center gap-4">
@@ -101,8 +92,8 @@ export default function SettingsIntegrationsPage() {
               </p>
               {!syncResult.startsWith("Synced") && (
                 <div className="flex flex-wrap gap-3">
-                  <Link href="/settings/integrations" className="text-sm font-medium text-[var(--accent)] hover:underline">
-                    Reconnect QuickBooks
+                  <Link href="/" className="text-sm font-medium text-[var(--accent)] hover:underline">
+                    Reconnect from home (testing)
                   </Link>
                   <Link href="/support" className="text-sm font-medium text-[var(--accent)] hover:underline">
                     Contact support
