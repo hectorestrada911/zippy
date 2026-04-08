@@ -91,15 +91,19 @@ export default function Home() {
               className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
               style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
             >
-              <ConnectQuickBooksLink data-ux-cta="hero-connect-quickbooks" className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110">
+              <ConnectQuickBooksLink
+                data-ux-cta="hero-connect-quickbooks-testing"
+                title="Internal testing: connect QuickBooks via OAuth"
+                className="btn-secondary inline-flex items-center gap-2 text-sm transition-all hover:brightness-110"
+              >
                 Connect QuickBooks
               </ConnectQuickBooksLink>
               <Link
                 data-ux-cta="hero-waitlist"
                 href="/waitlist"
-                className="btn-secondary inline-flex items-center gap-2 text-base border-[var(--accent)]/30 text-[var(--accent)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/10"
+                className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
               >
-                QuickBooks waitlist
+                Join the waitlist
               </Link>
               <Link data-ux-cta="hero-pricing" href="/pricing" className="btn-secondary text-base">
                 Pricing
@@ -251,9 +255,9 @@ export default function Home() {
       <section className="border-t border-[var(--border)] px-4 py-14 md:py-18" style={{ backgroundColor: "rgba(16, 16, 19, 0.55)" }}>
         <div className="mx-auto max-w-5xl">
           <p className="section-title text-center">Next step</p>
-          <h2 className="page-title text-center">Connect once, then let Zippy run follow-ups for you</h2>
+          <h2 className="page-title text-center">Join the waitlist—QuickBooks sync is almost here</h2>
           <p className="page-subtitle mx-auto mt-2 max-w-xl text-center">
-            Keep your client relationships clean while overdue cash gets handled in the background.
+            We’ll email you when you can connect. Until then, reserve your spot and keep relationships clean while AR runs in the background.
           </p>
           <div className="mt-8">
             <SpiralSectionDemo />
@@ -302,7 +306,7 @@ export default function Home() {
               </div>
               <h3 className="mt-6 text-xl font-semibold text-white">Know exactly who owes what</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                Connect QuickBooks once. Your customers and open invoices stay in sync. No spreadsheets, no guesswork.
+                When QuickBooks goes live, one connect keeps customers and open invoices in sync. No spreadsheets, no guesswork.
               </p>
             </div>
             <div className="group flex flex-col items-center rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center transition-all hover:border-[var(--accent)]/30 hover:shadow-lg">
@@ -367,7 +371,7 @@ export default function Home() {
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent)]">Books</p>
               <h3 className="mt-1 text-lg font-semibold text-white">QuickBooks</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                Connect once. Your customers and open invoices stay in sync. No re-typing.
+                One connect when we launch—customers and open invoices stay in sync. No re-typing.
               </p>
             </div>
             <div className="hidden flex-shrink-0 items-center justify-center sm:flex sm:w-8">
@@ -423,7 +427,7 @@ export default function Home() {
             {[
               {
                 q: "How does Zippy work with my books?",
-                a: "Connect QuickBooks once. Zippy syncs your customers and open invoices. Everything stays current. No re-typing, no spreadsheets.",
+                a: "After QuickBooks is available, you’ll connect once and Zippy syncs customers and open invoices. Everything stays current. No re-typing, no spreadsheets.",
               },
               {
                 q: "Will Zippy keep nagging if there’s a problem?",
@@ -439,7 +443,7 @@ export default function Home() {
               },
               {
                 q: "Can I try it before committing?",
-                a: "Yes. Sign up with email, connect QuickBooks, and start getting paid faster. No credit card required.",
+                a: "Yes. Sign up with email, join the waitlist for QuickBooks, and we’ll get you in as soon as sync is ready. No credit card required.",
               },
             ].map((faq) => (
               <div key={faq.q}>

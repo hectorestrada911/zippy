@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ConnectQuickBooksLink from "@/components/ConnectQuickBooksLink";
 import UxTelemetry from "@/components/UxTelemetry";
 
 export const metadata: Metadata = {
@@ -51,9 +50,13 @@ export default function PricingPage() {
                   ROI reporting
                 </li>
               </ul>
-              <ConnectQuickBooksLink data-ux-cta="pricing-core-get-started" className="btn-primary mt-6 block w-full text-center">
-                Get started
-              </ConnectQuickBooksLink>
+              <Link
+                data-ux-cta="pricing-core-waitlist"
+                href="/waitlist"
+                className="btn-primary mt-6 block w-full text-center"
+              >
+                Join the waitlist
+              </Link>
             </div>
             {/* Team — higher AR volume */}
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--border-subtle)]">
@@ -83,9 +86,13 @@ export default function PricingPage() {
                   Better reporting
                 </li>
               </ul>
-              <ConnectQuickBooksLink data-ux-cta="pricing-team-get-started" className="btn-secondary mt-6 block w-full text-center">
-                Get started
-              </ConnectQuickBooksLink>
+              <Link
+                data-ux-cta="pricing-team-waitlist"
+                href="/waitlist"
+                className="btn-secondary mt-6 block w-full text-center"
+              >
+                Join the waitlist
+              </Link>
             </div>
             {/* Concierge / AR Sprint */}
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--border-subtle)]">

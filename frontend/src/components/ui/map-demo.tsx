@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { WorldMap } from "@/components/ui/map";
 import { DollarSign } from "lucide-react";
 
@@ -34,6 +34,7 @@ const MAP_DOTS = [
 
 export function MapDemo() {
   const [liteMap, setLiteMap] = useState(false);
+  const loggedRef = useRef(false);
 
   useEffect(() => {
     const update = () => {
@@ -41,7 +42,43 @@ export function MapDemo() {
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
-      setLiteMap(narrow || reduceMotion);
+      const nextLite = narrow || reduceMotion;
+      setLiteMap(nextLite);
+      if (!loggedRef.current) {
+        loggedRef.current = true;
+        const payload = {
+          sessionId: "4c3e2e",
+          runId: "pre-fix-map-mobile",
+          hypothesisId: "M1-M3",
+          location: "frontend/src/components/ui/map-demo.tsx:update",
+          message: "Map mode selected",
+          data: {
+            narrow,
+            reduceMotion,
+            liteMap: nextLite,
+            viewportWidth: window.innerWidth,
+            viewportHeight: window.innerHeight,
+            loop: !nextLite,
+            animationDuration: nextLite ? 0.6 : 2,
+          },
+          timestamp: Date.now(),
+        };
+        // #region agent log
+        fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Debug-Session-Id": "4c3e2e",
+          },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+        fetch("/api/debug-log", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+        // #endregion
+      }
     };
     update();
     const mqN = window.matchMedia("(max-width: 767px)");
