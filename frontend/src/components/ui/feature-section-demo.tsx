@@ -5,9 +5,9 @@ import { FeatureSteps } from "@/components/ui/feature-section";
 const features = [
   {
     step: "Step 1",
-    title: "Connect QuickBooks",
+    title: "Join the waitlist",
     content:
-      "Link your account once. Your customers and open invoices stay in sync. No spreadsheets. No re-typing.",
+      "We’re finishing QuickBooks sync. Reserve your spot—when it’s ready, you’ll link once and customers and open invoices stay in sync. No spreadsheets. No re-typing.",
     image:
       "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1000&q=80&auto=format&fit=crop",
   },

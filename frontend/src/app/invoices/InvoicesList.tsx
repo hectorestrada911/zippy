@@ -84,11 +84,11 @@ export default function InvoicesList() {
         <div className="empty-state">
           <p className="empty-state-title">No invoices yet</p>
           <p className="empty-state-desc">
-            Connect QuickBooks in Settings to pull in your customers and open invoices. Once synced, set your first reminder schedule so we know when to nudge.
+            Join the waitlist for QuickBooks access, or sync sample data from Settings to try invoices here. Once you have data, set your first reminder schedule so we know when to nudge.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Link href="/settings/integrations" className="btn-primary">
-              Connect QuickBooks
+            <Link href="/waitlist" className="btn-primary">
+              Join the waitlist
             </Link>
             <Link href="/settings/autopilot" className="btn-secondary">
               Set reminder schedule

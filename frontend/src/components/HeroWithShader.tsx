@@ -55,10 +55,10 @@ export function HeroWithShader() {
               style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
             >
               <Link
-                href="/login"
+                href="/waitlist"
                 className="btn-primary btn-hero-cta inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
               >
-                Connect QuickBooks
+                Join the waitlist
               </Link>
               <Link href="#how-it-works" className="btn-secondary text-base">
                 What you get

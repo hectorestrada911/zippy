@@ -36,7 +36,7 @@ export function GlowingEffectDemo() {
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Box className="h-4 w-4 text-[var(--accent)]" />}
         title="Always in sync"
-        description="Connect QuickBooks once. Customers and open invoices stay current. No re-typing."
+        description="When QuickBooks launches, one connect keeps customers and invoices current. No re-typing."
       />
     </ul>
   );

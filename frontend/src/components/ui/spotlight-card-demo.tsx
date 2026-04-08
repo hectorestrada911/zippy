@@ -15,7 +15,7 @@ export function SpotlightCardDemo() {
           </div>
           <h3 className="text-lg font-semibold text-white">Know who owes what</h3>
           <p className="text-sm text-[var(--muted)]">
-            Connect QuickBooks once. Customers and invoices stay in sync. No guesswork.
+            After QuickBooks is live, one connect keeps customers and invoices in sync. No guesswork.
           </p>
         </div>
       </GlowCard>

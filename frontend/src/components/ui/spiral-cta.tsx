@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SpiralAnimation } from "@/components/ui/spiral-animation";
 
 /**
- * CTA that uses the spiral animation as background with "Connect QuickBooks" on top.
+ * CTA that uses the spiral animation as background with waitlist link on top.
  * Replaces the plain button with the spiral visual.
  */
 export function SpiralCta() {
@@ -26,14 +26,14 @@ export function SpiralCta() {
         <SpiralAnimation containerRef={containerRef} className="absolute inset-0" />
       </div>
       <Link
-        href="/login"
+        href="/waitlist"
         className={`
           absolute inset-0 z-10 flex items-center justify-center text-base font-semibold text-white transition-all duration-500
           hover:brightness-110
           ${startVisible ? "opacity-100" : "opacity-0"}
         `}
       >
-        Connect QuickBooks
+        Join the waitlist
       </Link>
     </div>
   );
