@@ -11,11 +11,43 @@ import { SpiralAnimation } from "@/components/ui/spiral-animation";
 export function SpiralSectionDemo() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [showSpiral, setShowSpiral] = useState(false);
+  const [spiralBackgroundFill, setSpiralBackgroundFill] = useState("rgb(24, 24, 27)");
 
   useEffect(() => {
     const mqW = window.matchMedia("(min-width: 768px)");
     const mqR = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => setShowSpiral(mqW.matches && !mqR.matches);
+    const resolvedBackground =
+      getComputedStyle(document.documentElement).getPropertyValue("--background").trim() ||
+      "#18181b";
+    setSpiralBackgroundFill(resolvedBackground);
+    const payload = {
+      sessionId: "4c3e2e",
+      runId: "post-fix-ui-polish",
+      hypothesisId: "A7",
+      location: "frontend/src/components/ui/spiral-section-demo.tsx:sync",
+      message: "Spiral background color resolved",
+      data: {
+        resolvedBackground,
+        showSpiral: mqW.matches && !mqR.matches,
+      },
+      timestamp: Date.now(),
+    };
+    // #region agent log
+    fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "4c3e2e",
+      },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+    fetch("/api/debug-log", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+    // #endregion
     sync();
     mqW.addEventListener("change", sync);
     mqR.addEventListener("change", sync);
@@ -35,6 +67,7 @@ export function SpiralSectionDemo() {
           <SpiralAnimation
             containerRef={sectionRef}
             className="absolute inset-0"
+            backgroundFill={spiralBackgroundFill}
           />
         ) : (
           <div
