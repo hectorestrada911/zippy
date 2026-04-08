@@ -15,6 +15,8 @@ interface MapProps {
   labelClassName?: string;
   animationDuration?: number;
   loop?: boolean;
+  /** Pulsing rings on markers — disable on low-power / mobile to save paint cost */
+  enableMarkerPulse?: boolean;
   /** "dark" | "light" - defaults to "dark" (no next-themes required) */
   theme?: "dark" | "light";
 }
@@ -26,6 +28,7 @@ export function WorldMap({
   labelClassName = "text-sm",
   animationDuration = 2,
   loop = true,
+  enableMarkerPulse = true,
   theme = "dark",
 }: MapProps) {
   useAnimationPerfProbe({
@@ -88,19 +91,95 @@ export function WorldMap({
       }
     }
     const list = Array.from(seen.values());
-    const dist = (a: { x: number; y: number }, b: { x: number; y: number }) =>
-      Math.hypot(a.x - b.x, a.y - b.y);
-    const closeThreshold = 70;
-    const offsetY = 20;
-    return list.map((item, i) => {
-      const pt = { x: ((item.lng + 180) * 800) / 360, y: ((90 - item.lat) * 400) / 180 };
-      let dy = 0;
-      for (let j = 0; j < i; j++) {
-        const other = list[j];
-        const otherPt = { x: ((other.lng + 180) * 800) / 360, y: ((90 - other.lat) * 400) / 180 };
-        if (dist(pt, otherPt) < closeThreshold) dy += offsetY;
+    const LABEL_W = 120;
+    const LABEL_H = 28;
+    const LABEL_PAD = 10;
+    const LABEL_BASE = 32;
+
+    const projected = list.map((item) => ({
+      ...item,
+      pt: {
+        x: ((item.lng + 180) * 800) / 360,
+        y: ((90 - item.lat) * 400) / 180,
+      },
+    }));
+
+    projected.sort((a, b) => a.pt.y - b.pt.y || a.pt.x - b.pt.x);
+
+    type Rect = { left: number; top: number; right: number; bottom: number };
+    const placed: Rect[] = [];
+
+    const rectFor = (
+      pt: { x: number; y: number },
+      offsetX: number,
+      offsetY: number
+    ): Rect => {
+      const left = pt.x - LABEL_W / 2 + offsetX;
+      const top = pt.y - LABEL_BASE - offsetY;
+      return {
+        left,
+        top,
+        right: left + LABEL_W,
+        bottom: top + LABEL_H,
+      };
+    };
+
+    const collides = (r: Rect) => {
+      for (const p of placed) {
+        if (
+          !(
+            r.right + LABEL_PAD <= p.left ||
+            r.left >= p.right + LABEL_PAD ||
+            r.bottom + LABEL_PAD <= p.top ||
+            r.top >= p.bottom + LABEL_PAD
+          )
+        ) {
+          return true;
+        }
       }
-      return { ...item, labelOffsetY: dy } as typeof item & { labelOffsetY: number };
+      return false;
+    };
+
+    const OFFSETS: [number, number][] = [
+      [0, 0],
+      [0, 40],
+      [0, -40],
+      [76, 0],
+      [-76, 0],
+      [76, 40],
+      [-76, 40],
+      [76, -40],
+      [-76, -40],
+      [0, 80],
+      [0, -80],
+      [152, 0],
+      [-152, 0],
+      [0, 120],
+      [110, 80],
+      [-110, 80],
+      [110, -80],
+      [-110, -80],
+    ];
+
+    return projected.map((entry) => {
+      const { pt, ...item } = entry;
+      let offsetX = 0;
+      let offsetY = 0;
+      let placedRect: Rect | null = null;
+      for (const [ox, oy] of OFFSETS) {
+        const r = rectFor(pt, ox, oy);
+        if (!collides(r)) {
+          placed.push(r);
+          offsetX = ox;
+          offsetY = oy;
+          placedRect = r;
+          break;
+        }
+      }
+      if (!placedRect) {
+        placed.push(rectFor(pt, 0, 0));
+      }
+      return { ...item, labelOffsetX: offsetX, labelOffsetY: offsetY };
     });
   }, [dots]);
 
@@ -252,30 +331,32 @@ export function WorldMap({
                     filter="url(#map-glow)"
                     className="drop-shadow-lg"
                   />
-                  <circle
-                    cx={startPoint.x}
-                    cy={startPoint.y}
-                    r="3"
-                    fill={lineColor}
-                    opacity="0.5"
-                  >
-                    <animate
-                      attributeName="r"
-                      from="3"
-                      to="12"
-                      dur="2s"
-                      begin="0s"
-                      repeatCount="indefinite"
-                    />
-                    <animate
-                      attributeName="opacity"
-                      from="0.6"
-                      to="0"
-                      dur="2s"
-                      begin="0s"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
+                  {enableMarkerPulse ? (
+                    <circle
+                      cx={startPoint.x}
+                      cy={startPoint.y}
+                      r="3"
+                      fill={lineColor}
+                      opacity="0.5"
+                    >
+                      <animate
+                        attributeName="r"
+                        from="3"
+                        to="12"
+                        dur="2s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        from="0.6"
+                        to="0"
+                        dur="2s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  ) : null}
                 </motion.g>
               </g>
               <g key={`end-${i}`}>
@@ -308,30 +389,32 @@ export function WorldMap({
                     filter="url(#map-glow)"
                     className="drop-shadow-lg"
                   />
-                  <circle
-                    cx={endPoint.x}
-                    cy={endPoint.y}
-                    r="3"
-                    fill={lineColor}
-                    opacity="0.5"
-                  >
-                    <animate
-                      attributeName="r"
-                      from="3"
-                      to="12"
-                      dur="2s"
-                      begin="0.5s"
-                      repeatCount="indefinite"
-                    />
-                    <animate
-                      attributeName="opacity"
-                      from="0.6"
-                      to="0"
-                      dur="2s"
-                      begin="0.5s"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
+                  {enableMarkerPulse ? (
+                    <circle
+                      cx={endPoint.x}
+                      cy={endPoint.y}
+                      r="3"
+                      fill={lineColor}
+                      opacity="0.5"
+                    >
+                      <animate
+                        attributeName="r"
+                        from="3"
+                        to="12"
+                        dur="2s"
+                        begin="0.5s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        from="0.6"
+                        to="0"
+                        dur="2s"
+                        begin="0.5s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  ) : null}
                 </motion.g>
               </g>
             </g>
@@ -344,7 +427,8 @@ export function WorldMap({
             const pt = projectPoint(item.lat, item.lng);
             const labelW = 120;
             const labelH = 28;
-            const offsetY = item.labelOffsetY ?? 0;
+            const offsetX = item.labelOffsetX;
+            const offsetY = item.labelOffsetY;
             return (
               <motion.g
                 key={`label-${item.label}-${i}`}
@@ -354,7 +438,7 @@ export function WorldMap({
                 className="pointer-events-none hidden sm:block"
               >
                 <foreignObject
-                  x={pt.x - labelW / 2}
+                  x={pt.x - labelW / 2 + offsetX}
                   y={pt.y - 32 - offsetY}
                   width={labelW}
                   height={labelH}

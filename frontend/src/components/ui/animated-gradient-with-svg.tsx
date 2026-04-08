@@ -10,6 +10,8 @@ interface AnimatedGradientProps {
   speed?: number;
   blur?: "light" | "medium" | "heavy";
   className?: string;
+  /** When false, blobs are static (better on phones / reduced-motion) */
+  animated?: boolean;
 }
 
 const randomInt = (min: number, max: number) => {
@@ -21,6 +23,7 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
   speed = 5,
   blur = "light",
   className,
+  animated = true,
 }) => {
   useAnimationPerfProbe({
     probeId: "animated-gradient-svg",
@@ -86,7 +89,7 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
         {circles.map((c, index) => (
           <svg
             key={index}
-            className="absolute animate-background-gradient"
+            className={cn("absolute", animated && "animate-background-gradient")}
             style={
               {
                 top: `${c.top}%`,
