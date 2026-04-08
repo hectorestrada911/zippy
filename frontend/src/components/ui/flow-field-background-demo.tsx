@@ -29,10 +29,10 @@ export function FlowFieldBackgroundDemo() {
           We nudge. They pay or tell you why not. You fix it once, money lands. No awkward texts.
         </p>
         <Link
-          href="/login"
+          href="/waitlist"
           className="btn-primary inline-flex items-center gap-2 text-base transition-all hover:brightness-110"
         >
-          Connect QuickBooks
+          Join the waitlist
           <ArrowRight className="h-4 w-4" />
         </Link>
         <p className="text-sm text-[var(--muted-soft)]">

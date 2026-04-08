@@ -6,8 +6,8 @@ export function DemoBackgroundPaths() {
   return (
     <BackgroundPaths
       title="Get paid faster"
-      ctaLabel="Connect QuickBooks"
-      ctaHref="/login"
+      ctaLabel="Join the waitlist"
+      ctaHref="/waitlist"
     />
   );
 }

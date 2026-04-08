@@ -30,8 +30,8 @@ export function getFriendlyError(
   ) {
     return {
       message:
-        "QuickBooks connection may have expired or the sync didn’t complete. Try reconnecting in Settings, or contact support if it keeps happening.",
-      primary: { label: "Reconnect QuickBooks", href: "/settings/integrations" },
+        "QuickBooks connection may have expired or the sync didn’t complete. Try reconnecting from the homepage (testing), join the waitlist if you need access, or contact support if it keeps happening.",
+      primary: { label: "Join the waitlist", href: "/waitlist" },
       secondary: { label: "Contact support", href: "/support" },
     };
   }

@@ -8,7 +8,7 @@ export default function ARSprintPage() {
     {
       day: "Day 0",
       title: "Connect & import",
-      items: ["Connect QuickBooks", "Sync customers and open invoices", "Review AR snapshot"],
+      items: ["Join the QuickBooks waitlist", "Sync customers and open invoices", "Review AR snapshot"],
     },
     {
       day: "Day 1",
