@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, FileText, MessageSquare, Settings, LogIn, Menu, X } from "lucide-react";
+import { BarChart3, FileText, MessageSquare, Settings, LogIn, Menu, X, Sparkles } from "lucide-react";
 import ZippyLogo from "./ZippyLogo";
 
 const links = [
@@ -47,8 +47,14 @@ export default function Nav() {
             );
           })}
           <Link
+            href="/waitlist"
+            className="rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium text-[var(--muted)] transition-colors hover:bg-white/5 hover:text-white"
+          >
+            Waitlist
+          </Link>
+          <Link
             href="/login"
-            className="ml-2 flex items-center gap-2 rounded-[var(--radius-sm)] bg-[var(--accent)] px-3 py-2 text-sm font-semibold text-zinc-900 transition-all hover:brightness-110"
+            className="ml-1 flex items-center gap-2 rounded-[var(--radius-sm)] bg-[var(--accent)] px-3 py-2 text-sm font-semibold text-zinc-900 transition-all hover:brightness-110"
           >
             <LogIn className="h-4 w-4" strokeWidth={2} />
             Log in
@@ -79,6 +85,14 @@ export default function Nav() {
         <div className="border-t border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-md md:hidden">
           <div className="mx-auto max-w-6xl px-4 py-3">
             <div className="flex flex-col gap-1">
+              <Link
+                href="/waitlist"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-[var(--muted)] transition-colors hover:bg-white/5 hover:text-white"
+              >
+                <Sparkles className="h-5 w-5 text-[var(--accent)]" />
+                QuickBooks waitlist
+              </Link>
               {links.map(({ href, label, icon: Icon }) => {
                 const active = pathname === href || (href !== "/dashboard" && pathname.startsWith(href));
                 return (
