@@ -35,17 +35,20 @@ class AnimationController {
   readonly viewZoom = 100;
   private readonly numberOfStars = 5000;
   private readonly trailLength = 80;
+  private readonly backgroundFill: string;
 
   constructor(
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D,
     dpr: number,
-    size: number
+    size: number,
+    backgroundFill: string
   ) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.dpr = dpr;
     this.size = size;
+    this.backgroundFill = backgroundFill;
     this.timeline = gsap.timeline({ repeat: -1 });
 
     this.setupRandomGenerator();
@@ -193,7 +196,7 @@ class AnimationController {
     const ctx = this.ctx;
     if (!ctx) return;
 
-    ctx.fillStyle = "black";
+    ctx.fillStyle = this.backgroundFill;
     ctx.fillRect(0, 0, this.size, this.size);
 
     ctx.save();
@@ -398,9 +401,14 @@ interface SpiralAnimationProps {
   /** When set, spiral fills this container instead of viewport */
   containerRef?: React.RefObject<HTMLDivElement | null>;
   className?: string;
+  backgroundFill?: string;
 }
 
-export function SpiralAnimation({ containerRef, className }: SpiralAnimationProps) {
+export function SpiralAnimation({
+  containerRef,
+  className,
+  backgroundFill = "rgb(24, 24, 27)",
+}: SpiralAnimationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<AnimationController | null>(null);
   const [dimensions, setDimensions] = useState({
@@ -445,7 +453,13 @@ export function SpiralAnimation({ containerRef, className }: SpiralAnimationProp
 
     ctx.scale(dpr, dpr);
 
-    animationRef.current = new AnimationController(canvas, ctx, dpr, size);
+    animationRef.current = new AnimationController(
+      canvas,
+      ctx,
+      dpr,
+      size,
+      backgroundFill
+    );
 
     return () => {
       if (animationRef.current) {
@@ -453,7 +467,7 @@ export function SpiralAnimation({ containerRef, className }: SpiralAnimationProp
         animationRef.current = null;
       }
     };
-  }, [dimensions]);
+  }, [dimensions, backgroundFill]);
 
   return (
     <div className={className ?? "relative w-full h-full"}>
