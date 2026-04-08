@@ -86,17 +86,13 @@ const ZIPPY = {
   accent: "#22d3ee",
   accentDim: "#0891b2",
   accentLight: "#67e8f9",
-  success: "#34d399",
-  successDim: "#047857",
-  successLight: "#6ee7b7",
-  /** Overdue: rose (reads as “needs attention”, not brown-on-dark) */
-  alert: "#fb7185",
-  alertDim: "#be123c",
-  alertLight: "#fda4af",
-  /** Blockers: distinct from cyan “outstanding” */
-  slate: "#64748b",
-  violet: "#8b5cf6",
-  violetDim: "#5b21b6",
+  ocean: "#0ea5e9",
+  deepOcean: "#0369a1",
+  mint: "#2dd4bf",
+  mintDim: "#0f766e",
+  slate: "#475569",
+  slateDim: "#334155",
+  skySoft: "#7dd3fc",
   muted: "#71717a",
 } as const;
 
@@ -110,6 +106,35 @@ export function AnimatedGradientDemo() {
         "(prefers-reduced-motion: reduce)"
       ).matches;
       setGradientAnimated(!(narrow || reduceMotion));
+      const payload = {
+        sessionId: "4c3e2e",
+        runId: "pre-fix-ui-polish",
+        hypothesisId: "A6",
+        location: "frontend/src/components/ui/animated-gradient-demo.tsx:update",
+        message: "Gradient card mode evaluated",
+        data: {
+          narrow,
+          reduceMotion,
+          gradientAnimated: !(narrow || reduceMotion),
+          palette: "teal-ocean-slate",
+        },
+        timestamp: Date.now(),
+      };
+      // #region agent log
+      fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Debug-Session-Id": "4c3e2e",
+        },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
+      fetch("/api/debug-log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
+      // #endregion
     };
     update();
     const mqN = window.matchMedia("(max-width: 767px)");
@@ -140,7 +165,7 @@ export function AnimatedGradientDemo() {
             title="Overdue"
             value="$12,400"
             subtitle="Needs a nudge"
-            colors={[ZIPPY.alert, ZIPPY.alertDim, ZIPPY.alertLight]}
+            colors={[ZIPPY.ocean, ZIPPY.deepOcean, ZIPPY.skySoft]}
             delay={0.4}
             gradientAnimated={gradientAnimated}
           />
@@ -150,7 +175,7 @@ export function AnimatedGradientDemo() {
             title="Got paid this month"
             value="18"
             subtitle="Invoices closed"
-            colors={[ZIPPY.success, ZIPPY.successDim, ZIPPY.successLight]}
+            colors={[ZIPPY.mint, ZIPPY.mintDim, ZIPPY.accent]}
             delay={0.6}
             gradientAnimated={gradientAnimated}
           />
@@ -160,7 +185,7 @@ export function AnimatedGradientDemo() {
             title="Blockers needing reply"
             value="3"
             subtitle="Why they haven't paid"
-            colors={[ZIPPY.slate, ZIPPY.violet, ZIPPY.violetDim]}
+            colors={[ZIPPY.slate, ZIPPY.slateDim, ZIPPY.accentDim]}
             delay={0.8}
             gradientAnimated={gradientAnimated}
           />
@@ -170,7 +195,7 @@ export function AnimatedGradientDemo() {
             title="Invoices past due"
             value="7"
             subtitle="We'll nudge them. You stay the good guy."
-            colors={[ZIPPY.accent, ZIPPY.success, ZIPPY.accentDim]}
+            colors={[ZIPPY.accent, ZIPPY.ocean, ZIPPY.mintDim]}
             delay={1}
             gradientAnimated={gradientAnimated}
           />
