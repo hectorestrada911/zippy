@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatedGradient } from "@/components/ui/animated-gradient-with-svg";
 
@@ -10,6 +10,7 @@ interface BentoCardProps {
   subtitle?: string;
   colors: string[];
   delay: number;
+  gradientAnimated: boolean;
 }
 
 const BentoCard: React.FC<BentoCardProps> = ({
@@ -18,6 +19,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
   subtitle,
   colors,
   delay,
+  gradientAnimated,
 }) => {
   const container = {
     hidden: { opacity: 0 },
@@ -42,7 +44,12 @@ const BentoCard: React.FC<BentoCardProps> = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay }}
     >
-      <AnimatedGradient colors={colors} speed={0.05} blur="heavy" />
+      <AnimatedGradient
+        colors={colors}
+        speed={gradientAnimated ? 0.05 : 5}
+        blur={gradientAnimated ? "heavy" : "medium"}
+        animated={gradientAnimated}
+      />
       <motion.div
         className="relative z-10 p-4 backdrop-blur-md sm:p-5 md:p-6"
         variants={container}
@@ -82,17 +89,37 @@ const ZIPPY = {
   success: "#34d399",
   successDim: "#047857",
   successLight: "#6ee7b7",
-  warning: "#fbbf24",
-  warningDim: "#b45309",
-  warningLight: "#fde047",
+  /** Overdue: rose (reads as “needs attention”, not brown-on-dark) */
+  alert: "#fb7185",
+  alertDim: "#be123c",
+  alertLight: "#fda4af",
+  /** Blockers: distinct from cyan “outstanding” */
+  slate: "#64748b",
+  violet: "#8b5cf6",
+  violetDim: "#5b21b6",
   muted: "#71717a",
 } as const;
 
 export function AnimatedGradientDemo() {
-  React.useEffect(() => {
-    // #region agent log
-    fetch("http://127.0.0.1:7358/ingest/09609727-79f6-48ed-8830-8c381fd51540",{method:"POST",headers:{"Content-Type":"application/json","X-Debug-Session-Id":"4c3e2e"},body:JSON.stringify({sessionId:"4c3e2e",runId:"pre-fix",hypothesisId:"H5",location:"frontend/src/components/ui/animated-gradient-demo.tsx:useEffect",message:"Animated gradient mounted",data:{viewportWidth:typeof window!=="undefined"?window.innerWidth:null,prefersReducedMotion:typeof window!=="undefined"&&window.matchMedia?window.matchMedia("(prefers-reduced-motion: reduce)").matches:false},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
+  const [gradientAnimated, setGradientAnimated] = useState(true);
+
+  useEffect(() => {
+    const update = () => {
+      const narrow = window.matchMedia("(max-width: 767px)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      setGradientAnimated(!(narrow || reduceMotion));
+    };
+    update();
+    const mqN = window.matchMedia("(max-width: 767px)");
+    const mqR = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mqN.addEventListener("change", update);
+    mqR.addEventListener("change", update);
+    return () => {
+      mqN.removeEventListener("change", update);
+      mqR.removeEventListener("change", update);
+    };
   }, []);
 
   return (
@@ -105,6 +132,7 @@ export function AnimatedGradientDemo() {
             subtitle="Across all open invoices"
             colors={[ZIPPY.accent, ZIPPY.accentDim, ZIPPY.accentLight]}
             delay={0.2}
+            gradientAnimated={gradientAnimated}
           />
         </div>
         <div className="md:min-h-[140px]">
@@ -112,8 +140,9 @@ export function AnimatedGradientDemo() {
             title="Overdue"
             value="$12,400"
             subtitle="Needs a nudge"
-            colors={[ZIPPY.warning, ZIPPY.warningDim, ZIPPY.warningLight]}
+            colors={[ZIPPY.alert, ZIPPY.alertDim, ZIPPY.alertLight]}
             delay={0.4}
+            gradientAnimated={gradientAnimated}
           />
         </div>
         <div className="md:min-h-[140px]">
@@ -123,6 +152,7 @@ export function AnimatedGradientDemo() {
             subtitle="Invoices closed"
             colors={[ZIPPY.success, ZIPPY.successDim, ZIPPY.successLight]}
             delay={0.6}
+            gradientAnimated={gradientAnimated}
           />
         </div>
         <div className="md:col-span-2 md:min-h-[140px]">
@@ -130,8 +160,9 @@ export function AnimatedGradientDemo() {
             title="Blockers needing reply"
             value="3"
             subtitle="Why they haven't paid"
-            colors={[ZIPPY.accent, ZIPPY.accentDim, ZIPPY.muted]}
+            colors={[ZIPPY.slate, ZIPPY.violet, ZIPPY.violetDim]}
             delay={0.8}
+            gradientAnimated={gradientAnimated}
           />
         </div>
         <div className="md:col-span-3 md:min-h-[120px]">
@@ -141,6 +172,7 @@ export function AnimatedGradientDemo() {
             subtitle="We'll nudge them. You stay the good guy."
             colors={[ZIPPY.accent, ZIPPY.success, ZIPPY.accentDim]}
             delay={1}
+            gradientAnimated={gradientAnimated}
           />
         </div>
       </div>

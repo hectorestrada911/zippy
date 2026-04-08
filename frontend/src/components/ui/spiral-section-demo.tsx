@@ -11,11 +11,26 @@ import { SpiralAnimation } from "@/components/ui/spiral-animation";
 export function SpiralSectionDemo() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [buttonVisible, setButtonVisible] = useState(false);
+  const [showSpiral, setShowSpiral] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setButtonVisible(true), 2000);
-    return () => clearTimeout(timer);
+    const mqW = window.matchMedia("(min-width: 768px)");
+    const mqR = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setShowSpiral(mqW.matches && !mqR.matches);
+    sync();
+    mqW.addEventListener("change", sync);
+    mqR.addEventListener("change", sync);
+    return () => {
+      mqW.removeEventListener("change", sync);
+      mqR.removeEventListener("change", sync);
+    };
   }, []);
+
+  useEffect(() => {
+    const delayMs = showSpiral ? 2000 : 400;
+    const timer = setTimeout(() => setButtonVisible(true), delayMs);
+    return () => clearTimeout(timer);
+  }, [showSpiral]);
 
   return (
     <div
@@ -23,10 +38,17 @@ export function SpiralSectionDemo() {
       className="relative min-h-screen w-full overflow-hidden bg-[var(--background)]"
     >
       <div className="absolute inset-0">
-        <SpiralAnimation
-          containerRef={sectionRef}
-          className="absolute inset-0"
-        />
+        {showSpiral ? (
+          <SpiralAnimation
+            containerRef={sectionRef}
+            className="absolute inset-0"
+          />
+        ) : (
+          <div
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.08)_0%,_transparent_55%)]"
+            aria-hidden
+          />
+        )}
       </div>
       <div
         className={`

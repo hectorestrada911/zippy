@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { WorldMap } from "@/components/ui/map";
 import { DollarSign } from "lucide-react";
 
@@ -32,6 +33,27 @@ const MAP_DOTS = [
 ];
 
 export function MapDemo() {
+  const [liteMap, setLiteMap] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      const narrow = window.matchMedia("(max-width: 767px)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      setLiteMap(narrow || reduceMotion);
+    };
+    update();
+    const mqN = window.matchMedia("(max-width: 767px)");
+    const mqR = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mqN.addEventListener("change", update);
+    mqR.addEventListener("change", update);
+    return () => {
+      mqN.removeEventListener("change", update);
+      mqR.removeEventListener("change", update);
+    };
+  }, []);
+
   return (
     <div className="w-full">
       <div className="mx-auto max-w-5xl px-4 sm:px-4 text-center">
@@ -49,13 +71,14 @@ export function MapDemo() {
           anywhere. Zippy keeps track so you get paid.
         </p>
       </div>
-      <div className="mt-8 w-full sm:mx-auto sm:max-w-6xl sm:px-4 h-screen min-h-[100dvh] sm:h-auto sm:min-h-0">
+      <div className="mt-8 w-full sm:mx-auto sm:max-w-6xl sm:px-4 h-[min(70dvh,520px)] min-h-[280px] sm:h-auto sm:min-h-0">
         <WorldMap
           dots={MAP_DOTS}
           lineColor="#22d3ee"
           showLabels={true}
-          animationDuration={2}
-          loop={true}
+          animationDuration={liteMap ? 0.6 : 2}
+          loop={!liteMap}
+          enableMarkerPulse={!liteMap}
           theme="dark"
         />
         <p className="sm:hidden text-center text-xs text-[var(--muted)] mt-3 px-4">
