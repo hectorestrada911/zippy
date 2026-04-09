@@ -141,25 +141,25 @@ export function WorldMap({
       return false;
     };
 
+    // Keep labels close enough to their city markers to avoid "wrong city" perception.
     const OFFSETS: [number, number][] = [
       [0, 0],
-      [0, 40],
-      [0, -40],
-      [76, 0],
-      [-76, 0],
-      [76, 40],
-      [-76, 40],
-      [76, -40],
-      [-76, -40],
-      [0, 80],
-      [0, -80],
-      [152, 0],
-      [-152, 0],
-      [0, 120],
-      [110, 80],
-      [-110, 80],
-      [110, -80],
-      [-110, -80],
+      [0, 24],
+      [0, -24],
+      [44, 0],
+      [-44, 0],
+      [44, 24],
+      [-44, 24],
+      [44, -24],
+      [-44, -24],
+      [0, 48],
+      [0, -48],
+      [64, 0],
+      [-64, 0],
+      [64, 24],
+      [-64, 24],
+      [64, -24],
+      [-64, -24],
     ];
 
     return projected.map((entry) => {
@@ -180,7 +180,13 @@ export function WorldMap({
       if (!placedRect) {
         placed.push(rectFor(pt, 0, 0));
       }
-      return { ...item, labelOffsetX: offsetX, labelOffsetY: offsetY };
+      const clamp = (v: number, min: number, max: number) =>
+        Math.max(min, Math.min(max, v));
+      return {
+        ...item,
+        labelOffsetX: clamp(offsetX, -64, 64),
+        labelOffsetY: clamp(offsetY, -48, 48),
+      };
     });
   }, [dots]);
 
@@ -473,6 +479,9 @@ export function WorldMap({
             const labelH = 28;
             const offsetX = item.labelOffsetX;
             const offsetY = item.labelOffsetY;
+            const labelCenterX = pt.x + offsetX;
+            const labelCenterY = pt.y - 32 - offsetY + labelH / 2;
+            const needsConnector = Math.abs(offsetX) + Math.abs(offsetY) > 20;
             return (
               <motion.g
                 key={`label-${item.label}-${i}`}
@@ -481,6 +490,17 @@ export function WorldMap({
                 transition={{ delay: 0.2 * i + 0.3, duration: 0.5 }}
                 className="pointer-events-none hidden sm:block"
               >
+                {needsConnector ? (
+                  <line
+                    x1={pt.x}
+                    y1={pt.y}
+                    x2={labelCenterX}
+                    y2={labelCenterY}
+                    stroke={lineColor}
+                    strokeOpacity="0.45"
+                    strokeWidth="0.9"
+                  />
+                ) : null}
                 <foreignObject
                   x={pt.x - labelW / 2 + offsetX}
                   y={pt.y - 32 - offsetY}
