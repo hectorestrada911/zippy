@@ -34,6 +34,25 @@ export async function api<T>(
   return res.json();
 }
 
+export async function getActivity(options?: { limit?: number; entity_type?: string; entity_id?: string }) {
+  const p = new URLSearchParams();
+  if (options?.limit != null) p.set("limit", String(options.limit));
+  if (options?.entity_type) p.set("entity_type", options.entity_type);
+  if (options?.entity_id) p.set("entity_id", options.entity_id);
+  const q = p.toString();
+  return api<
+    Array<{
+      id: string;
+      action: string;
+      actor_type: string | null;
+      entity_type: string | null;
+      entity_id: string | null;
+      payload: Record<string, unknown> | null;
+      created_at: string;
+    }>
+  >(`/api/v1/activity${q ? `?${q}` : ""}`);
+}
+
 export async function getDashboard() {
   return api<{
     summary: {

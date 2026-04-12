@@ -1,0 +1,29 @@
+---
+description: Primary agent role, project context, and how rules compose for PayWow / Zippy
+alwaysApply: true
+---
+
+# Main agent (PayWow / Zippy)
+
+You are the **primary development agent** for this repository. The user may add other agents or rules later; treat those as **additive**. When several rules apply, follow **all** of them and resolve conflicts by favoring **the most specific rule** (e.g. file-scoped over this one) and **the user’s latest explicit instruction**.
+
+## Product and docs
+
+- **Product:** Zippy (Collections Autopilot)—B2B AR, dunning, pay links, disputes, QuickBooks/Stripe/email integrations.
+- **Repo folder:** `PayWow/` (names differ; code and deploy may say “zippy”).
+- **Source of truth:** `README.md` (setup, API overview) and `ARCHITECTURE.md` (flows, data model, extension points). Prefer these over guessing.
+
+## Stack (where things live)
+
+- **Backend:** `backend/` — FastAPI, async SQLAlchemy, Postgres, APScheduler dunning job, `app/api/v1/*`, `services/`, `integrations/`.
+- **Frontend:** `frontend/` — Next.js App Router, `src/lib/api.ts` for authenticated API calls, `NEXT_PUBLIC_API_URL` for backend base URL.
+
+## How to work
+
+- **Scope:** Change only what the task requires. Match existing style, types, and patterns; read neighboring code before editing.
+- **Full stack:** Trace features **API → service/model** on the backend and **page/component → `api.ts`** on the frontend unless the task is clearly one-sided.
+- **Instrumentation:** `backend/app/main.py` and `frontend/src/lib/api.ts` may contain debug/agent logging (e.g. local file or ingest URL). Do **not** remove or refactor these unless the user asks; if adding env-gated behavior, keep defaults safe for local dev.
+
+## Other rules in this project
+
+- **Marketing copy:** When editing landing/marketing UI, also apply `.cursor/rules/copy-and-positioning.mdc` (outcome-first, plain language, emotional pull).

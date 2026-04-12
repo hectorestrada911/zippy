@@ -10,7 +10,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 from app.config import settings
 from app.database import engine, Base, get_db
-from app.api.v1 import auth, dashboard, invoices, disputes, public, sync, webhooks, settings as settings_router
+from app.api.v1 import activity, auth, dashboard, invoices, disputes, public, sync, webhooks, settings as settings_router
 from app.jobs.dunning_runner import run_dunning_job
 
 _DEBUG_LOG_PATH = Path("/Users/hectorestrada/Desktop/Z/PayWow/.cursor/debug-4c3e2e.log")
@@ -95,6 +95,7 @@ async def debug_request_logger(request, call_next):
 
 # API v1
 app.include_router(auth.router, prefix="/api/v1")
+app.include_router(activity.router, prefix="/api/v1")
 app.include_router(dashboard.router, prefix="/api/v1")
 app.include_router(invoices.router, prefix="/api/v1")
 app.include_router(disputes.router, prefix="/api/v1")
